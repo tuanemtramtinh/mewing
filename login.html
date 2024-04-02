@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.config.js"> </script>
+    <title>Login</title>
+  </head>
+  <body> 
+    <div>
+      <div class="container flex justify-center items-center h-screen">
+        <div class="flex flex-col items-center w-[550px] border-[3px] rounded-[20px] px-[50px] pb-[50px] pt-[50px] bg-[#F0F0F0]">
+          <div class="truncate rounded-[100px] aspect-square w-[30%] mb-[25px]"><img class="w-full" src="assets/images/MEWING.svg" alt="mewing-logo"></div>
+          <h1 class="capitalize text-[45px] font-bold mb-[40px] text-center">Login Here </h1>
+          <div class="flex justify-center w-full">
+            <form class="w-full flex flex-col" action="">
+              <label class="text-[25px] font-semibold mb-[20px]" for="login-email">Email</label>
+              <div class="relative">
+                <input class="p-[12px] pl-[55px] outline-none bg-[#f0f0f0] border-[2px] border-black border-opacity-40 rounded-[20px] w-full mb-[40px] text-[25px]" id="login-email" type="email" name="" placeholder="sample@email.com"><i class="fa-solid fa-envelope absolute text-[25px] text-black opacity-60 top-[22px] left-[20px]"></i>
+              </div>
+              <label class="text-[25px] font-semibold mb-[20px]" for="login-password">Password </label>
+              <div class="relative">
+                <input class="p-[12px] pl-[55px] outline-none bg-[#f0f0f0] border-[2px] border-black border-opacity-40 rounded-[20px] w-full mb-[60px] text-[25px]" id="login-password" type="password" name="" placeholder="Password"><i class="fa-solid fa-key absolute text-[25px] text-black opacity-60 top-[22px] left-[20px]"></i>
+              </div>
+              <button type="submit">
+                <div class="relative">
+                  <div class="text-[30px] text-white p-[15px] rounded-[20px] font-bold bg-[#0A131E]">Login</div><i class="fa-solid fa-right-to-bracket absolute text-white top-[23px] left-[130px] text-[30px]"></i>
+                </div>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
