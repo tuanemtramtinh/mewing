@@ -6,33 +6,83 @@
     <link rel="stylesheet" href="assets/css/style.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script src="https://cdn.tailwindcss.com"></script>
     <script src="tailwind.config.js"> </script>
-    <title>Login</title>
+    <title>Login And Register</title>
   </head>
   <body> 
-    <div>
-      <div class="container flex justify-center items-center h-screen">
-        <div class="flex flex-col items-center w-[550px] border-[3px] rounded-[20px] px-[50px] pb-[50px] pt-[50px] bg-[#F0F0F0]">
-          <div class="truncate rounded-[100px] aspect-square w-[30%] mb-[25px]"><img class="w-full" src="assets/images/MEWING.svg" alt="mewing-logo"></div>
-          <h1 class="capitalize text-[45px] font-bold mb-[40px] text-center">Login Here </h1>
-          <div class="flex justify-center w-full">
-            <form class="w-full flex flex-col" action="">
-              <label class="text-[25px] font-semibold mb-[20px]" for="login-email">Email</label>
-              <div class="relative">
-                <input class="p-[12px] pl-[55px] outline-none bg-[#f0f0f0] border-[2px] border-black border-opacity-40 rounded-[20px] w-full mb-[40px] text-[25px]" id="login-email" type="email" name="" placeholder="sample@email.com"><i class="fa-solid fa-envelope absolute text-[25px] text-black opacity-60 top-[22px] left-[20px]"></i>
-              </div>
-              <label class="text-[25px] font-semibold mb-[20px]" for="login-password">Password </label>
-              <div class="relative">
-                <input class="p-[12px] pl-[55px] outline-none bg-[#f0f0f0] border-[2px] border-black border-opacity-40 rounded-[20px] w-full mb-[60px] text-[25px]" id="login-password" type="password" name="" placeholder="Password"><i class="fa-solid fa-key absolute text-[25px] text-black opacity-60 top-[22px] left-[20px]"></i>
-              </div>
-              <button type="submit">
-                <div class="relative">
-                  <div class="text-[30px] text-white p-[15px] rounded-[20px] font-bold bg-[#0A131E]">Login</div><i class="fa-solid fa-right-to-bracket absolute text-white top-[23px] left-[130px] text-[30px]"></i>
+    <div class="choosing__section">
+      <div class="container w-[550px]">
+        <div class="choosing__wrap flex flex-col justify-center h-screen">
+          <div class="flex text-[25px]">
+            <button class="inline-block bg-[#F0F0F0] hover:bg-[#0C131D] text-black hover:text-white border-r-[2px] border-b-[2px] border-black border-opacity-50 rounded-tl-[10px] p-[15px] " type="click" id="login-option">Login</button>
+            <button class="inline-block bg-[#F0F0F0] hover:bg-[#0C131D] text-black hover:text-white rounded-tr-[10px] border-b-[2px] border-black border-opacity-50 p-[15px]" type="click" id="register-option">Register</button>
+          </div>
+          <div class="login__section" id="login__section">
+            <div class="flex items-center">
+              <div class="flex flex-col items-center rounded-b-[20px] rounded-r-[20px] px-[50px] pb-[50px] pt-[50px] bg-[#F0F0F0]">
+                <div class="truncate rounded-[100px] aspect-square w-[30%] mb-[25px]"><img class="w-full" src="assets/images/MEWING.svg" alt="mewing-logo"></div>
+                <h1 class="uppercase text-[35px] font-bold mb-[20px] text-center">Login Here </h1>
+                <div class="flex justify-center w-full">
+                  <form class="w-full flex flex-col" action="">
+                    <label class="text-[18px] font-semibold mb-[15px]" for="login-email">Email</label>
+                    <div class="relative mb-[20px]">
+                      <input class="p-[12px] pl-[55px] outline-none bg-[#f0f0f0] border-[2px] border-black border-opacity-40 rounded-[20px] w-full text-[20px]" id="login-email" type="email" name="" placeholder="sample@email.com"><i class="fa-solid fa-envelope absolute text-[20px] text-black opacity-60 top-[19px] left-[22px]"></i>
+                      <button class="delete-field" type="click">
+                         <i class="fa-solid fa-xmark absolute text[20px] text-black opacity-60 top-[20px] right-[20px]"></i></button>
+                    </div>
+                    <label class="text-[18px] font-semibold mb-[15px]" for="login-password">Password </label>
+                    <div class="relative mb-[40px]">
+                      <input class="p-[12px] pl-[55px] outline-none bg-[#f0f0f0] border-[2px] border-black border-opacity-40 rounded-[20px] w-full text-[20px]" id="login-password" type="password" name="" placeholder="Password"><i class="fa-solid fa-key absolute text-[18px] text-black opacity-60 top-[19px] left-[22px]"></i>
+                      <button class="delete-field" type="click">
+                         <i class="fa-solid fa-xmark absolute text[20px] text-black opacity-60 top-[20px] right-[20px]"></i></button>
+                    </div>
+                    <button id="login-submit" type="submit">
+                      <div class="relative">
+                        <div class="text-[30px] text-white p-[15px] rounded-[20px] font-bold bg-[#0A131E]">Login</div><i class="fa-solid fa-right-to-bracket absolute text-white top-[23px] left-[130px] text-[30px]"></i>
+                      </div>
+                    </button>
+                  </form>
                 </div>
-              </button>
-            </form>
+              </div>
+            </div>
+          </div>
+          <div class="register__section" id="register__section">
+            <div class="flex items-center">
+              <div class="flex flex-col items-center rounded-b-[20px] rounded-r-[20px] px-[50px] pb-[50px] pt-[50px] bg-[#F0F0F0]">
+                <div class="truncate rounded-[100px] aspect-square w-[30%] mb-[25px]"><img class="w-full" src="assets/images/MEWING.svg" alt="mewing-logo"></div>
+                <h1 class="uppercase text-[35px] font-bold mb-[20px] text-center">register</h1>
+                <div class="flex justify-center w-full">
+                  <form class="w-full flex flex-col" action="">
+                    <label class="text-[18px] font-semibold mb-[15px]" for="register-username">Username</label>
+                    <div class="relative mb-[20px]">
+                      <input class="p-[12px] pl-[55px] outline-none bg-[#f0f0f0] border-[2px] border-black border-opacity-40 rounded-[20px] w-full text-[20px]" id="register-username" type="text" name=""><i class="fa-solid fa-user absolute text-[20px] text-black opacity-60 top-[19px] left-[22px]"></i>
+                      <button class="delete-field" type="click">
+                         <i class="fa-solid fa-xmark absolute text[20px] text-black opacity-60 top-[20px] right-[20px]"></i></button>
+                    </div>
+                    <label class="text-[18px] font-semibold mb-[15px]" for="register-email">Email</label>
+                    <div class="relative mb-[20px]">
+                      <input class="p-[12px] pl-[55px] outline-none bg-[#f0f0f0] border-[2px] border-black border-opacity-40 rounded-[20px] w-full text-[20px]" id="register-email" type="email" name="" placeholder="sample@email.com"><i class="fa-solid fa-envelope absolute text-[20px] text-black opacity-60 top-[19px] left-[22px]"></i>
+                      <button class="delete-field" type="click">
+                         <i class="fa-solid fa-xmark absolute text[20px] text-black opacity-60 top-[20px] right-[20px]"></i></button>
+                    </div>
+                    <label class="text-[18px] font-semibold mb-[15px]" for="register-password">Password </label>
+                    <div class="relative mb-[40px]">
+                      <input class="p-[12px] pl-[55px] outline-none bg-[#f0f0f0] border-[2px] border-black border-opacity-40 rounded-[20px] w-full text-[20px]" id="register-password" type="password" name="" placeholder="Password"><i class="fa-solid fa-key absolute text-[18px] text-black opacity-60 top-[19px] left-[22px]"></i>
+                      <button class="delete-field" type="click">
+                         <i class="fa-solid fa-xmark absolute text[20px] text-black opacity-60 top-[20px] right-[20px]"></i></button>
+                    </div>
+                    <button id="register-submit" type="submit">
+                      <div class="relative">
+                        <div class="text-[30px] text-white p-[15px] rounded-[20px] font-bold bg-[#0A131E]">Login</div><i class="fa-solid fa-right-to-bracket absolute text-white top-[23px] left-[130px] text-[30px]"></i>
+                      </div>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <script src="./assets/js/login_register.js"></script>
   </body>
 </html>
