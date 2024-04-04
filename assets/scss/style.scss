@@ -1,8 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+* {
+    box-sizing: border-box;
+}
 
 body {
+    height: 100vh;
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
     font-family: "Be Vietnam Pro", sans-serif;
+}
+
+//Login - Đăng nhập
+
+
+
+#register{
+    &__section{
+        display: none;
+    }
+}
+
+#login{
+    &__section{
+        display: block;
+    }
 }
