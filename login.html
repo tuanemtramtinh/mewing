@@ -31,11 +31,11 @@
                     </div>
                     <label class="text-[18px] font-semibold mb-[15px]" for="login-password">Password </label>
                     <div class="relative mb-[40px]">
-                      <input class="p-[12px] pl-[55px] outline-none bg-[#f0f0f0] border-[2px] border-black border-opacity-40 rounded-[20px] w-full text-[20px]" id="login-password" type="password" name="" placeholder="Password"><i class="fa-solid fa-key absolute text-[18px] text-black opacity-60 top-[19px] left-[22px]"></i>
+                      <input class="p-[12px] pl-[55px] outline-none bg-[#f0f0f0] border-[2px] border-black border-opacity-40 rounded-[20px] w-full text-[20px]" id="login-password" type="password" name="" placeholder="Password"><i class="fa-solid fa-key absolute text-[18px] text-black opacity-60 top-[19px] left-[22px]" onclick="showPass()"></i>
                       <button class="delete-field" type="click">
                          <i class="fa-solid fa-xmark absolute text[20px] text-black opacity-60 top-[20px] right-[20px]"></i></button>
                     </div>
-                    <button id="login-submit" type="submit">
+                    <button id="login-submit" type="submit" onclick="takeLogin()">
                       <div class="relative">
                         <div class="text-[30px] text-white p-[15px] rounded-[20px] font-bold bg-[#0A131E]">Login</div><i class="fa-solid fa-right-to-bracket absolute text-white top-[23px] left-[130px] text-[30px]"></i>
                       </div>
@@ -70,7 +70,7 @@
                       <button class="delete-field" type="click">
                          <i class="fa-solid fa-xmark absolute text[20px] text-black opacity-60 top-[20px] right-[20px]"></i></button>
                     </div>
-                    <button id="register-submit" type="submit">
+                    <button id="register-submit" type="submit" onclick="takeRegister()">
                       <div class="relative">
                         <div class="text-[30px] text-white p-[15px] rounded-[20px] font-bold bg-[#0A131E]">Register</div><i class="fa-solid fa-right-to-bracket absolute text-white top-[23px] left-[120px] text-[30px]"></i>
                       </div>
