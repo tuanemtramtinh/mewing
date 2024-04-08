@@ -4,13 +4,9 @@
     box-sizing: border-box;
 }
 
-// body {
-//     height: 100vh;
-//     background: rgb(2,0,36);
-//     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
-//     font-family: "Be Vietnam Pro", sans-serif;
-// }
-
+body {
+    font-family: "Be Vietnam Pro", sans-serif;
+}
 
 //Header - Thanh trang chủ
 
@@ -287,11 +283,183 @@
         color:#FFC94A;
         margin-bottom: 8px;
     }
+
+  
+  
+  
+
+
+//Auth - Phần xác thực
+
+.auth{
+    &__section{
+        height: 100vh;
+        background: rgb(2,0,36);
+        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    }
+
+    &__container{
+        display: flex;
+        justify-content: center;
+    }
+
+    &__wrap{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100vh;
+        width: 550px;
+    }
+
+    &__choosing{
+        width: 550px;
+        display: inline-flex;
+        font-size: 25px;
+    }
+
+    &__choosing-button{
+
+        display: inline-block; 
+        border-color: #000000; 
+        border-right: 2px solid black;
+        border-bottom: 2px solid black;
+
+        color: #000000; 
+        background: #F0F0F0;
+        padding: 15px;
+        font-size: 25px;
+        font-family: "Be Vietnam Pro", sans-serif;
+
+        &:first-child{
+            border-radius: 10px 0px 0px 0px;
+        }
+
+        &:last-child{
+            border-radius: 0px 10px 0px 0px;
+        }
+
+        &:hover{
+            color: #ffffff; 
+            background: #0C131D;
+        }
+    }
+
+    &__info-wrap{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 0px 20px 20px 20px;
+        padding: 50px;
+        background-color: #F0F0F0;
+    }
+
+    &__logo{
+        overflow: hidden;
+        border-radius: 100px;
+        aspect-ratio: 1/1;
+        width: 30%;
+        margin-bottom: 25px;
+
+        img{
+            object-fit: cover;
+            width: 100%;
+        }
+    }
+
+    &__title{
+        text-transform: uppercase;
+        font-size: 35px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    &__info{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    &__info-form{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        label{
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+    }
+
+    &__input{
+        position: relative;
+        margin-bottom: 20px;
+        display: flex;
+
+        input{
+            display: block;
+            padding: 12px;
+            padding-left: 55px;
+            outline: none;
+            background-color: #F0F0F0;
+            border: 2px solid rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            width: 100%;
+            font-size: 20px;
+        }
+        
+        button{
+            padding: 0;
+            border: 0;
+        }
+    }
+
+    &__right-icon{
+        position: absolute;
+        font-size: 20px;
+        color: rgba(0, 0, 0, 0.6);
+        top: 19px;
+        left: 22px;
+    }
+
+    &__left-icon{
+        position: absolute;
+        font-size: 20px;
+        color: rgba(0, 0, 0, 0.6);
+        top: 20px;
+        right: 20px;
+    }
+
+    &__submit{
+        margin-top: 20px;
+        padding: 0;
+        border: 0;
+    }
+
+    &__submit-wrap{
+        position: relative;
+    }
+
+    &__submit-title{
+        font-size: 30px;
+        color: white;
+        padding: 15px;
+        border-radius: 20px;
+        font-weight: 700;
+        background-color: #0A131E;
+    }
+
+    &__submit-icon{
+        position:absolute;
+        color: white;
+        top: 23px;
+        left: 120px;
+        font-size: 30px;
+    }
 }
 
-//Login - Đăng nhập
-
-
+//ID
 
 #register{
     &__section{
@@ -304,3 +472,4 @@
         display: block;
     }
 }
+
