@@ -1,0 +1,85 @@
+extends layouts/default.pug
+
+block head 
+    title Giới thiệu 
+
+block main 
+
+    //-About
+
+    div(class="about")
+        div(class="container")
+            div(class="about__wrap")
+
+                div(class="about__left")
+                    div(class="about__image")
+                        img(src="assets/images/car-repair.svg", alt="")
+                    div(class="about__socials")
+                        a(href="") <i class="fa-brands fa-facebook-f"></i>
+                        a(href="") <i class="fa-brands fa-x-twitter"></i>
+                        a(href="") <i class="fa-brands fa-tiktok"></i>
+                        a(href="") <i class="fa-brands fa-instagram"></i>
+
+                div(class="about__right")
+                    h3(class="about__title") Về Chúng Tôi
+
+                    p(class="about__desc") Chào mừng bạn đến với Mewing - nơi bạn có thể tin tưởng để quản lý, cho thuê và bảo dưỡng xe một cách dễ dàng và hiệu quả nhất. Với đội ngũ chuyên nghiệp và mạng lưới rộng khắp, chúng tôi cam kết mang đến trải nghiệm khách hàng đẳng cấp và tiện lợi.
+
+                    p(class="about__desc") Tại Mewing, chúng tôi không chỉ cung cấp dịch vụ chất lượng mà còn tạo ra một môi trường thoải mái và an toàn cho mọi loại hành trình. Hãy đồng hành cùng chúng tôi để trải nghiệm sự khác biệt và tiện ích mà chúng tôi mang lại cho cuộc sống hàng ngày của bạn.
+
+    //-Member
+
+    -
+        var teamMember = 
+        [
+            {
+                name: 'Nguyễn Tuấn Anh',
+                image: 'assets/images/tuananh.jpg',
+                desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+            },
+            {
+                name : 'Ngô Ngọc Triệu Mẫn',
+                image: 'assets/images/man.jpg',
+                desc : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+            },
+            {
+                name : 'Nguyễn Trần Minh Anh',
+                image: 'assets/images/minhanh.jpg',
+                desc : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+            },
+            {
+                name : 'Dương Thanh Tú',
+                image: 'assets/images/tu.jpg',
+                desc : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+            },
+            {
+                name : 'Trần Gia Quí',
+                image: 'assets/images/qui.jpg',
+                desc : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+            }
+        ];
+
+    div(class="member")
+        div(class="container")
+            div(class="member__wrap")
+
+                h2(class="member__title") thành viên của nhóm
+
+                h3(class="member__sub-title") Hãy cùng nhau gặp gỡ các thành viên của nòng cốt của công ty Mewing nhé.
+
+                div(class="member__list grid grid-cols-3 gap-[20px]")
+                    each member in teamMember
+                        div(class="member__item")
+                            div(class="member__item-image")
+                                img(src=member.image, alt="")
+                            div(class="member__item-content")
+                                div(class="member__item-name") #{member.name}
+
+                                div(class="member__item-desc") #{member.desc}
+
+                                div(class="member__item-socials")
+                                    a(href="") <i class="fa-brands fa-facebook-f"></i>
+                                    a(href="") <i class="fa-brands fa-x-twitter"></i>
+                                    a(href="") <i class="fa-brands fa-tiktok"></i>
+                                    a(href="") <i class="fa-brands fa-instagram"></i>
+
