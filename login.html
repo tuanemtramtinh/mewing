@@ -9,74 +9,72 @@
     <title>Login And Register</title>
   </head>
   <body> 
-    <div class="choosing__section">
-      <div class="container w-[550px]">
-        <div class="choosing__wrap flex flex-col justify-center h-screen">
-          <div class="flex text-[25px]">
-            <button class="inline-block bg-[#F0F0F0] hover:bg-[#0C131D] text-black hover:text-white border-r-[2px] border-b-[2px] border-black border-opacity-50 rounded-tl-[10px] p-[15px] " type="click" id="login-option">Login</button>
-            <button class="inline-block bg-[#F0F0F0] hover:bg-[#0C131D] text-black hover:text-white rounded-tr-[10px] border-b-[2px] border-black border-opacity-50 p-[15px]" type="click" id="register-option">Register</button>
+    <div class="auth__section">
+      <div class="auth__container container">
+        <div class="auth__wrap">
+          <!--Choosing-->
+          <div class="auth__choosing">
+            <button class="auth__choosing-button" type="click" id="login-option">Login</button>
+            <button class="auth__choosing-button" type="click" id="register-option">Register</button>
           </div>
-          <div class="login__section" id="login__section">
-            <div class="flex items-center">
-              <div class="flex flex-col items-center rounded-b-[20px] rounded-r-[20px] px-[50px] pb-[50px] pt-[50px] bg-[#F0F0F0]">
-                <div class="truncate rounded-[100px] aspect-square w-[30%] mb-[25px]"><img class="w-full" src="assets/images/MEWING.svg" alt="mewing-logo"></div>
-                <h1 class="uppercase text-[35px] font-bold mb-[20px] text-center">Login Here </h1>
-                <div class="flex justify-center w-full">
-                  <form class="w-full flex flex-col" action="">
-                    <label class="text-[18px] font-semibold mb-[15px]" for="login-email">Email</label>
-                    <div class="relative mb-[20px]">
-                      <input class="p-[12px] pl-[55px] outline-none bg-[#f0f0f0] border-[2px] border-black border-opacity-40 rounded-[20px] w-full text-[20px]" id="login-email" type="email" name="" placeholder="sample@email.com"><i class="fa-solid fa-envelope absolute text-[20px] text-black opacity-60 top-[19px] left-[22px]"></i>
-                      <button class="delete-field" type="click">
-                         <i class="fa-solid fa-xmark absolute text[20px] text-black opacity-60 top-[20px] right-[20px]"></i></button>
+          <!--Login Section-->
+          <div class="auth__login-section" id="login__section">
+            <div class="auth__info-wrap">
+              <div class="auth__logo"><img src="assets/images/MEWING.svg" alt="mewing-logo"></div>
+              <h1 class="auth__title">Login Here </h1>
+              <div class="auth__info">
+                <form class="auth__info-form" action="">
+                  <label for="login-email">Email</label>
+                  <div class="auth__input">
+                    <input id="login-email" type="email" name="" placeholder="sample@email.com"><i class="auth__right-icon fa-solid fa-envelope"></i>
+                    <button class="delete-field" type="click">
+                       <i class="auth__left-icon fa-solid fa-xmark"></i></button>
+                  </div>
+                  <label for="login-password">Password </label>
+                  <div class="auth__input relative">
+                    <input id="login-password" type="password" name="" placeholder="Password"><i class="auth__right-icon fa-solid fa-key" onclick="showPass(document.getElementById('login-password'))"></i>
+                    <button class="delete-field" type="click">
+                       <i class="auth__left-icon fa-solid fa-xmark"></i></button>
+                  </div>
+                  <button class="auth__submit" id="login-submit" type="submit" onclick="takeLogin()">
+                    <div class="relative auth__submit-wrap">
+                      <div class="auth__submit-title">Login</div><i class="auth__submit-icon fa-solid fa-right-to-bracket"></i>
                     </div>
-                    <label class="text-[18px] font-semibold mb-[15px]" for="login-password">Password </label>
-                    <div class="relative mb-[40px]">
-                      <input class="p-[12px] pl-[55px] outline-none bg-[#f0f0f0] border-[2px] border-black border-opacity-40 rounded-[20px] w-full text-[20px]" id="login-password" type="password" name="" placeholder="Password"><i class="fa-solid fa-key absolute text-[18px] text-black opacity-60 top-[19px] left-[22px]"></i>
-                      <button class="delete-field" type="click">
-                         <i class="fa-solid fa-xmark absolute text[20px] text-black opacity-60 top-[20px] right-[20px]"></i></button>
-                    </div>
-                    <button id="login-submit" type="submit">
-                      <div class="relative">
-                        <div class="text-[30px] text-white p-[15px] rounded-[20px] font-bold bg-[#0A131E]">Login</div><i class="fa-solid fa-right-to-bracket absolute text-white top-[23px] left-[130px] text-[30px]"></i>
-                      </div>
-                    </button>
-                  </form>
-                </div>
+                  </button>
+                </form>
               </div>
             </div>
           </div>
-          <div class="register__section" id="register__section">
-            <div class="flex items-center">
-              <div class="flex flex-col items-center rounded-b-[20px] rounded-r-[20px] px-[50px] pb-[50px] pt-[50px] bg-[#F0F0F0]">
-                <div class="truncate rounded-[100px] aspect-square w-[30%] mb-[25px]"><img class="w-full" src="assets/images/MEWING.svg" alt="mewing-logo"></div>
-                <h1 class="uppercase text-[35px] font-bold mb-[20px] text-center">register</h1>
-                <div class="flex justify-center w-full">
-                  <form class="w-full flex flex-col" action="">
-                    <label class="text-[18px] font-semibold mb-[15px]" for="register-username">Username</label>
-                    <div class="relative mb-[20px]">
-                      <input class="p-[12px] pl-[55px] outline-none bg-[#f0f0f0] border-[2px] border-black border-opacity-40 rounded-[20px] w-full text-[20px]" id="register-username" type="text" name="" placeholder="sampleusername"><i class="fa-solid fa-user absolute text-[20px] text-black opacity-60 top-[19px] left-[22px]"></i>
-                      <button class="delete-field" type="click">
-                         <i class="fa-solid fa-xmark absolute text[20px] text-black opacity-60 top-[20px] right-[20px]"></i></button>
+          <div class="auth__register-section" id="register__section">
+            <div class="auth__info-wrap">
+              <div class="auth__logo"><img src="assets/images/MEWING.svg" alt="mewing-logo"></div>
+              <h1 class="auth__title">register</h1>
+              <div class="auth__info">
+                <form class="auth__info-form" action="">
+                  <label for="register-username">Username</label>
+                  <div class="auth__input">
+                    <input id="register-username" type="text" name="" placeholder="Username"><i class="auth__right-icon fa-solid fa-user "></i>
+                    <button class="delete-field" type="click">
+                       <i class="auth__left-icon fa-solid fa-xmark"></i></button>
+                  </div>
+                  <label for="register-email">Email</label>
+                  <div class="auth__input">
+                    <input id="register-email" type="email" name="" placeholder="sample@email.com"><i class="auth__right-icon fa-solid fa-envelope"></i>
+                    <button class="delete-field" type="click">
+                       <i class="auth__left-icon fa-solid fa-xmark"></i></button>
+                  </div>
+                  <label for="register-password">Password </label>
+                  <div class="auth__input">
+                    <input id="register-password" type="password" name="" placeholder="Password"><i class="auth__right-icon fa-solid fa-key" onclick="showPass(document.getElementById('register-password'))"></i>
+                    <button class="delete-field" type="click">
+                       <i class="auth__left-icon fa-solid fa-xmark"></i></button>
+                  </div>
+                  <button class="auth__submit" id="register-submit" type="submit" onclick="takeRegister()">
+                    <div class="relative auth__submit-wrap">
+                      <div class="auth__submit-title">Register</div><i class="auth__submit-icon fa-solid fa-right-to-bracket"></i>
                     </div>
-                    <label class="text-[18px] font-semibold mb-[15px]" for="register-email">Email</label>
-                    <div class="relative mb-[20px]">
-                      <input class="p-[12px] pl-[55px] outline-none bg-[#f0f0f0] border-[2px] border-black border-opacity-40 rounded-[20px] w-full text-[20px]" id="register-email" type="email" name="" placeholder="sample@email.com"><i class="fa-solid fa-envelope absolute text-[20px] text-black opacity-60 top-[19px] left-[22px]"></i>
-                      <button class="delete-field" type="click">
-                         <i class="fa-solid fa-xmark absolute text[20px] text-black opacity-60 top-[20px] right-[20px]"></i></button>
-                    </div>
-                    <label class="text-[18px] font-semibold mb-[15px]" for="register-password">Password </label>
-                    <div class="relative mb-[40px]">
-                      <input class="p-[12px] pl-[55px] outline-none bg-[#f0f0f0] border-[2px] border-black border-opacity-40 rounded-[20px] w-full text-[20px]" id="register-password" type="password" name="" placeholder="Password"><i class="fa-solid fa-key absolute text-[18px] text-black opacity-60 top-[19px] left-[22px]"></i>
-                      <button class="delete-field" type="click">
-                         <i class="fa-solid fa-xmark absolute text[20px] text-black opacity-60 top-[20px] right-[20px]"></i></button>
-                    </div>
-                    <button id="register-submit" type="submit">
-                      <div class="relative">
-                        <div class="text-[30px] text-white p-[15px] rounded-[20px] font-bold bg-[#0A131E]">Register</div><i class="fa-solid fa-right-to-bracket absolute text-white top-[23px] left-[120px] text-[30px]"></i>
-                      </div>
-                    </button>
-                  </form>
-                </div>
+                  </button>
+                </form>
               </div>
             </div>
           </div>

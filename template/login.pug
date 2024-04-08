@@ -10,78 +10,84 @@ html(lang="en")
         title Login And Register
     body 
 
-        div(class="choosing__section")
-            div(class="container w-[550px]")
-                div(class = "choosing__wrap flex flex-col justify-center h-screen")
-                    //-Choosing
-                    div(class="flex text-[25px]")
-                        button(type="click" id="login-option" class="inline-block bg-[#F0F0F0] hover:bg-[#0C131D] text-black hover:text-white border-r-[2px] border-b-[2px] border-black border-opacity-50 rounded-tl-[10px] p-[15px] ") Login
-                        button(type="click" id="register-option" class="inline-block bg-[#F0F0F0] hover:bg-[#0C131D] text-black hover:text-white rounded-tr-[10px] border-b-[2px] border-black border-opacity-50 p-[15px]") Register
-                    //-Login Section
-                    div(id="login__section" class="login__section")
-                        div(class="flex items-center")
-                            div(class="flex flex-col items-center rounded-b-[20px] rounded-r-[20px] px-[50px] pb-[50px] pt-[50px] bg-[#F0F0F0]")
-                                div(class="truncate rounded-[100px] aspect-square w-[30%] mb-[25px]")
-                                    img(src="assets/images/MEWING.svg", alt="mewing-logo" class = "w-full")
-                                h1(class="uppercase text-[35px] font-bold mb-[20px] text-center") Login Here 
+        div(class="auth__section")
+            div(class="auth__container container")
+                div(class = "auth__wrap")
 
-                                div(class="flex justify-center w-full")
-                                    form(action="" class="w-full flex flex-col")
 
-                                        label(for="login-email" class="text-[18px] font-semibold mb-[15px]") Email
-                                        div(class="relative mb-[20px]")
-                                            input(id="login-email" type="email" name="" placeholder="sample@email.com" class="p-[12px] pl-[55px] outline-none bg-[#f0f0f0] border-[2px] border-black border-opacity-40 rounded-[20px] w-full text-[20px]")
-                                            <i class="fa-solid fa-envelope absolute text-[20px] text-black opacity-60 top-[19px] left-[22px]"></i>
-                                            button(type="click" class="delete-field") 
-                                                <i class="fa-solid fa-xmark absolute text[20px] text-black opacity-60 top-[20px] right-[20px]"></i>
-                                            
-                                        label(for="login-password" class="text-[18px] font-semibold mb-[15px]") Password 
-                                        div(class="relative mb-[40px]")
-                                            input(id="login-password" type="password" name="" placeholder="Password" class="p-[12px] pl-[55px] outline-none bg-[#f0f0f0] border-[2px] border-black border-opacity-40 rounded-[20px] w-full text-[20px]")
-                                            <i class="fa-solid fa-key absolute text-[18px] text-black opacity-60 top-[19px] left-[22px]"></i>
-                                            button(type="click" class="delete-field") 
-                                                <i class="fa-solid fa-xmark absolute text[20px] text-black opacity-60 top-[20px] right-[20px]"></i>
-                                            
-                                        button(id="login-submit" class="" type="submit")
-                                            div(class="relative")
-                                                div(class="text-[30px] text-white p-[15px] rounded-[20px] font-bold bg-[#0A131E]") Login
-                                                <i class="fa-solid fa-right-to-bracket absolute text-white top-[23px] left-[130px] text-[30px]"></i>
+                    //Choosing
+                    div(class="auth__choosing")
+                        button(type="click" id="login-option" class="auth__choosing-button") Login
+                        button(type="click" id="register-option" class="auth__choosing-button") Register
+
+                    //Login Section
+                    div(id="login__section" class="auth__login-section")
+                        div(class="auth__info-wrap")
+
+                            div(class="auth__logo")
+                                img(src="assets/images/MEWING.svg", alt="mewing-logo" class = "")
+
+                            h1(class="auth__title") Login Here 
+
+                            div(class="auth__info")
+                                form(action="" class="auth__info-form")
+
+                                    label(for="login-email" class="") Email
+                                    div(class="auth__input")
+                                        input(id="login-email" type="email" name="" placeholder="sample@email.com" class="")
+                                        <i class="auth__right-icon fa-solid fa-envelope"></i>
+                                        button(type="click" class="delete-field") 
+                                            <i class="auth__left-icon fa-solid fa-xmark"></i>
+                                        
+                                    label(for="login-password" class="") Password 
+                                    div(class="auth__input relative")
+                                        input(id="login-password" type="password" name="" placeholder="Password" class="")
+                                        <i class="auth__right-icon fa-solid fa-key" onclick="showPass(document.getElementById('login-password'))"></i>
+                                        button(type="click" class="delete-field") 
+                                            <i class="auth__left-icon fa-solid fa-xmark"></i>
+                                        
+                                    button(class="auth__submit" id="login-submit" type="submit" onclick="takeLogin()")
+                                        div(class="relative auth__submit-wrap")
+                                            div(class="auth__submit-title") Login
+                                            <i class="auth__submit-icon fa-solid fa-right-to-bracket"></i>
 
                     //-Register Section
-                    div(id="register__section" class="register__section")
-                        div(class="flex items-center")
-                            div(class="flex flex-col items-center rounded-b-[20px] rounded-r-[20px] px-[50px] pb-[50px] pt-[50px] bg-[#F0F0F0]")
-                                div(class="truncate rounded-[100px] aspect-square w-[30%] mb-[25px]")
-                                    img(src="assets/images/MEWING.svg", alt="mewing-logo" class = "w-full")
-                                h1(class="uppercase text-[35px] font-bold mb-[20px] text-center") register
+                    div(id="register__section" class="auth__register-section")
+                        div(class="auth__info-wrap")
 
-                                div(class="flex justify-center w-full")
-                                    form(action="" class="w-full flex flex-col")
-                                        label(for="register-username", class="text-[18px] font-semibold mb-[15px]") Username
-                                        div(class="relative mb-[20px]")
-                                            input(id="register-username" type="text" name="" class="p-[12px] pl-[55px] outline-none bg-[#f0f0f0] border-[2px] border-black border-opacity-40 rounded-[20px] w-full text-[20px]")
-                                            <i class="fa-solid fa-user absolute text-[20px] text-black opacity-60 top-[19px] left-[22px]"></i>
-                                            button(type="click" class="delete-field") 
-                                                <i class="fa-solid fa-xmark absolute text[20px] text-black opacity-60 top-[20px] right-[20px]"></i>
-                                            
-                                        label(for="register-email" class="text-[18px] font-semibold mb-[15px]") Email
-                                        div(class="relative mb-[20px]")
-                                            input(id="register-email" type="email" name="" placeholder="sample@email.com" class="p-[12px] pl-[55px] outline-none bg-[#f0f0f0] border-[2px] border-black border-opacity-40 rounded-[20px] w-full text-[20px]")
-                                            <i class="fa-solid fa-envelope absolute text-[20px] text-black opacity-60 top-[19px] left-[22px]"></i>
-                                            button(type="click" class="delete-field") 
-                                                <i class="fa-solid fa-xmark absolute text[20px] text-black opacity-60 top-[20px] right-[20px]"></i>
-                                            
-                                        label(for="register-password" class="text-[18px] font-semibold mb-[15px]") Password 
-                                        div(class="relative mb-[40px]")
-                                            input(id="register-password" type="password" name="" placeholder="Password" class="p-[12px] pl-[55px] outline-none bg-[#f0f0f0] border-[2px] border-black border-opacity-40 rounded-[20px] w-full text-[20px]")
-                                            <i class="fa-solid fa-key absolute text-[18px] text-black opacity-60 top-[19px] left-[22px]"></i>
-                                            button(type="click" class="delete-field") 
-                                                <i class="fa-solid fa-xmark absolute text[20px] text-black opacity-60 top-[20px] right-[20px]"></i>
-                                            
-                                        button(id="register-submit" class="" type="submit")
-                                            div(class="relative")
-                                                div(class="text-[30px] text-white p-[15px] rounded-[20px] font-bold bg-[#0A131E]") Register
-                                                <i class="fa-solid fa-right-to-bracket absolute text-white top-[23px] left-[130px] text-[30px]"></i>
+                            div(class="auth__logo")
+                                img(src="assets/images/MEWING.svg", alt="mewing-logo" class = "")
+
+                            h1(class="auth__title") register
+
+                            div(class="auth__info")
+                                form(action="" class="auth__info-form")
+
+                                    label(for="register-username", class="") Username
+                                    div(class="auth__input")
+                                        input(id="register-username" type="text" name="" placeholder="Username" class="")
+                                        <i class="auth__right-icon fa-solid fa-user "></i>
+                                        button(type="click" class="delete-field") 
+                                            <i class="auth__left-icon fa-solid fa-xmark"></i>
+                                        
+                                    label(for="register-email" class="") Email
+                                    div(class="auth__input")
+                                        input(id="register-email" type="email" name="" placeholder="sample@email.com" class="")
+                                        <i class="auth__right-icon fa-solid fa-envelope"></i>
+                                        button(type="click" class="delete-field") 
+                                            <i class="auth__left-icon fa-solid fa-xmark"></i>
+                                        
+                                    label(for="register-password" class="") Password 
+                                    div(class="auth__input")
+                                        input(id="register-password" type="password" name="" placeholder="Password" class="")
+                                        <i class="auth__right-icon fa-solid fa-key" onclick="showPass(document.getElementById('register-password'))"></i>
+                                        button(type="click" class="delete-field") 
+                                            <i class="auth__left-icon fa-solid fa-xmark"></i>
+                                        
+                                    button(id="register-submit" class="auth__submit" type="submit" onclick="takeRegister()")
+                                        div(class="relative auth__submit-wrap")
+                                            div(class="auth__submit-title") Register
+                                            <i class="auth__submit-icon fa-solid fa-right-to-bracket"></i>
 
         script(src="./assets/js/login_register.js")
 

@@ -36,3 +36,31 @@ function deleteFieldFunction(index) {
 for (var i = 0; i < deleteButtons.length; i++){
     deleteButtons[i].addEventListener('click', deleteFieldFunction(i));
 }
+
+//Take user input
+var login_email;
+var login_password;
+var register_username;
+var register_email;
+var register_password;
+
+function takeLogin(){
+    login_email = document.getElementById("login-email").value;
+    login_password = document.getElementById("login-password").value;
+}
+
+function takeRegister(){
+    register_email = document.getElementById("register-email").value;
+    register_username = document.getElementById("register-username").value;
+    register_password = document.getElementById("register-password").value;
+}
+
+//Show password
+function showPass(inputElement) {
+    
+    if (inputElement.type === "password") {
+        inputElement.type = "text";
+    } else {
+        inputElement.type = "password";
+    }
+}

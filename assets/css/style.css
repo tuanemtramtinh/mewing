@@ -4,10 +4,148 @@
 }
 
 body {
+  font-family: "Be Vietnam Pro", sans-serif;
+}
+
+.auth__section {
   height: 100vh;
   background: rgb(2, 0, 36);
   background: linear-gradient(90deg, rgb(2, 0, 36) 0%, rgb(9, 9, 121) 35%, rgb(0, 212, 255) 100%);
+}
+.auth__container {
+  display: flex;
+  justify-content: center;
+}
+.auth__wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  width: 550px;
+}
+.auth__choosing {
+  width: 550px;
+  display: inline-flex;
+  font-size: 25px;
+}
+.auth__choosing-button {
+  display: inline-block;
+  border-color: #000000;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  color: #000000;
+  background: #F0F0F0;
+  padding: 15px;
+  font-size: 25px;
   font-family: "Be Vietnam Pro", sans-serif;
+}
+.auth__choosing-button:first-child {
+  border-radius: 10px 0px 0px 0px;
+}
+.auth__choosing-button:last-child {
+  border-radius: 0px 10px 0px 0px;
+}
+.auth__choosing-button:hover {
+  color: #ffffff;
+  background: #0C131D;
+}
+.auth__info-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0px 20px 20px 20px;
+  padding: 50px;
+  background-color: #F0F0F0;
+}
+.auth__logo {
+  overflow: hidden;
+  border-radius: 100px;
+  aspect-ratio: 1/1;
+  width: 30%;
+  margin-bottom: 25px;
+}
+.auth__logo img {
+  object-fit: cover;
+  width: 100%;
+}
+.auth__title {
+  text-transform: uppercase;
+  font-size: 35px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.auth__info {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.auth__info-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.auth__info-form label {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+.auth__input {
+  position: relative;
+  margin-bottom: 20px;
+  display: flex;
+}
+.auth__input input {
+  display: block;
+  padding: 12px;
+  padding-left: 55px;
+  outline: none;
+  background-color: #F0F0F0;
+  border: 2px solid rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  width: 100%;
+  font-size: 20px;
+}
+.auth__input button {
+  padding: 0;
+  border: 0;
+}
+.auth__right-icon {
+  position: absolute;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.6);
+  top: 19px;
+  left: 22px;
+}
+.auth__left-icon {
+  position: absolute;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.6);
+  top: 20px;
+  right: 20px;
+}
+.auth__submit {
+  margin-top: 20px;
+  padding: 0;
+  border: 0;
+}
+.auth__submit-wrap {
+  position: relative;
+}
+.auth__submit-title {
+  font-size: 30px;
+  color: white;
+  padding: 15px;
+  border-radius: 20px;
+  font-weight: 700;
+  background-color: #0A131E;
+}
+.auth__submit-icon {
+  position: absolute;
+  color: white;
+  top: 23px;
+  left: 120px;
+  font-size: 30px;
 }
 
 #register__section {
