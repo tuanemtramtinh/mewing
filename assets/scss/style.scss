@@ -8,6 +8,8 @@ body {
     font-family: "Be Vietnam Pro", sans-serif;
 }
 
+
+
 //Header - Thanh trang chủ
 
 .header{
@@ -43,10 +45,15 @@ body {
 
     &__title{
         margin-left: 20px;
-        margin-right: 20px
+        margin-right: 20px;
+
+        &:hover{
+            color: #7E60BC;
+        }
     }
 
     &__button{
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         background-color: #7E60BC;
         padding-top: 10px;
         padding-bottom: 10px;
@@ -54,6 +61,7 @@ body {
         padding-right: 15px;
         font-size: 20px;
         color: #F9F5F0;
+        
         border-radius: 15px;
         button{
             text-transform: capitalize;
@@ -146,6 +154,64 @@ body {
         padding-bottom: 50px;
     }
 
+    &__announce{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #9F88C6;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        padding-right: 40px;
+        padding-left: 40px;
+        border-radius: 30px;
+        margin-top: -160px;
+        margin-bottom: 40px;
+
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+
+    &__announce-title{
+        color: #F9F5F0;
+        text-align: center;
+        text-transform: capitalize;
+        font-weight: 700;
+        font-size: 35px;
+        margin-bottom: 20px;
+    }
+
+    &__form{
+
+        position: relative;
+        display: flex;
+        justify-content: center;
+        width: 60%;
+        input{
+            // width: 60%;
+            width: 100%;
+            padding: 25px;
+            outline: none;
+            background-color: #F9F5F0;
+            border-radius: 30px;
+        }
+
+        button{
+            top: 8px;
+            right: 8px;
+            position: absolute;
+            background-color: #9F88C6;
+            color: white;
+            font-weight: 700;
+            font-size: 20px;
+            border-radius: 30px;
+            padding: 15px;
+
+            i{
+                margin-left: 5px;
+            }
+        }
+
+    }
+
     &__top{
         display: flex;
         justify-content: space-between;
@@ -164,11 +230,16 @@ body {
             align-items: center;
             width: 25px;
             height: 25px;
-            background-color: white;
+            background-color: #F9F5F0;
             border-radius: 100px;
             color: #9F88C6;
             margin-right: 10px;
             font-size: 16px;
+
+            &:hover{
+                background-color: #9F88C6;
+                color: #F9F5F0;
+            }
         }
 
         span{
@@ -216,6 +287,11 @@ body {
             width: 25px;
             height: 25px;
             margin-right: 10px;
+
+            &:hover{
+                color: #F9F5F0;
+                background-color: #9F88C6;
+            }
         }
     }
 
@@ -256,8 +332,8 @@ body {
 .comment{
     background-color: #F9F5F0;
     &__wrap{
-        padding-top: 40px;
-        padding-bottom: 40px;
+        padding-top: 80px;
+        padding-bottom: 190px;
     }
 
     &__item{
@@ -290,8 +366,9 @@ body {
 
 .about{
     background-color: #F9F5F0;
-    border-top: 2px solid #7E60BC;
-    border-bottom: 2px solid #7E60BC;
+    // border-top: 2px solid #7E60BC;
+    // border-bottom: 2px solid #7E60BC;
+    background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
     &__wrap{
         padding-top: 40px;
         padding-bottom: 40px;
@@ -314,7 +391,8 @@ body {
         padding-top: 40px;
         padding-bottom: 40px;
         border-radius: 40px;
-        background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+        background-color: #F9F5F0;
+        // background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
         margin-bottom: 20px;
         img{
             width: 100%;
@@ -358,6 +436,7 @@ body {
     }
 
     &__desc{
+        color: #F9F5F0;
         margin-bottom: 30px; 
         font-size: 18px;
         font-weight: 600;
@@ -372,7 +451,7 @@ body {
 
     &__wrap{
         padding-top: 60px;
-        padding-bottom: 60px;
+        padding-bottom: 170px;
     }
 
     &__intro{
@@ -623,6 +702,105 @@ body {
         top: 23px;
         left: 120px;
         font-size: 30px;
+    }
+}
+
+
+//Car
+
+.car{
+
+    background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+    padding-top: 80px;
+    padding-bottom: 190px;
+
+    &__wrap{
+        background-color: #F9F5F0;
+        border-radius: 30px;
+        overflow: hidden;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+
+    &__title{
+        font-size: 35px;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        background-color: #7E60BC;
+        color: #F9F5F0;
+    }
+
+    &__content{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 60px 40px;
+    }
+
+    &__image{
+        width: 48%;
+    }
+
+    &__form{
+        width: 48%;
+
+        label{
+            display: inline-block;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        input{
+            width: 100%;
+            padding: 10px 20px;
+            border-radius: 30px;
+            outline: none;
+        }
+
+        select{
+            width: 100%;
+            padding: 10px 20px;
+            border-radius: 30px;
+            outline: none;
+        }
+    }
+
+    &__info{        
+        margin-bottom: 15px;
+        font-size: 18px;
+        position: relative;
+
+        i{
+            position: absolute;
+            top: 50px;
+            right: 25px;
+        }
+    }
+
+
+    &__price{
+        display: none;
+        margin-top: 30px;
+        font-weight: 700;
+        font-size: 20px;
+
+        span{
+            color: green;
+        }
+    }
+
+    &__submit{
+        margin-top: 20px;
+        font-size: 22px;
+        font-weight: 700;
+        color: #F9F5F0;
+        background-color: #7E60BC;
+        padding: 10px 20px;
+        border-radius: 30px;
     }
 }
 

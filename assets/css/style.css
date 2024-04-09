@@ -36,7 +36,11 @@ body {
   margin-left: 20px;
   margin-right: 20px;
 }
+.header__title:hover {
+  color: #7E60BC;
+}
 .header__button {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   background-color: #7E60BC;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -119,6 +123,55 @@ body {
   padding-top: 50px;
   padding-bottom: 50px;
 }
+.footer__announce {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #9F88C6;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-right: 40px;
+  padding-left: 40px;
+  border-radius: 30px;
+  margin-top: -160px;
+  margin-bottom: 40px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.footer__announce-title {
+  color: #F9F5F0;
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: 700;
+  font-size: 35px;
+  margin-bottom: 20px;
+}
+.footer__form {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 60%;
+}
+.footer__form input {
+  width: 100%;
+  padding: 25px;
+  outline: none;
+  background-color: #F9F5F0;
+  border-radius: 30px;
+}
+.footer__form button {
+  top: 8px;
+  right: 8px;
+  position: absolute;
+  background-color: #9F88C6;
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+  border-radius: 30px;
+  padding: 15px;
+}
+.footer__form button i {
+  margin-left: 5px;
+}
 .footer__top {
   display: flex;
   justify-content: space-between;
@@ -136,11 +189,15 @@ body {
   align-items: center;
   width: 25px;
   height: 25px;
-  background-color: white;
+  background-color: #F9F5F0;
   border-radius: 100px;
   color: #9F88C6;
   margin-right: 10px;
   font-size: 16px;
+}
+.footer__top-left i:hover {
+  background-color: #9F88C6;
+  color: #F9F5F0;
 }
 .footer__top-left span {
   font-weight: 500;
@@ -181,6 +238,10 @@ body {
   height: 25px;
   margin-right: 10px;
 }
+.footer__socials i:hover {
+  color: #F9F5F0;
+  background-color: #9F88C6;
+}
 .footer__bottom {
   display: flex;
   justify-content: space-between;
@@ -213,8 +274,8 @@ body {
   background-color: #F9F5F0;
 }
 .comment__wrap {
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 80px;
+  padding-bottom: 190px;
 }
 .comment__item {
   border: solid 1px rgba(0, 0, 0, 0.4);
@@ -239,8 +300,7 @@ body {
 
 .about {
   background-color: #F9F5F0;
-  border-top: 2px solid #7E60BC;
-  border-bottom: 2px solid #7E60BC;
+  background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
 }
 .about__wrap {
   padding-top: 40px;
@@ -262,7 +322,7 @@ body {
   padding-top: 40px;
   padding-bottom: 40px;
   border-radius: 40px;
-  background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+  background-color: #F9F5F0;
   margin-bottom: 20px;
 }
 .about__image img {
@@ -301,6 +361,7 @@ body {
   margin-bottom: 40px;
 }
 .about__desc {
+  color: #F9F5F0;
   margin-bottom: 30px;
   font-size: 18px;
   font-weight: 600;
@@ -312,7 +373,7 @@ body {
 }
 .member__wrap {
   padding-top: 60px;
-  padding-bottom: 60px;
+  padding-bottom: 170px;
 }
 .member__intro {
   display: flex;
@@ -521,6 +582,87 @@ body {
   top: 23px;
   left: 120px;
   font-size: 30px;
+}
+
+.car {
+  background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+  padding-top: 80px;
+  padding-bottom: 190px;
+}
+.car__wrap {
+  background-color: #F9F5F0;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.car__title {
+  font-size: 35px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #7E60BC;
+  color: #F9F5F0;
+}
+.car__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 40px;
+}
+.car__image {
+  width: 48%;
+}
+.car__form {
+  width: 48%;
+}
+.car__form label {
+  display: inline-block;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.car__form input {
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 30px;
+  outline: none;
+}
+.car__form select {
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 30px;
+  outline: none;
+}
+.car__info {
+  margin-bottom: 15px;
+  font-size: 18px;
+  position: relative;
+}
+.car__info i {
+  position: absolute;
+  top: 50px;
+  right: 25px;
+}
+.car__price {
+  display: none;
+  margin-top: 30px;
+  font-weight: 700;
+  font-size: 20px;
+}
+.car__price span {
+  color: green;
+}
+.car__submit {
+  margin-top: 20px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #F9F5F0;
+  background-color: #7E60BC;
+  padding: 10px 20px;
+  border-radius: 30px;
 }
 
 #register__section {

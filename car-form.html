@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"><script src="https://cdn.tailwindcss.com"></script>
 <script src="tailwind.config.js"> </script>
+    <title>Đặt xe</title>
   </head>
   <body> 
     <div class="header">
@@ -23,6 +24,63 @@
         </div>
       </div>
     </div>
+    <div class="car">
+      <div class="container">
+        <div class="car__wrap">
+          <h3 class="car__title">Đặt xe</h3>
+          <div class="car__content">
+            <div class="car__image"><img src="assets/images/car-order.svg" alt=""></div>
+            <div class="car__form">
+              <form action="">
+                <div class="car__info">
+                  <label for="car__fullname">Họ và tên </label>
+                  <input class="car__fullname" type="text" id="car__fullname">
+                </div>
+                <div class="car__info">
+                  <label for="car__tel">Số điện thoại </label>
+                  <input class="car__tel" type="tel" id="car__tel">
+                </div>
+                <div class="car__info">
+                  <label for="car__type">Loại xe </label>
+                  <select class="car__type appearance-none" name="" id="car__type">
+                    <option value="car-4">4 bánh  </option>
+                    <option value="car-7">7 bánh </option>
+                    <option value="car-16">16 bánh  </option>
+                  </select><i class="fa-solid fa-caret-down"></i>
+                </div>
+                <div class="car__info">
+                  <label for="car__day">Ngày đi</label>
+                  <input class="car__day" type="date" name="" id="car__day">
+                </div>
+                <div class="car__info">
+                  <label for="car__time">Giờ xuất phát</label>
+                  <input class="car__time" type="time" name="" id="car__time">
+                </div>
+                <div class="car__info">
+                  <label for="car__start">Nơi đi</label>
+                  <select class="car__start appearance-none" name="" id="car__start">
+                    <option value="TPHCM">TP. HCM </option>
+                    <option value="VUNGTAU">Vũng Tàu </option>
+                    <option value="NHATRANG">Nha Trang   </option>
+                  </select><i class="fa-solid fa-caret-down"></i>   
+                </div>
+                <div class="car__info">
+                  <label for="car__end">Nơi đến</label>
+                  <select class="car__end appearance-none" name="" id="car__end"> 
+                    <option value="TPHCM">TP. HCM </option>
+                    <option value="VUNGTAU">Vũng Tàu</option>
+                    <option value="NHATRANG">Nha Trang  </option>
+                  </select><i class="fa-solid fa-caret-down"></i>  
+                </div>
+                <h3 class="car__price">Giá tiền: <span>500.000 VNĐ</span></h3>
+                <button class="car__submit" type="submit"><i class="fa-solid fa-money-bill"></i> Thuê Ngay</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="assets/js/car-form.js"> </script>
     <div class="footer">
       <div class="container">
         <div class="footer__wrap">
