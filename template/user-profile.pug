@@ -1,0 +1,77 @@
+extends layouts/default.pug
+
+block head 
+    title Chỉnh sửa hồ sơ
+
+block main 
+
+    div(class="profile")
+        
+        div(class="container")
+
+            div(class="profile__wrap")
+
+                div(class="profile__main-title") chỉnh sửa hồ sơ
+
+                div(class="profile__list")
+
+                    div(class="profile__left") 
+
+                        //- div(class="profile__avatar")
+                        div(class="profile__image")
+                            img(src="assets/images/default-avatar.svg", alt="")
+
+                        h3(class="") Role: <span>User</span>
+
+                        div(class="profile__socials")
+                            a(href="") <i class="fa-brands fa-facebook-f"></i>
+                            a(href="") <i class="fa-brands fa-x-twitter"></i>
+                            a(href="") <i class="fa-brands fa-tiktok"></i>
+                            a(href="") <i class="fa-brands fa-instagram"></i>
+
+                    div(class="profile__right")
+                        
+                        //- div(class="profile__content")
+
+                        h3(class="profile__title") <i class="fa-solid fa-user"></i>tài khoản
+
+                        form(action="" class="profile__form") 
+
+                            div(class="profile__section grid grid-cols-2 gap-[40px]")
+
+                                div(class="profile__info")
+                                    label(for="" class="") họ và tên
+                                    input(type="text" class="")
+                                
+                                div(class="profile__info")
+                                    label(for="" class="") tên tài khoản
+                                    input(type="text" class="")
+
+                                div(class="profile__info")
+                                    label(for="" class="") email 
+                                    input(type="email" class="")
+
+                                div(class="profile__info")
+                                    label(for="" class="") facebook
+                                    input(type="text" class="")
+
+                                div(class="profile__info")
+                                    label(for="" class="") x
+                                    input(type="text" class="")
+
+                                div(class="profile__info")
+                                    label(for="" class="") tiktok
+                                    input(type="text" class='')  
+                                
+                                div(class="profile__info")
+                                    label(for="" class="") instagram
+                                    input(type="text", name="")
+        
+                            button(type="submit" class="profile__button") Lưu
+
+                            //- div(class="profile__info")
+                            //-     label(for="" class="") nơi sống
+                            //-     i 
+
+
+

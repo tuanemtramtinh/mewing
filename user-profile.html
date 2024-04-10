@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"><script src="https://cdn.tailwindcss.com"></script>
 <script src="tailwind.config.js"> </script>
-    <title>Đặt xe</title>
+    <title>Chỉnh sửa hồ sơ</title>
   </head>
   <body> 
     <div class="header">
@@ -24,63 +24,56 @@
         </div>
       </div>
     </div>
-    <div class="car">
+    <div class="profile">
       <div class="container">
-        <div class="car__wrap">
-          <h3 class="car__title">Đặt xe</h3>
-          <div class="car__content">
-            <div class="car__image"><img src="assets/images/car-order.svg" alt=""></div>
-            <div class="car__form">
-              <form action="">
-                <div class="car__info">
-                  <label for="car__fullname">Họ và tên </label>
-                  <input class="car__fullname" type="text" id="car__fullname">
+        <div class="profile__wrap">
+          <div class="profile__main-title">chỉnh sửa hồ sơ</div>
+          <div class="profile__list">
+            <div class="profile__left"> 
+              <div class="profile__image"><img src="assets/images/default-avatar.svg" alt=""></div>
+              <h3>Role: <span>User</span></h3>
+              <div class="profile__socials"><a href=""><i class="fa-brands fa-facebook-f"></i></a><a href=""><i class="fa-brands fa-x-twitter"></i></a><a href=""><i class="fa-brands fa-tiktok"></i></a><a href=""><i class="fa-brands fa-instagram"></i></a></div>
+            </div>
+            <div class="profile__right">
+              <h3 class="profile__title"><i class="fa-solid fa-user"></i>tài khoản</h3>
+              <form class="profile__form" action=""> 
+                <div class="profile__section grid grid-cols-2 gap-[40px]">
+                  <div class="profile__info">
+                    <label for="">họ và tên</label>
+                    <input type="text">
+                  </div>
+                  <div class="profile__info">
+                    <label for="">tên tài khoản</label>
+                    <input type="text">
+                  </div>
+                  <div class="profile__info">
+                    <label for="">email </label>
+                    <input type="email">
+                  </div>
+                  <div class="profile__info">
+                    <label for="">facebook</label>
+                    <input type="text">
+                  </div>
+                  <div class="profile__info">
+                    <label for="">x</label>
+                    <input type="text">
+                  </div>
+                  <div class="profile__info">
+                    <label for="">tiktok</label>
+                    <input type="text">
+                  </div>
+                  <div class="profile__info">
+                    <label for="">instagram</label>
+                    <input type="text" name="">
+                  </div>
                 </div>
-                <div class="car__info">
-                  <label for="car__tel">Số điện thoại </label>
-                  <input class="car__tel" type="tel" id="car__tel">
-                </div>
-                <div class="car__info">
-                  <label for="car__type">Loại xe </label>
-                  <select class="car__type appearance-none" name="" id="car__type">
-                    <option value="car-4">4 chỗ  </option>
-                    <option value="car-7">7 chỗ </option>
-                    <option value="car-16">16 chỗ</option>
-                  </select><i class="fa-solid fa-caret-down"></i>
-                </div>
-                <div class="car__info">
-                  <label for="car__day">Ngày đi</label>
-                  <input class="car__day" type="date" name="" id="car__day">
-                </div>
-                <div class="car__info">
-                  <label for="car__time">Giờ xuất phát</label>
-                  <input class="car__time" type="time" name="" id="car__time">
-                </div>
-                <div class="car__info">
-                  <label for="car__start">Nơi đi</label>
-                  <select class="car__start appearance-none" name="" id="car__start">
-                    <option value="TPHCM">TP. HCM </option>
-                    <option value="VUNGTAU">Vũng Tàu </option>
-                    <option value="NHATRANG">Nha Trang   </option>
-                  </select><i class="fa-solid fa-caret-down"></i>   
-                </div>
-                <div class="car__info">
-                  <label for="car__end">Nơi đến</label>
-                  <select class="car__end appearance-none" name="" id="car__end"> 
-                    <option value="TPHCM">TP. HCM </option>
-                    <option value="VUNGTAU">Vũng Tàu</option>
-                    <option value="NHATRANG">Nha Trang  </option>
-                  </select><i class="fa-solid fa-caret-down"></i>  
-                </div>
-                <h3 class="car__price">Giá tiền: <span></span></h3>
-                <button class="car__submit" type="submit"><i class="fa-solid fa-money-bill"></i> Thuê Ngay</button>
+                <button class="profile__button" type="submit">Lưu</button>
               </form>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <script src="assets/js/car-form.js"> </script>
     <div class="footer">
       <div class="container">
         <div class="footer__wrap">

@@ -665,6 +665,120 @@ body {
   border-radius: 30px;
 }
 
+.profile {
+  background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+  padding-top: 80px;
+  padding-bottom: 190px;
+}
+.profile__wrap {
+  background-color: #F9F5F0;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.profile__main-title {
+  font-size: 35px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #7E60BC;
+  color: #F9F5F0;
+}
+.profile__list {
+  display: flex;
+}
+.profile__left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 35%;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border-right: 2px solid rgba(0, 0, 0, 0.4);
+}
+.profile__left img {
+  width: 100%;
+  object-fit: cover;
+}
+.profile__left h3 {
+  font-size: 25px;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+.profile__left h3 span {
+  font-weight: 400;
+}
+.profile__image {
+  aspect-ratio: 1/1;
+  width: 50%;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+.profile__socials i {
+  display: inline-flex;
+  width: 30px;
+  height: 30px;
+  justify-content: center;
+  border-radius: 100px;
+  align-items: center;
+  color: #F9F5F0;
+  background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-left: 15px;
+}
+.profile__right {
+  width: 75%;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 50px;
+  padding-right: 50px;
+  text-transform: capitalize;
+}
+.profile__form {
+  display: flex;
+  flex-direction: column;
+}
+.profile__title {
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+.profile__title i {
+  margin-right: 5px;
+}
+.profile__section {
+  margin-bottom: 60px;
+}
+.profile__info {
+  font-size: 18px;
+  font-weight: 600;
+}
+.profile__info label {
+  display: block;
+  margin-bottom: 8px;
+}
+.profile__info input {
+  outline: none;
+  width: 100%;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 30px;
+}
+.profile__button {
+  background-color: #9F88C6;
+  color: #F9F5F0;
+  padding: 10px 30px;
+  border-radius: 30px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 700;
+}
+
 #register__section {
   display: none;
 }
