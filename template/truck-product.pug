@@ -1,0 +1,62 @@
+extends layouts/default.pug
+
+block head 
+    title Xe Tải
+
+block main
+
+    .xe.xe-tai
+        .container.container-xe
+                button.tieude XE TẢI
+
+    .ctn
+      .phanloai.phanloai-xe-tai
+        .lua
+          h3 Tải trọng
+          .thu
+            div
+                input(name="luachon1", type="radio")
+                | Xe tải nhẹ(dưới 3,5 tấn)
+                br
+            div 
+                input(name="luachon1", type="radio")
+                | Xe tải trung(3,5 - 8 tấn)
+                br
+            div 
+                input(name="luachon1", type="radio")
+                | Xe tải nặng(trên 8 tấn)
+                br
+        .lua
+          h3 Kiểu thùng xe
+          .thu
+            div 
+                input(name="luachon2", type="radio")
+                | Xe tải thùng kín
+                br
+            div
+                input(name="luachon2", type="radio")
+                | Xe tải thùng mui bạt
+                br
+            div 
+                input(name="luachon2", type="radio")
+                | Xe tải thùng lửng
+                br
+            div 
+                input(name="luachon2", type="radio")
+                | Xe tải đông lạnh
+                br
+            div
+                input(name="luachon2", type="radio")
+                | Xe tải chở gia súc
+                br
+            div
+                input(name="luachon2", type="radio")
+                | Xe tải ben
+                br
+            div 
+                input(name="luachon2", type="radio")
+                | Xe tải xi téc
+                br
+      .dk
+        button.Dangky
+          p Đăng ký chuyến đi

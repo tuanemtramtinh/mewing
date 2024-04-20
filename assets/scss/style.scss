@@ -6,6 +6,7 @@
 
 body {
     font-family: "Be Vietnam Pro", sans-serif;
+    position: relative;
 }
 
 //Header - Thanh trang chủ
@@ -25,6 +26,9 @@ body {
     }
 
     &__logo{
+
+        width: 30%;
+
         img{
             height: 60px;
         }
@@ -50,6 +54,12 @@ body {
         }
     }
 
+    &__nav{
+        width: 30%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
     &__button{
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         background-color: #7E60BC;
@@ -59,8 +69,9 @@ body {
         padding-right: 15px;
         font-size: 20px;
         color: #F9F5F0;
-        
         border-radius: 15px;
+        margin-left: 15px;
+
         button{
             text-transform: capitalize;
         }
@@ -70,6 +81,234 @@ body {
             color:black;
         }
     }
+}
+
+//popupLogin
+
+.popupLogin{
+    
+    z-index: 999;
+    background: rgba($color: #000000, $alpha: 0.6);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    //display: flex;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    &__wrap{
+        height: auto;
+        width: 600px;
+        background-color: #F9F5F0;
+        padding-top: 60px;
+        padding-bottom: 60px;
+        padding-left: 60px;
+        padding-right: 60px;
+        border-radius: 20px;
+        position: relative;
+
+        i{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 35px;
+            height: 35px;
+            background-color: red;
+            color: white;
+            padding: 10px;
+            border-radius: 100px;
+            font-size: 20px;
+            position: absolute;
+            top: -15px;
+            right: -10px;
+            cursor: pointer;
+        }
+    }
+    
+    &__selection{
+        width: 600px;
+        background-color: #F9F5F0;
+        padding: 30px;
+        display: flex;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 20px;
+    }
+
+    &__login-section{
+        width: 50%;
+        
+    }
+
+    &__register-section{
+        width: 50%;
+    }
+    
+
+    &__login{
+
+        h2{
+            font-size: 35px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    }
+
+    &__content-login{
+
+        display: flex;
+        flex-direction: column;
+
+        div{
+            margin-bottom: 20px;
+        }
+
+        label{
+            display: block;
+            font-size: 23px;
+            margin-bottom: 10px;
+        }
+
+        input{
+            width: 100%;
+            padding: 15px;
+            outline: none;
+            font-size: 20px;
+            border-radius: 20px;
+        }
+
+        button{
+            margin-top: 20px;
+            font-size: 25px;
+            text-transform: uppercase;
+            font-weight: 700;
+            padding: 10px;
+            color: #F9F5F0;
+            border-radius: 20px;
+            background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+        }
+    }
+
+}
+
+//popupRegister
+
+.popupRegister{
+    
+    z-index: 999;
+    background: rgba($color: #000000, $alpha: 0.6);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    //display: flex;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    &__wrap{
+        height: auto;
+        width: 600px;
+        background-color: #F9F5F0;
+        padding-top: 60px;
+        padding-bottom: 60px;
+        padding-left: 60px;
+        padding-right: 60px;
+        border-radius: 20px;
+        position: relative;
+
+        i{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 35px;
+            height: 35px;
+            background-color: red;
+            color: white;
+            padding: 10px;
+            border-radius: 100px;
+            font-size: 20px;
+            position: absolute;
+            top: -15px;
+            right: -10px;
+            cursor: pointer;
+        }
+    }
+    
+    &__selection{
+        width: 600px;
+        background-color: #F9F5F0;
+        padding: 30px;
+        display: flex;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 20px;
+    }
+
+    &__login-section{
+        width: 50%;
+        
+    }
+
+    &__register-section{
+        width: 50%;
+    }
+    
+
+    &__login{
+
+        h2{
+            font-size: 35px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    }
+
+    &__content-login{
+
+        display: flex;
+        flex-direction: column;
+
+        div{
+            margin-bottom: 20px;
+        }
+
+        label{
+            display: block;
+            font-size: 23px;
+            margin-bottom: 10px;
+        }
+
+        input{
+            width: 100%;
+            padding: 15px;
+            outline: none;
+            font-size: 20px;
+            border-radius: 20px;
+        }
+
+        button{
+            margin-top: 20px;
+            font-size: 25px;
+            text-transform: uppercase;
+            font-weight: 700;
+            padding: 10px;
+            color: #F9F5F0;
+            border-radius: 20px;
+            background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+        }
+    }
+
 }
 
 //Product - Sản phẩm
@@ -533,177 +772,6 @@ body {
 }
 
 
-//Auth - Phần xác thực
-
-.auth{
-    &__section{
-        height: 100vh;
-        background: rgb(2,0,36);
-        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
-    }
-
-    &__container{
-        display: flex;
-        justify-content: center;
-    }
-
-    &__wrap{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 100vh;
-        width: 550px;
-    }
-
-    &__choosing{
-        width: 550px;
-        display: inline-flex;
-        font-size: 25px;
-    }
-
-    &__choosing-button{
-
-        display: inline-block; 
-        border-color: #000000; 
-        border-right: 2px solid black;
-        border-bottom: 2px solid black;
-
-        color: #000000; 
-        background: #F0F0F0;
-        padding: 15px;
-        font-size: 25px;
-        font-family: "Be Vietnam Pro", sans-serif;
-
-        &:first-child{
-            border-radius: 10px 0px 0px 0px;
-        }
-
-        &:last-child{
-            border-radius: 0px 10px 0px 0px;
-        }
-
-        &:hover{
-            color: #ffffff; 
-            background: #0C131D;
-        }
-    }
-
-    &__info-wrap{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        border-radius: 0px 20px 20px 20px;
-        padding: 50px;
-        background-color: #F0F0F0;
-    }
-
-    &__logo{
-        overflow: hidden;
-        border-radius: 100px;
-        aspect-ratio: 1/1;
-        width: 30%;
-        margin-bottom: 25px;
-
-        img{
-            object-fit: cover;
-            width: 100%;
-        }
-    }
-
-    &__title{
-        text-transform: uppercase;
-        font-size: 35px;
-        font-weight: 700;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-
-    &__info{
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
-
-    &__info-form{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-
-        label{
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-    }
-
-    &__input{
-        position: relative;
-        margin-bottom: 20px;
-        display: flex;
-
-        input{
-            display: block;
-            padding: 12px;
-            padding-left: 55px;
-            outline: none;
-            background-color: #F0F0F0;
-            border: 2px solid rgba(0, 0, 0, 0.6);
-            border-radius: 20px;
-            width: 100%;
-            font-size: 20px;
-        }
-        
-        button{
-            padding: 0;
-            border: 0;
-        }
-    }
-
-    &__right-icon{
-        position: absolute;
-        font-size: 20px;
-        color: rgba(0, 0, 0, 0.6);
-        top: 19px;
-        left: 22px;
-    }
-
-    &__left-icon{
-        position: absolute;
-        font-size: 20px;
-        color: rgba(0, 0, 0, 0.6);
-        top: 20px;
-        right: 20px;
-    }
-
-    &__submit{
-        margin-top: 20px;
-        padding: 0;
-        border: 0;
-    }
-
-    &__submit-wrap{
-        position: relative;
-    }
-
-    &__submit-title{
-        font-size: 30px;
-        color: white;
-        padding: 15px;
-        border-radius: 20px;
-        font-weight: 700;
-        background-color: #0A131E;
-    }
-
-    &__submit-icon{
-        position:absolute;
-        color: white;
-        top: 23px;
-        left: 120px;
-        font-size: 30px;
-    }
-}
-
-
 //Car
 
 .car{
@@ -943,16 +1011,198 @@ body {
     }
 }
 
-//ID
 
-#register{
-    &__section{
-        display: none;
-    }
+//Xe Khách
+
+.xe{
+    background-image: url("../images/7.png");
+    height: 470px;
+    margin: 0 auto;
+    object-fit: cover;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-#login{
-    &__section{
-        display: block;
+.xe-tai{
+    background-image: url("../images/6.png");
+}
+
+.xe-container{
+    background-image: url("../images/5.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.container-xe{
+    height: 471px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tieude{
+    font-size: 35px;
+    font-weight: 700;
+    border-radius: 90px;
+    padding: 25px 90px;
+    color: black;
+    background-color: white;
+    border: 2px solid black;
+}
+
+.ctn{
+    background-color: #FAF5EF;
+    padding-top: 80px;
+    padding-bottom: 110px;
+}
+
+.phanloai{
+    width: 1240px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.phanloai-xe-tai{
+    justify-content: space-evenly;
+}
+
+.lua {
+    font-size: 25px;
+    width: calc(100%/3);
+    h3{
+        font-weight: 700;
+        font-size: 35px;
+        margin-bottom: 20px;
     }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    //display: flex;
+    
+    //margin-left: -37px;
+}
+
+
+
+
+
+input[type="radio"] {
+    margin-bottom: 30px;
+}
+
+.Dangky{
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+    font-size: 30px;
+    border-radius: 80px;
+    padding: 30px;
+    color:#5B4284;
+    border: none;
+    font-weight: 700;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    
+}
+.dk{
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+//index - Trang chủ
+
+.giaodien{
+    background-image: url("../images/hinh-nen.png");
+    background-size: cover;
+}
+
+.wrap{
+    font-size: 37px;
+    color:white;
+    height: 625px;
+    width: 100%;
+    object-fit: cover;
+    position: relative;
+}
+
+.giaodien-title{
+    position: absolute;
+    bottom: 85px;
+}
+
+.giaodien-title h1{
+    //margin: -30px;
+    //margin-left: 0px;
+    margin-bottom: 5px;
+    font-size: 60px;
+    font-weight: 700;
+}
+.line {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-top: 6px solid white;
+    width: 500px;
+}
+.wrap h3{
+    font-family: "Be Vietnam Pro", sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    margin-left: 0px;
+}
+.giaodien1{
+    background-color: #FAF5EF;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 110px;
+}
+.chucnang{
+    
+    background-color: #8EC5FC;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+    font-size: 40px;
+    border-radius: 60px;
+    padding: 20px 45px;
+    color:#5B4284;
+    border: none;
+    text-decoration:underline;
+    font-weight: 700;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+.giaodien{
+    margin-bottom: 0px auto;
+}
+
+.phanloai{
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 60px;
+}
+
+.doingu{
+    display: block;
+    position: relative;
+    background-color: #E7CCF6;
+    font-size: 35px;
+    font-weight: 700;
+    color:#5B4284;
+    border: none;
+    border-radius: 50px;
+    width: calc(100%/2 - 60px/2);
+    height: 225px;
+    border:6px double black;
+    margin-bottom: 60px;
+}
+
+.doingu:nth-child(2n){
+    margin-left: 60px;
+}
+.doingu img{
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width:155px ;
 }

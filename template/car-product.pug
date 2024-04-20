@@ -1,0 +1,68 @@
+extends layouts/default.pug
+
+block head 
+    title Xe Khách 
+
+block main
+
+
+
+    .xe
+        .container.container-xe
+            button.tieude XE KHÁCH
+
+
+    .ctn
+      .phanloai
+        .lua
+          h3 Kích thước
+          .thu 
+            div
+                input(name="luachon1", type="radio")
+                | Xe khách 16 chỗ
+                br
+            div
+                input(name="luachon1", type="radio")
+                | Xe khách 29 chỗ
+                br
+            div 
+                input(name="luachon1", type="radio")
+                | Xe khách 35 chỗ
+                br
+            div 
+                input(name="luachon1", type="radio")
+                | Xe khách 45 chỗ
+                br
+            div 
+                input(name="luachon1", type="radio")
+                | Xe khách giường nằm
+                br
+        .lua
+          h3 Loại ghế
+          .thu
+            div 
+                input(name="luachon2", type="radio")
+                | Xe khách ghế ngồi
+                br
+            div
+                input(name="luachon2", type="radio")
+                | Xe khách ghế ngả
+                br
+            div 
+                input(name="luachon2", type="radio")
+                | Xe khách giường nằm
+                br
+        .lua
+          h3 Tiện nghi
+          .thu 
+            div
+                input(name="luachon3", type="radio")
+                | Xe khách bình dân
+                br
+            div 
+                input(name="luachon3", type="radio")
+                | Xe khách cao cấp
+                br
+      .dk
+        button.Dangky
+          p Đăng ký chuyến đi

@@ -78,15 +78,4 @@ carForm.addEventListener('input', (e) => {
     }
 
     checkAllInput();
-})
-
-// departureDate.addEventListener('input', checkAllInput);
-// departureTime.addEventListener('input', checkAllInput);
-
-
-
-
-
-// carForm.addEventListener('submit', () => {
-
-// })
+});

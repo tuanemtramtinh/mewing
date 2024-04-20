@@ -5,63 +5,69 @@ block head
 
 block main 
 
-    div(class="car")
-        div(class="container")
-            div(class="car__wrap")
+    include ./mixins/form.pug
 
-                h3(class="car__title") Đặt xe
+    +car-form()
 
-                div(class="car__content")
+    //- div(class="car")
+    //-     div(class="container")
+    //-         div(class="car__wrap")
 
-                    div(class="car__image")
-                        img(src="assets/images/car-order.svg", alt="")
+    //-             h3(class="car__title") Đặt xe
 
-                    div(class="car__form")
-                        form(action="")
+    //-             div(class="car__content")
 
-                            div(class="car__info")
-                                label(for="car__fullname") Họ và tên 
-                                input(type="text" id="car__fullname" class="car__fullname")
+    //-                 div(class="car__image")
+    //-                     img(src="assets/images/car-order.svg", alt="")
 
-                            div(class="car__info")
-                                label(for="car__tel") Số điện thoại 
-                                input(type="tel" id="car__tel" class="car__tel")
+    //-                 div(class="car__form")
+    //-                     form(action="")
 
-                            div(class="car__info")
-                                label(for="car__type") Loại xe 
-                                select(name="" id="car__type" class="car__type appearance-none")
-                                    option(value="car-4") 4 chỗ  
-                                    option(value="car-7") 7 chỗ 
-                                    option(value="car-16") 16 chỗ
-                                <i class="fa-solid fa-caret-down"></i>
+    //-                         div(class="car__info")
+    //-                             label(for="car__fullname") Họ và tên 
+    //-                             input(type="text" id="car__fullname" class="car__fullname")
 
-                            div(class="car__info")
-                                label(for="car__day") Ngày đi
-                                input(type="date" name="" id="car__day" class="car__day")
+    //-                         div(class="car__info")
+    //-                             label(for="car__tel") Số điện thoại 
+    //-                             input(type="tel" id="car__tel" class="car__tel")
 
-                            div(class="car__info")
-                                label(for="car__time") Giờ xuất phát
-                                input(type="time", name="" id="car__time" class="car__time")
+    //-                         div
 
-                            div(class="car__info")
-                                label(for="car__start") Nơi đi
-                                select(name="" id="car__start" class="car__start appearance-none")
-                                    option(value="TPHCM") TP. HCM 
-                                    option(value="VUNGTAU") Vũng Tàu 
-                                    option(value="NHATRANG") Nha Trang   
-                                <i class="fa-solid fa-caret-down"></i>   
+    //-                         //- div(class="car__info")
+    //-                         //-     label(for="car__type") Loại xe 
+    //-                         //-     select(name="" id="car__type" class="car__type appearance-none")
+    //-                         //-         option(value="car-4") 4 chỗ  
+    //-                         //-         option(value="car-7") 7 chỗ 
+    //-                         //-         option(value="car-16") 16 chỗ
+    //-                         //-     <i class="fa-solid fa-caret-down"></i>
 
-                            div(class="car__info")
-                                label(for="car__end") Nơi đến
-                                select(name="" id="car__end" class="car__end appearance-none") 
-                                    option(value="TPHCM") TP. HCM 
-                                    option(value="VUNGTAU") Vũng Tàu
-                                    option(value="NHATRANG") Nha Trang  
-                                <i class="fa-solid fa-caret-down"></i>  
+    //-                         div(class="car__info")
+    //-                             label(for="car__day") Ngày đi
+    //-                             input(type="date" name="" id="car__day" class="car__day")
 
-                            h3(class="car__price") Giá tiền: <span></span>
+    //-                         div(class="car__info")
+    //-                             label(for="car__time") Giờ xuất phát
+    //-                             input(type="time", name="" id="car__time" class="car__time")
 
-                            button(type="submit" class="car__submit") <i class="fa-solid fa-money-bill"></i> Thuê Ngay
+    //-                         div(class="car__info")
+    //-                             label(for="car__start") Nơi đi
+    //-                             select(name="" id="car__start" class="car__start appearance-none")
+    //-                                 option(value="TPHCM") TP. HCM 
+    //-                                 option(value="VUNGTAU") Vũng Tàu 
+    //-                                 option(value="NHATRANG") Nha Trang   
+    //-                             <i class="fa-solid fa-caret-down"></i>   
+
+    //-                         div(class="car__info")
+    //-                             label(for="car__end") Nơi đến
+    //-                             select(name="" id="car__end" class="car__end appearance-none") 
+    //-                                 option(value="TPHCM") TP. HCM 
+    //-                                 option(value="VUNGTAU") Vũng Tàu
+    //-                                 option(value="NHATRANG") Nha Trang  
+    //-                             <i class="fa-solid fa-caret-down"></i>  
+
+    //-                         h3(class="car__price") Giá tiền: <span></span>
+
+    //-                         button(type="submit" class="car__submit") <i class="fa-solid fa-money-bill"></i> Thuê Ngay
 
     script(src="assets/js/car-form.js") 
 

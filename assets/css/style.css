@@ -5,6 +5,7 @@
 
 body {
   font-family: "Be Vietnam Pro", sans-serif;
+  position: relative;
 }
 
 .header {
@@ -18,6 +19,9 @@ body {
   padding-bottom: 10px;
   padding-right: 0px;
   padding-left: 0px;
+}
+.header__logo {
+  width: 30%;
 }
 .header__logo img {
   height: 60px;
@@ -39,6 +43,11 @@ body {
 .header__title:hover {
   color: #7E60BC;
 }
+.header__nav {
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
+}
 .header__button {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   background-color: #7E60BC;
@@ -49,6 +58,7 @@ body {
   font-size: 20px;
   color: #F9F5F0;
   border-radius: 15px;
+  margin-left: 15px;
 }
 .header__button button {
   text-transform: capitalize;
@@ -56,6 +66,190 @@ body {
 .header__button:hover {
   background-color: #FFC0D9;
   color: black;
+}
+
+.popupLogin {
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.popupLogin__wrap {
+  height: auto;
+  width: 600px;
+  background-color: #F9F5F0;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 60px;
+  padding-right: 60px;
+  border-radius: 20px;
+  position: relative;
+}
+.popupLogin__wrap i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  background-color: red;
+  color: white;
+  padding: 10px;
+  border-radius: 100px;
+  font-size: 20px;
+  position: absolute;
+  top: -15px;
+  right: -10px;
+  cursor: pointer;
+}
+.popupLogin__selection {
+  width: 600px;
+  background-color: #F9F5F0;
+  padding: 30px;
+  display: flex;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 20px;
+}
+.popupLogin__login-section {
+  width: 50%;
+}
+.popupLogin__register-section {
+  width: 50%;
+}
+.popupLogin__login h2 {
+  font-size: 35px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.popupLogin__content-login {
+  display: flex;
+  flex-direction: column;
+}
+.popupLogin__content-login div {
+  margin-bottom: 20px;
+}
+.popupLogin__content-login label {
+  display: block;
+  font-size: 23px;
+  margin-bottom: 10px;
+}
+.popupLogin__content-login input {
+  width: 100%;
+  padding: 15px;
+  outline: none;
+  font-size: 20px;
+  border-radius: 20px;
+}
+.popupLogin__content-login button {
+  margin-top: 20px;
+  font-size: 25px;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 10px;
+  color: #F9F5F0;
+  border-radius: 20px;
+  background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+}
+
+.popupRegister {
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.popupRegister__wrap {
+  height: auto;
+  width: 600px;
+  background-color: #F9F5F0;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 60px;
+  padding-right: 60px;
+  border-radius: 20px;
+  position: relative;
+}
+.popupRegister__wrap i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  background-color: red;
+  color: white;
+  padding: 10px;
+  border-radius: 100px;
+  font-size: 20px;
+  position: absolute;
+  top: -15px;
+  right: -10px;
+  cursor: pointer;
+}
+.popupRegister__selection {
+  width: 600px;
+  background-color: #F9F5F0;
+  padding: 30px;
+  display: flex;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 20px;
+}
+.popupRegister__login-section {
+  width: 50%;
+}
+.popupRegister__register-section {
+  width: 50%;
+}
+.popupRegister__login h2 {
+  font-size: 35px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.popupRegister__content-login {
+  display: flex;
+  flex-direction: column;
+}
+.popupRegister__content-login div {
+  margin-bottom: 20px;
+}
+.popupRegister__content-login label {
+  display: block;
+  font-size: 23px;
+  margin-bottom: 10px;
+}
+.popupRegister__content-login input {
+  width: 100%;
+  padding: 15px;
+  outline: none;
+  font-size: 20px;
+  border-radius: 20px;
+}
+.popupRegister__content-login button {
+  margin-top: 20px;
+  font-size: 25px;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 10px;
+  color: #F9F5F0;
+  border-radius: 20px;
+  background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
 }
 
 .product {
@@ -443,147 +637,6 @@ body {
   margin-right: 15px;
 }
 
-.auth__section {
-  height: 100vh;
-  background: rgb(2, 0, 36);
-  background: linear-gradient(90deg, rgb(2, 0, 36) 0%, rgb(9, 9, 121) 35%, rgb(0, 212, 255) 100%);
-}
-.auth__container {
-  display: flex;
-  justify-content: center;
-}
-.auth__wrap {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100vh;
-  width: 550px;
-}
-.auth__choosing {
-  width: 550px;
-  display: inline-flex;
-  font-size: 25px;
-}
-.auth__choosing-button {
-  display: inline-block;
-  border-color: #000000;
-  border-right: 2px solid black;
-  border-bottom: 2px solid black;
-  color: #000000;
-  background: #F0F0F0;
-  padding: 15px;
-  font-size: 25px;
-  font-family: "Be Vietnam Pro", sans-serif;
-}
-.auth__choosing-button:first-child {
-  border-radius: 10px 0px 0px 0px;
-}
-.auth__choosing-button:last-child {
-  border-radius: 0px 10px 0px 0px;
-}
-.auth__choosing-button:hover {
-  color: #ffffff;
-  background: #0C131D;
-}
-.auth__info-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 0px 20px 20px 20px;
-  padding: 50px;
-  background-color: #F0F0F0;
-}
-.auth__logo {
-  overflow: hidden;
-  border-radius: 100px;
-  aspect-ratio: 1/1;
-  width: 30%;
-  margin-bottom: 25px;
-}
-.auth__logo img {
-  object-fit: cover;
-  width: 100%;
-}
-.auth__title {
-  text-transform: uppercase;
-  font-size: 35px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  text-align: center;
-}
-.auth__info {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-.auth__info-form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.auth__info-form label {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 15px;
-}
-.auth__input {
-  position: relative;
-  margin-bottom: 20px;
-  display: flex;
-}
-.auth__input input {
-  display: block;
-  padding: 12px;
-  padding-left: 55px;
-  outline: none;
-  background-color: #F0F0F0;
-  border: 2px solid rgba(0, 0, 0, 0.6);
-  border-radius: 20px;
-  width: 100%;
-  font-size: 20px;
-}
-.auth__input button {
-  padding: 0;
-  border: 0;
-}
-.auth__right-icon {
-  position: absolute;
-  font-size: 20px;
-  color: rgba(0, 0, 0, 0.6);
-  top: 19px;
-  left: 22px;
-}
-.auth__left-icon {
-  position: absolute;
-  font-size: 20px;
-  color: rgba(0, 0, 0, 0.6);
-  top: 20px;
-  right: 20px;
-}
-.auth__submit {
-  margin-top: 20px;
-  padding: 0;
-  border: 0;
-}
-.auth__submit-wrap {
-  position: relative;
-}
-.auth__submit-title {
-  font-size: 30px;
-  color: white;
-  padding: 15px;
-  border-radius: 20px;
-  font-weight: 700;
-  background-color: #0A131E;
-}
-.auth__submit-icon {
-  position: absolute;
-  color: white;
-  top: 23px;
-  left: 120px;
-  font-size: 30px;
-}
-
 .car {
   background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
   padding-top: 80px;
@@ -779,12 +832,191 @@ body {
   font-weight: 700;
 }
 
-#register__section {
-  display: none;
+.xe {
+  background-image: url("../images/7.png");
+  height: 470px;
+  margin: 0 auto;
+  object-fit: cover;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-#login__section {
+.xe-tai {
+  background-image: url("../images/6.png");
+}
+
+.xe-container {
+  background-image: url("../images/5.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.container-xe {
+  height: 471px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tieude {
+  font-size: 35px;
+  font-weight: 700;
+  border-radius: 90px;
+  padding: 25px 90px;
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+}
+
+.ctn {
+  background-color: #FAF5EF;
+  padding-top: 80px;
+  padding-bottom: 110px;
+}
+
+.phanloai {
+  width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.phanloai-xe-tai {
+  justify-content: space-evenly;
+}
+
+.lua {
+  font-size: 25px;
+  width: 33.3333333333%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.lua h3 {
+  font-weight: 700;
+  font-size: 35px;
+  margin-bottom: 20px;
+}
+
+input[type=radio] {
+  margin-bottom: 30px;
+}
+
+.Dangky {
+  background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  font-size: 30px;
+  border-radius: 80px;
+  padding: 30px;
+  color: #5B4284;
+  border: none;
+  font-weight: 700;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.dk {
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.giaodien {
+  background-image: url("../images/hinh-nen.png");
+  background-size: cover;
+}
+
+.wrap {
+  font-size: 37px;
+  color: white;
+  height: 625px;
+  width: 100%;
+  object-fit: cover;
+  position: relative;
+}
+
+.giaodien-title {
+  position: absolute;
+  bottom: 85px;
+}
+
+.giaodien-title h1 {
+  margin-bottom: 5px;
+  font-size: 60px;
+  font-weight: 700;
+}
+
+.line {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-top: 6px solid white;
+  width: 500px;
+}
+
+.wrap h3 {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  margin-left: 0px;
+}
+
+.giaodien1 {
+  background-color: #FAF5EF;
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 110px;
+}
+
+.chucnang {
+  background-color: #8EC5FC;
+  background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  font-size: 40px;
+  border-radius: 60px;
+  padding: 20px 45px;
+  color: #5B4284;
+  border: none;
+  text-decoration: underline;
+  font-weight: 700;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.giaodien {
+  margin-bottom: 0px auto;
+}
+
+.phanloai {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-top: 60px;
+}
+
+.doingu {
   display: block;
+  position: relative;
+  background-color: #E7CCF6;
+  font-size: 35px;
+  font-weight: 700;
+  color: #5B4284;
+  border: none;
+  border-radius: 50px;
+  width: calc(50% - 30px);
+  height: 225px;
+  border: 6px double black;
+  margin-bottom: 60px;
+}
+
+.doingu:nth-child(2n) {
+  margin-left: 60px;
+}
+
+.doingu img {
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  width: 155px;
 }
 
 /*# sourceMappingURL=style.css.map */

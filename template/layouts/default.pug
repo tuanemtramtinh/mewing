@@ -20,13 +20,68 @@ html(lang="en")
                         img(src="assets/images/logo.png", alt="")
                     div(class="header__menu")
                         div(class="header__title") 
-                            a(href="") trang chủ
+                            a(href="../../index.html") trang chủ
                         div(class="header__title")
-                            a(href="") loại xe
+                            a(href="../../product-list.html") loại xe
                         div(class="header__title")
-                            a(href="") giới thiệu
-                    div(class="header__button") 
-                        button(type="submit") đăng nhập
+                            a(href="../../about.html") giới thiệu
+                    
+                    div(class="header__nav")
+                        div(class="header__button") 
+                            button(type="submit" id="register-button") đăng ký
+
+                        div(class="header__button") 
+                            button(type="submit" id="login-button") đăng nhập
+                        
+
+        //- Popup Login
+
+        div(class="popupLogin")
+
+            div(class="popupLogin__wrap")
+                
+                <i class="fa-solid fa-x" id="cancel-button"></i>
+
+                div(class="popupLogin__login")
+                    h2 LOGIN 
+
+                    form(action="" class="popupLogin__content-login") 
+    
+                        div 
+                            label(for="popupLogin__email") Email 
+                            input(type="email" placeholder = "Email" id="popupLogin__email" class="popupLogin__email")
+                        div 
+                            label(for="popupLogin__pass") Password 
+                            input(type="password" placeholder = "Password" id="popupLogin__password" class="popupLogin__password") 
+
+                        button(type="submit" id="popupLogin__submit" class="popupLogin__submit") Login
+
+        //- Popup Register
+        div(class="popupRegister")
+
+            div(class="popupRegister__wrap")
+                
+                <i class="fa-solid fa-x" id="cancel-button"></i>
+
+                div(class="popupRegister__login")
+                    h2 REGISTER
+
+                    form(action="" class="popupRegister__content-login") 
+
+                        div 
+                            label(for="popupRegister__username") Username 
+                            input(type="text" placeholder = "Username" id="popupRegister__username" class="popupRegister__username") 
+    
+                        div 
+                            label(for="popupRegister__email") Email 
+                            input(type="email" placeholder = "Email" id="popupRegister__email" class="popupRegister__email")
+                        div 
+                            label(for="popupRegister__pass") Password 
+                            input(type="password" placeholder = "Password" id="popupRegister__password" class="popupRegister__password") 
+
+                        button(type="submit" id="popupRegister__submit" class="popupRegister__submit") Register
+
+
 
         block main
 
@@ -87,5 +142,6 @@ html(lang="en")
                             div(class="footer__payment")
                                 img(src="assets/images/GPay.png", alt="")
 
+    <script src="assets/js/index.js"> </script>
 
 

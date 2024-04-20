@@ -1,0 +1,52 @@
+extends layouts/default.pug
+
+block head 
+    title Xe Container
+
+block main
+
+    .xe.xe-container 
+        .container.container-xe 
+            button.tieude XE CONTAINER 
+        
+    
+    .ctn 
+        .phanloai 
+            .lua 
+                <h3>Kích thước</h3>
+                .thu
+                    div
+                        <input name = "luachon1" type ="radio" > Xe container 10 feet <br>
+                    div
+                        <input name = "luachon1" type ="radio" > Xe container 20 feet <br>
+                    div
+                        <input name = "luachon1" type ="radio" > Xe container 40 feet <br>
+                    div 
+                        <input name = "luachon1" type ="radio" > Xe container 45 feet <br>
+                    div
+                        <input name = "luachon1" type ="radio" > Xe container 50 feet <br>
+                
+            .lua 
+                <h3>Loại hàng hóa</h3>
+                .thu
+                    div
+                        <input name = "luachon2" type ="radio" > Xe chở hàng khô <br>
+                    div
+                        <input name = "luachon2" type ="radio" > Xe chở hàng bảo ôn <br>
+                    div
+                        <input name = "luachon2" type ="radio" > Xe chở hàng chuyên dụng <br>
+
+            .lua 
+                <h3>Cấu tạo</h3>
+                .thu
+                    
+                    div
+                        <input name = "luachon3" type ="radio" > Xe container loại khung <br>
+                    div
+                        <input name = "luachon3" type ="radio" > Xe container loại bồn <br>
+                    div
+                        <input name = "luachon3" type ="radio" > Xe container loại sàn <br>
+        
+        .dk
+            button.Dangky
+                p Đăng ký chuyến đi
