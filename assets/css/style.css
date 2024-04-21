@@ -44,7 +44,7 @@ body {
   color: #7E60BC;
 }
 .header__nav {
-  width: 25%;
+  width: 30%;
   display: none;
   justify-content: flex-end;
 }
@@ -68,7 +68,7 @@ body {
   color: black;
 }
 .header__user {
-  width: 25%;
+  width: 30%;
   display: none;
   justify-content: flex-end;
   font-size: 22px;
