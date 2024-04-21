@@ -5,6 +5,10 @@ block head
 
 block main
 
+    include ./mixins/truck-form.pug
+
+    +truck-form()
+
     .xe.xe-tai
         .container.container-xe
                 button.tieude XE TẢI
@@ -15,48 +19,49 @@ block main
           h3 Tải trọng
           .thu
             div
-                input(name="luachon1", type="radio")
-                | Xe tải nhẹ(dưới 3,5 tấn)
+                input(name="luachon1", type="radio" id="truck__light" value="Xe tải nhẹ (dưới 3.5 tấn)")
+                label(for="truck__light") Xe tải nhẹ (dưới 3.5 tấn) 
                 br
             div 
-                input(name="luachon1", type="radio")
-                | Xe tải trung(3,5 - 8 tấn)
+                input(name="luachon1", type="radio" id="truck__medium" value="Xe tải trung (3.5 - 8 tấn)")
+                label(for="truck__medium") Xe tải trung (3.5 - 8 tấn) 
                 br
             div 
-                input(name="luachon1", type="radio")
-                | Xe tải nặng(trên 8 tấn)
+                input(name="luachon1", type="radio" id="truck__heavy" value="Xe tải nặng (trên 8 tấn)")
+                label(for="truck__heavy") Xe tải nặng (trên 8 tấn) 
                 br
         .lua
           h3 Kiểu thùng xe
           .thu
             div 
-                input(name="luachon2", type="radio")
-                | Xe tải thùng kín
+                input(name="luachon2", type="radio" id="truck__boxType1" value="Xe tải thùng kín")
+                label(for="truck__boxType1") Xe tải thùng kín
                 br
             div
-                input(name="luachon2", type="radio")
-                | Xe tải thùng mui bạt
+                input(name="luachon2", type="radio" id="truck__boxType2" value="Xe tải thùng mui bạt")
+                label(for="truck__boxType2") Xe tải thùng mui bạt 
                 br
             div 
-                input(name="luachon2", type="radio")
-                | Xe tải thùng lửng
+                input(name="luachon2", type="radio" id="truck__boxType3" value="Xe tải thùng lửng")
+                label(for="truck__boxType3") Xe tải thùng lửng 
                 br
             div 
-                input(name="luachon2", type="radio")
-                | Xe tải đông lạnh
+                input(name="luachon2", type="radio" id="truck__boxType4" value="Xe tải đông lạnh")
+                label(for="truck__boxType4") Xe tải đông lạnh
                 br
             div
-                input(name="luachon2", type="radio")
-                | Xe tải chở gia súc
+                input(name="luachon2", type="radio" id="truck__boxType5" value="Xe tải chở gia súc")
+                label(for="truck__boxType5") Xe tải chở gia súc
                 br
             div
-                input(name="luachon2", type="radio")
-                | Xe tải ben
+                input(name="luachon2", type="radio" id="truck__boxType6" value="Xe tải ben")
+                label(for="truck__boxType6") Xe tải ben
                 br
             div 
-                input(name="luachon2", type="radio")
-                | Xe tải xi téc
+                input(name="luachon2", type="radio" id="truck__boxType7" value="Xe tải xi téc")
+                label(for="truck__boxType7") Xe tải xi téc 
                 br
       .dk
         button.Dangky
           p Đăng ký chuyến đi
+    script(type="module" src="assets/js/truck-form.js") 

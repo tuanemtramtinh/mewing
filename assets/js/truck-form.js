@@ -48,19 +48,22 @@ onAuthStateChanged(auth, (user) => {
 //Process
 
 const tripRegister = document.querySelector('.Dangky');
+console.log(tripRegister);
 const cancelButton = document.querySelector('.car__cancel-button');
 
 const car = document.querySelector('.car');
-const carSizes = document.getElementsByName('luachon1');
-const carSeatTypes = document.getElementsByName('luachon2');
-const carFeatures = document.getElementsByName('luachon3');
+
+
+const carWeights = document.getElementsByName('luachon1');
+const carBoxTypes = document.getElementsByName('luachon2');
 
 const carFormFullname = document.querySelector('#car__fullname');
 const carFormTel = document.querySelector('#car__tel');
 const carFormEmail = document.querySelector('#car__email');
-const carFormSize = document.querySelector('#car__size');
-const carFormSeatType = document.querySelector('#car__seatType');
-const carFormFeature = document.querySelector('#car__feature');
+
+const carFormWeight = document.querySelector('#car__weight');
+const carFormBoxType = document.querySelector('#car__boxType');
+
 const departureDate = document.querySelector('.car__day');
 const departureTime = document.querySelector('.car__time');
 const departurePlace = document.querySelector('.car__start');
@@ -69,16 +72,14 @@ const carForm = document.querySelector('.car__form form');
 
 tripRegister.addEventListener('click', () => {
 
-    const carSizeCheck = Array.from(carSizes).find((carSize) => carSize.checked);
-    const carSeatTypeCheck = Array.from(carSeatTypes).find((carSeatType) => carSeatType.checked);
-    const carFeatureCheck = Array.from(carFeatures).find((carFeature) => carFeature.checked);
-
+    const carWeightCheck = Array.from(carWeights).find((carWeight) => carWeight.checked);
+    const carBoxTypeCheck = Array.from(carBoxTypes).find((carBoxType) => carBoxType.checked);
     if (userAccount == null){
         alert('Vui lòng đăng nhập để thực hiện chức năng này');
         //location.reload();
     }
-    else if (carSizeCheck && carSeatTypeCheck && carFeatureCheck){
-        console.log(carSizeCheck, carSeatTypeCheck, carFeatureCheck);
+    else if (carWeightCheck && carBoxTypeCheck){
+        //console.log(carSizeCheck, carSeatTypeCheck, carFeatureCheck);
         
         const userDocRef = doc(db, 'users', userAccount.uid);
 
@@ -87,9 +88,8 @@ tripRegister.addEventListener('click', () => {
                 carFormFullname.value = doc.data().fullName;
                 carFormTel.value = doc.data().tel;
                 carFormEmail.value = doc.data().email;
-                carFormSize.value = carSizeCheck.value;
-                carFormSeatType.value = carSeatTypeCheck.value;
-                carFormFeature.value = carFeatureCheck.value;
+                carFormWeight.value = carWeightCheck.value;
+                carFormBoxType.value = carBoxTypeCheck.value;
             });
 
 
@@ -177,21 +177,21 @@ carForm.addEventListener('input', (e) => {
     checkAllInput();
 });
 
-const carOrderRef = collection(db, 'carOrders');
-
 carForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const carOrderId = crypto.randomUUID();
 
-    setDoc(doc(db, 'carOrders', carOrderId), {
+    setDoc(doc(db, 'truckOrders', carOrderId), {
         userId: userAccount.uid,
         fullName : carFormFullname.value,
         tel: carFormTel.value,
         email: carFormEmail.value,
-        carSize: carFormSize.value,
-        carSeatType: carFormSeatType.value,
-        carFeature: carFormFeature.value,
+        carWeight: carFormWeight.value,
+        carBoxType: carFormBoxType.value,
+        // carSize: carFormSize.value,
+        // carSeatType: carFormSeatType.value,
+        // carFeature: carFormFeature.value,
         departureDate: departureDate.value,
         departureTime: departureTime.value,
         departurePlace: departurePlace.value,

@@ -1,0 +1,44 @@
+extends layouts/default.pug
+
+block head 
+    title Tra cứu 
+
+block main 
+
+
+    div(class="search")
+        div(class="container")
+            div(class="search__wrap")
+                div(class="search__tracking")
+                    h2(class="search__title") Tra cứu đơn hàng
+                    form(action="" class="search__form")
+                        label(for="search__input") Hãy nhập vào mã đặt xe của bạn:
+                        input(type="text" id="search__input") 
+                        button(type="submit")
+                            <i class="fa-solid fa-magnifying-glass"></i>
+
+                div(class="search__result")
+                    div(class="search__result-title") Thông tin chuyến đi
+
+                    ul(class="search__result-list")
+                        li
+                            span Họ và tên:
+                            span 
+                        li 
+                            span Email:
+                            span 
+                        li
+                            span Số điện thoại: 
+                            span 
+                        li
+                            span Kích thước:
+                            span 
+
+            
+
+
+
+
+    div(class="searchResult")
+        div(class="container")
+            div(class="searchResult__wrap")

@@ -5,6 +5,10 @@ block head
 
 block main
 
+    include ./mixins/container-form.pug
+    
+    +container-form()
+
     .xe.xe-container 
         .container.container-xe 
             button.tieude XE CONTAINER 
@@ -16,37 +20,50 @@ block main
                 <h3>Kích thước</h3>
                 .thu
                     div
-                        <input name = "luachon1" type ="radio" > Xe container 10 feet <br>
+                        <input name = "luachon1" type ="radio" id="container__10" value="Xe container 10 feet"> 
+                        label(for="container__10") Xe container 10 feet
                     div
-                        <input name = "luachon1" type ="radio" > Xe container 20 feet <br>
+                        <input name = "luachon1" type ="radio" id="container__20" value="Xe container 20 feet"> 
+                        label(for="container__20") Xe container 20 feet 
                     div
-                        <input name = "luachon1" type ="radio" > Xe container 40 feet <br>
+                        <input name = "luachon1" type ="radio" id="container__40" value="Xe container 40 feet"> 
+                        label(for="container__40") Xe container 40 feet
                     div 
-                        <input name = "luachon1" type ="radio" > Xe container 45 feet <br>
+                        <input name = "luachon1" type ="radio" id="container__45" value="Xe container 45 feet"> 
+                        label(for="container__45") Xe container 45 feet
                     div
-                        <input name = "luachon1" type ="radio" > Xe container 50 feet <br>
+                        <input name = "luachon1" type ="radio" id="container__50" value="Xe container 50 feet"> 
+                        label(for="container__50") Xe container 50 feet
                 
             .lua 
                 <h3>Loại hàng hóa</h3>
                 .thu
                     div
-                        <input name = "luachon2" type ="radio" > Xe chở hàng khô <br>
+                        <input name = "luachon2" type ="radio" id="container__goodsType1" value="Xe chở hàng khô">
+                        label(for="container__goodsType1") Xe chở hàng khô
                     div
-                        <input name = "luachon2" type ="radio" > Xe chở hàng bảo ôn <br>
+                        <input name = "luachon2" type ="radio" id="container__goodsType2" value="Xe chở hàng bảo ôn"> 
+                        label(for="container__goodsType2") Xe chở hàng bảo ôn
                     div
-                        <input name = "luachon2" type ="radio" > Xe chở hàng chuyên dụng <br>
+                        <input name = "luachon2" type ="radio" id="container__goodsType3" value="Xe chở hàng chuyên dụng"> 
+                        label(for="container__goodsType3") Xe chở hàng chuyên dụng
 
             .lua 
                 <h3>Cấu tạo</h3>
                 .thu
                     
                     div
-                        <input name = "luachon3" type ="radio" > Xe container loại khung <br>
+                        <input name = "luachon3" type ="radio" id="container__structure1" value="Xe container loại khung">
+                        label(for="container__structure1") Xe container loại khung
                     div
-                        <input name = "luachon3" type ="radio" > Xe container loại bồn <br>
+                        <input name = "luachon3" type ="radio" id="container__structure2" value="Xe container loại bồn"> 
+                        label(for="container__structure2") Xe container loại bồn
                     div
-                        <input name = "luachon3" type ="radio" > Xe container loại sàn <br>
+                        <input name = "luachon3" type ="radio" id="container__structure3" value="Xe container loại sàn"> 
+                        label(for="container__structure3") Xe container loại sàn
         
         .dk
             button.Dangky
-                p Đăng ký chuyến đi
+                p Đăng ký chuyến đi    
+
+    script(type="module", src="assets/js/container-form.js") 

@@ -12,11 +12,12 @@
     <div class="header">
       <div class="container">
         <div class="header__wrap">
-          <div class="header__logo"><img src="assets/images/logo.png" alt=""></div>
+          <div class="header__logo"><a href="index.html"> <img src="assets/images/logo.png" alt=""></a></div>
           <div class="header__menu">
             <div class="header__title"> <a href="index.html">trang chủ</a></div>
             <div class="header__title"><a href="product-list.html">loại xe</a></div>
             <div class="header__title"><a href="about.html">giới thiệu</a></div>
+            <div class="header__title"><a href="search.html">tra cứu</a></div>
           </div>
           <div class="header__nav">
             <div class="header__button"> 
@@ -90,6 +91,67 @@
         </div>
       </div>
     </div>
+        <div class="car">
+          <div class="car__wrap"><i class="fa-solid fa-x car__cancel-button" id="cancel-button"></i>
+            <h3 class="car__title">Đặt xe</h3>
+            <div class="car__content">
+              <div class="car__form">
+                <form action="">
+                  <div class="grid grid-cols-2 gap-[20px]">
+                    <div class="car__info">
+                      <label for="car__fullname">Họ và tên </label>
+                      <input class="car__fullname" type="text" id="car__fullname">
+                    </div>
+                    <div class="car__info">
+                      <label for="car__email">Email </label>
+                      <input class="car__email" type="text" id="car__email">
+                    </div>
+                    <div class="car__info">
+                      <label for="car__tel">Số điện thoại </label>
+                      <input class="car__tel" type="tel" id="car__tel">
+                    </div>
+                    <div class="car__info">
+                      <label for="car__weight">Tải trọng</label>
+                      <input class="car__weight appearance-none" type="text" id="car__weight">
+                    </div>
+                    <div class="car__info">
+                      <label for="car__boxType">Kiểu thùng xe</label>
+                      <input class="car__boxType appearance-none" type="text" id="car__boxType">
+                    </div>
+                    <div class="car__info">
+                      <label for="car__day">Ngày đi</label>
+                      <input class="car__day" type="date" name="" id="car__day">
+                    </div>
+                    <div class="car__info">
+                      <label for="car__time">Giờ xuất phát</label>
+                      <input class="car__time" type="time" name="" id="car__time">
+                    </div>
+                    <div class="car__info">
+                      <label for="car__start">Nơi đi</label>
+                      <select class="car__start appearance-none" name="" id="car__start">
+                        <option value="TPHCM">TP. HCM </option>
+                        <option value="VUNGTAU">Vũng Tàu </option>
+                        <option value="NHATRANG">Nha Trang   </option>
+                      </select><i class="fa-solid fa-caret-down"></i>   
+                    </div>
+                    <div class="car__info">
+                      <label for="car__end">Nơi đến</label>
+                      <select class="car__end appearance-none" name="" id="car__end"> 
+                        <option value="TPHCM">TP. HCM </option>
+                        <option value="VUNGTAU">Vũng Tàu</option>
+                        <option value="NHATRANG">Nha Trang  </option>
+                      </select><i class="fa-solid fa-caret-down"></i>  
+                    </div>
+                  </div>
+                  <div class="car__payment">
+                    <h3 class="car__price">Giá tiền: <span></span></h3>
+                    <button class="car__submit" type="submit"><i class="fa-solid fa-money-bill"></i> Thuê Ngay</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
     <div class="xe xe-tai">
       <div class="container container-xe">
         <button class="tieude">XE TẢI</button>
@@ -101,13 +163,16 @@
           <h3>Tải trọng</h3>
           <div class="thu">
             <div>
-              <input name="luachon1" type="radio">Xe tải nhẹ(dưới 3,5 tấn)<br>
+              <input name="luachon1" type="radio" id="truck__light" value="Xe tải nhẹ (dưới 3.5 tấn)">
+              <label for="truck__light">Xe tải nhẹ (dưới 3.5 tấn) </label><br>
             </div>
             <div> 
-              <input name="luachon1" type="radio">Xe tải trung(3,5 - 8 tấn)<br>
+              <input name="luachon1" type="radio" id="truck__medium" value="Xe tải trung (3.5 - 8 tấn)">
+              <label for="truck__medium">Xe tải trung (3.5 - 8 tấn) </label><br>
             </div>
             <div> 
-              <input name="luachon1" type="radio">Xe tải nặng(trên 8 tấn)<br>
+              <input name="luachon1" type="radio" id="truck__heavy" value="Xe tải nặng (trên 8 tấn)">
+              <label for="truck__heavy">Xe tải nặng (trên 8 tấn) </label><br>
             </div>
           </div>
         </div>
@@ -115,25 +180,32 @@
           <h3>Kiểu thùng xe</h3>
           <div class="thu">
             <div> 
-              <input name="luachon2" type="radio">Xe tải thùng kín<br>
+              <input name="luachon2" type="radio" id="truck__boxType1" value="Xe tải thùng kín">
+              <label for="truck__boxType1">Xe tải thùng kín</label><br>
             </div>
             <div>
-              <input name="luachon2" type="radio">Xe tải thùng mui bạt<br>
+              <input name="luachon2" type="radio" id="truck__boxType2" value="Xe tải thùng mui bạt">
+              <label for="truck__boxType2">Xe tải thùng mui bạt </label><br>
             </div>
             <div> 
-              <input name="luachon2" type="radio">Xe tải thùng lửng<br>
+              <input name="luachon2" type="radio" id="truck__boxType3" value="Xe tải thùng lửng">
+              <label for="truck__boxType3">Xe tải thùng lửng </label><br>
             </div>
             <div> 
-              <input name="luachon2" type="radio">Xe tải đông lạnh<br>
+              <input name="luachon2" type="radio" id="truck__boxType4" value="Xe tải đông lạnh">
+              <label for="truck__boxType4">Xe tải đông lạnh</label><br>
             </div>
             <div>
-              <input name="luachon2" type="radio">Xe tải chở gia súc<br>
+              <input name="luachon2" type="radio" id="truck__boxType5" value="Xe tải chở gia súc">
+              <label for="truck__boxType5">Xe tải chở gia súc</label><br>
             </div>
             <div>
-              <input name="luachon2" type="radio">Xe tải ben<br>
+              <input name="luachon2" type="radio" id="truck__boxType6" value="Xe tải ben">
+              <label for="truck__boxType6">Xe tải ben</label><br>
             </div>
             <div> 
-              <input name="luachon2" type="radio">Xe tải xi téc<br>
+              <input name="luachon2" type="radio" id="truck__boxType7" value="Xe tải xi téc">
+              <label for="truck__boxType7">Xe tải xi téc </label><br>
             </div>
           </div>
         </div>
@@ -144,6 +216,7 @@
         </button>
       </div>
     </div>
+    <script type="module" src="assets/js/truck-form.js"> </script>
     <div class="footer">
       <div class="container">
         <div class="footer__wrap">

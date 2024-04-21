@@ -7,18 +7,21 @@ block main
         -
             var productList = [
                 {
+                    nav : 'car-product.html',
                     img : 'assets/images/product-car.png',
                     title : 'xe khách',
                     capacity : '4 - 16 người',
                     price : '200.000 VND'
                 },
                 {
+                    nav : 'truck-product.html',
                     img : 'assets/images/product-truck.png',
                     title : 'xe tải',
                     capacity : '4 - 16 người',
                     price : '300.000 VND'
                 },
                 {
+                    nav : 'container-product.html',
                     img : 'assets/images/product-container.png',
                     title : 'xe container',
                     capacity : '4 - 16 người',
@@ -37,7 +40,7 @@ block main
 
                         each item in productList
 
-                            a(href="") 
+                            a(href=item.nav) 
                                 div(class="product__item")
                                     div(class="product__item-image")
                                         img(src=item.img, alt="")
