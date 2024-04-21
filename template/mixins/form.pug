@@ -1,37 +1,46 @@
 mixin car-form()
     div(class="car")
-        div(class="container")
-            div(class="car__wrap")
+        //-div(class="container")
+        div(class="car__wrap")
 
-                h3(class="car__title") Đặt xe
+            <i class="fa-solid fa-x car__cancel-button" id="cancel-button"></i>
 
-                div(class="car__content")
 
-                    div(class="car__image")
-                        img(src="assets/images/car-order.svg", alt="")
+            h3(class="car__title") Đặt xe
 
-                    div(class="car__form")
-                        form(action="")
+            div(class="car__content")
+
+                //- div(class="car__image")
+                //-     img(src="assets/images/car-order.svg", alt="")
+
+                div(class="car__form")
+                    form(action="")
+
+                        div(class="grid grid-cols-2 gap-[20px]")
 
                             div(class="car__info")
                                 label(for="car__fullname") Họ và tên 
                                 input(type="text" id="car__fullname" class="car__fullname")
 
                             div(class="car__info")
+                                label(for="car__email") Email 
+                                input(type="text" id="car__email" class="car__email") 
+
+                            div(class="car__info")
                                 label(for="car__tel") Số điện thoại 
                                 input(type="tel" id="car__tel" class="car__tel")
 
                             div(class="car__info")
-                                label(for="car__type") Loại xe
-                                input(type="text" id="car__type" class="car__type" readonly appearance-none)  
+                                label(for="car__size") Kích thước
+                                input(type="text" id="car__size" class="car__size appearance-none" )   
 
-                            //- div(class="car__info")
-                            //-     label(for="car__type") Loại xe 
-                            //-     select(name="" id="car__type" class="car__type appearance-none")
-                            //-         option(value="car-4") 4 chỗ  
-                            //-         option(value="car-7") 7 chỗ 
-                            //-         option(value="car-16") 16 chỗ
-                            //-     <i class="fa-solid fa-caret-down"></i>
+                            div(class="car__info")
+                                label(for="car__seatType") Loại ghế
+                                input(type="text" id="car__seatType" class="car__seatType appearance-none" )   
+
+                            div(class="car__info")
+                                label(for="car__feature") Tiện nghi 
+                                input(type="text" id="car__feature" class="car__feature appearance-none" ) 
 
                             div(class="car__info")
                                 label(for="car__day") Ngày đi
@@ -56,6 +65,9 @@ mixin car-form()
                                     option(value="VUNGTAU") Vũng Tàu
                                     option(value="NHATRANG") Nha Trang  
                                 <i class="fa-solid fa-caret-down"></i>  
+
+
+                        div(class="car__payment")
 
                             h3(class="car__price") Giá tiền: <span></span>
 

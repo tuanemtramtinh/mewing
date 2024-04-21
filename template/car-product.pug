@@ -5,64 +5,63 @@ block head
 
 block main
 
+    include ./mixins/form.pug
 
+    +car-form()
 
     .xe
         .container.container-xe
             button.tieude XE KHÁCH
 
-
     .ctn
       .phanloai
         .lua
           h3 Kích thước
-          .thu 
+          .thu
             div
-                input(name="luachon1", type="radio")
-                | Xe khách 16 chỗ
+                input(name="luachon1" type="radio" id="car__16" value="16 chỗ")
+                label(for="car__16") Xe khách 16 chỗ
                 br
             div
-                input(name="luachon1", type="radio")
-                | Xe khách 29 chỗ
+                input(name="luachon1", type="radio" id="car__29" value="29 chỗ")
+                label(for="car__29") Xe khách 29 chỗ
                 br
             div 
-                input(name="luachon1", type="radio")
-                | Xe khách 35 chỗ
+                input(name="luachon1", type="radio" id="car__35" value="35 chỗ")
+                label(for="car__35") Xe khách 35 chỗ 
                 br
             div 
-                input(name="luachon1", type="radio")
-                | Xe khách 45 chỗ
-                br
-            div 
-                input(name="luachon1", type="radio")
-                | Xe khách giường nằm
+                input(name="luachon1", type="radio" id="car__45" value="45 chỗ")
+                label(for="car__45") Xe khách 45 chỗ 
                 br
         .lua
           h3 Loại ghế
           .thu
             div 
-                input(name="luachon2", type="radio")
-                | Xe khách ghế ngồi
+                input(name="luachon2", type="radio" id="car__seat" value="Xe ghế ngồi")
+                label(for="car__seat") Xe khách ghế ngồi
                 br
             div
-                input(name="luachon2", type="radio")
-                | Xe khách ghế ngả
+                input(name="luachon2", type="radio" id="car__seatChange" value="Xe ghế ngã")
+                label(for="car__seatChange")  Xe khách ghế ngã
                 br
             div 
-                input(name="luachon2", type="radio")
-                | Xe khách giường nằm
+                input(name="luachon2", type="radio" id="car__bed" value="Xe giường nằm")
+                label(for="car__bed") Xe khách giường nằm 
                 br
         .lua
           h3 Tiện nghi
           .thu 
             div
-                input(name="luachon3", type="radio")
-                | Xe khách bình dân
+                input(name="luachon3", type="radio" id="car__casual" value="Xe bình dân")
+                label(for="car__casual") Xe khách bình dân 
                 br
             div 
-                input(name="luachon3", type="radio")
-                | Xe khách cao cấp
+                input(name="luachon3", type="radio" id="car__luxury" value="Xe cao cấp")
+                label(for="car__luxury") Xe khách cao cấp
                 br
       .dk
-        button.Dangky
+        button(type="submit" class="Dangky")
           p Đăng ký chuyến đi
+
+    script(type="module" src="assets/js/car-form.js")

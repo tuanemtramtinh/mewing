@@ -1,9 +1,102 @@
-const type = document.querySelector('.car__type');
+//-------------------Firebase-------------------
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+import {
+    getAuth, createUserWithEmailAndPassword,
+    signInWithEmailAndPassword, signOut,
+    onAuthStateChanged, updateProfile
+} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+import{
+    getFirestore, collection, getDocs, onSnapshot,
+    addDoc, deleteDoc, doc, setDoc,
+    query, where,
+    orderBy, serverTimestamp,
+    getDoc, updateDoc
+} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAoDY7W8GaD9uiIuhTKvDy7529-ll4zVzk",
+    authDomain: "mewing-642b4.firebaseapp.com",
+    databaseURL: "https://mewing-642b4-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "mewing-642b4",
+    storageBucket: "mewing-642b4.appspot.com",
+    messagingSenderId: "559424480334",
+    appId: "1:559424480334:web:f665adca53dddc32620f1f"
+  };
+
+//Init Firebase  
+
+initializeApp(firebaseConfig);
+
+//Init service
+
+const auth = getAuth();
+const db = getFirestore();
+
+//-------------------Firebase-------------------
+
+//Authenticate
+
+let userAccount;
+
+onAuthStateChanged(auth, (user) => {
+    if(user){
+        userAccount = user;
+    }
+})
+
+//Process
+
+const tripRegister = document.querySelector('.Dangky');
+const cancelButton = document.querySelector('.car__cancel-button');
+
+const car = document.querySelector('.car');
+const carSizes = document.getElementsByName('luachon1');
+const carSeatTypes = document.getElementsByName('luachon2');
+const carFeatures = document.getElementsByName('luachon3');
+
+const carFormFullname = document.querySelector('#car__fullname');
+const carFormTel = document.querySelector('#car__tel');
+const carFormEmail = document.querySelector('#car__email');
+const carFormSize = document.querySelector('#car__size');
+const carFormSeatType = document.querySelector('#car__seatType');
+const carFormFeature = document.querySelector('#car__feature');
 const departureDate = document.querySelector('.car__day');
 const departureTime = document.querySelector('.car__time');
 const departurePlace = document.querySelector('.car__start');
 const arrivePlace = document.querySelector('.car__end');
 const carForm = document.querySelector('.car__form form');
+
+tripRegister.addEventListener('click', () => {
+
+    const carSizeCheck = Array.from(carSizes).find((carSize) => carSize.checked);
+    const carSeatTypeCheck = Array.from(carSeatTypes).find((carSeatType) => carSeatType.checked);
+    const carFeatureCheck = Array.from(carFeatures).find((carFeature) => carFeature.checked);
+
+    if (carSizeCheck && carSeatTypeCheck && carFeatureCheck){
+        console.log(carSizeCheck, carSeatTypeCheck, carFeatureCheck);
+        
+        const userDocRef = doc(db, 'users', userAccount.uid);
+
+        getDoc(userDocRef)
+            .then((doc) => {
+                carFormFullname.value = doc.data().fullName;
+                carFormTel.value = doc.data().tel;
+                carFormEmail.value = doc.data().email;
+                carFormSize.value = carSizeCheck.value;
+                carFormSeatType.value = carSeatTypeCheck.value;
+                carFormFeature.value = carFeatureCheck.value;
+            });
+
+
+        car.style.display = "flex";
+    }
+
+});
+
+cancelButton.addEventListener('click', () => {
+    car.style.display = "none";
+});
 
 const startEndPrice =
 [
@@ -41,13 +134,10 @@ const startEndPrice =
 
 let getDepartureDate;
 let getDepartureTime;
-
+let outputPrice;
+let check;
 
 let checkAllInput = function() {
-
-    let outputPrice;
-    let check;
-
     if (typeof getDepartureDate != 'undefined' && typeof getDepartureTime != 'undefined'){
         
         let checkStatus = startEndPrice.find(item => {
@@ -78,4 +168,33 @@ carForm.addEventListener('input', (e) => {
     }
 
     checkAllInput();
+});
+
+const carOrderRef = collection(db, 'carOrders');
+
+carForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const carOrderId = crypto.randomUUID();
+
+    setDoc(doc(db, 'carOrders', carOrderId), {
+        userId: userAccount.uid,
+        fullName : carFormFullname.value,
+        tel: carFormTel.value,
+        email: carFormEmail.value,
+        carSize: carFormSize.value,
+        carSeatType: carFormSeatType.value,
+        carFeature: carFormFeature.value,
+        departureDate: departureDate.value,
+        departureTime: departureTime.value,
+        departurePlace: departurePlace.value,
+        arrivePlace: arrivePlace.value,
+        price: outputPrice
+    })
+
+    .then(() => {
+        alert(`Đặt xe thành công, mã đặt xe của bạn là ${carOrderId}`);
+        window.location.href = 'index.html';
+    })
+
 });

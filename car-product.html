@@ -14,9 +14,9 @@
         <div class="header__wrap">
           <div class="header__logo"><img src="assets/images/logo.png" alt=""></div>
           <div class="header__menu">
-            <div class="header__title"> <a href="../../index.html">trang chủ</a></div>
-            <div class="header__title"><a href="../../product-list.html">loại xe</a></div>
-            <div class="header__title"><a href="../../about.html">giới thiệu</a></div>
+            <div class="header__title"> <a href="index.html">trang chủ</a></div>
+            <div class="header__title"><a href="product-list.html">loại xe</a></div>
+            <div class="header__title"><a href="about.html">giới thiệu</a></div>
           </div>
           <div class="header__nav">
             <div class="header__button"> 
@@ -24,6 +24,19 @@
             </div>
             <div class="header__button"> 
               <button type="submit" id="login-button">đăng nhập</button>
+            </div>
+          </div>
+          <div class="header__user">
+            <div class="header__info"><i class="fa-solid fa-circle-user"></i><span class="header__username"> </span>
+              <ul class="header__list"> 
+                <li> 
+                  <button class="header__edit" type="submit"><i class="fa-solid fa-user-pen"></i><span>Chỉnh sửa hồ sơ</span></button>
+                </li>
+                <li> 
+                  <button class="header__logout" type="submit">
+                     <i class="fa-solid fa-right-from-bracket"></i><span>Đăng xuất</span></button>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -53,6 +66,14 @@
           <h2>REGISTER</h2>
           <form class="popupRegister__content-login" action=""> 
             <div> 
+              <label for="popupRegister__fullName">Fullname</label>
+              <input type="text" placeholder="Le Van A" id="popupRegister__fullName">
+            </div>
+            <div> 
+              <label for="popupRegister__tel">Telephone </label>
+              <input type="text" placeholder="Telephone" id="popupRegister__tel">
+            </div>
+            <div> 
               <label for="popupRegister__username">Username </label>
               <input class="popupRegister__username" type="text" placeholder="Username" id="popupRegister__username">
             </div>
@@ -69,6 +90,71 @@
         </div>
       </div>
     </div>
+        <div class="car">
+          <div class="car__wrap"><i class="fa-solid fa-x car__cancel-button" id="cancel-button"></i>
+            <h3 class="car__title">Đặt xe</h3>
+            <div class="car__content">
+              <div class="car__form">
+                <form action="">
+                  <div class="grid grid-cols-2 gap-[20px]">
+                    <div class="car__info">
+                      <label for="car__fullname">Họ và tên </label>
+                      <input class="car__fullname" type="text" id="car__fullname">
+                    </div>
+                    <div class="car__info">
+                      <label for="car__email">Email </label>
+                      <input class="car__email" type="text" id="car__email">
+                    </div>
+                    <div class="car__info">
+                      <label for="car__tel">Số điện thoại </label>
+                      <input class="car__tel" type="tel" id="car__tel">
+                    </div>
+                    <div class="car__info">
+                      <label for="car__size">Kích thước</label>
+                      <input class="car__size appearance-none" type="text" id="car__size">
+                    </div>
+                    <div class="car__info">
+                      <label for="car__seatType">Loại ghế</label>
+                      <input class="car__seatType appearance-none" type="text" id="car__seatType">
+                    </div>
+                    <div class="car__info">
+                      <label for="car__feature">Tiện nghi </label>
+                      <input class="car__feature appearance-none" type="text" id="car__feature">
+                    </div>
+                    <div class="car__info">
+                      <label for="car__day">Ngày đi</label>
+                      <input class="car__day" type="date" name="" id="car__day">
+                    </div>
+                    <div class="car__info">
+                      <label for="car__time">Giờ xuất phát</label>
+                      <input class="car__time" type="time" name="" id="car__time">
+                    </div>
+                    <div class="car__info">
+                      <label for="car__start">Nơi đi</label>
+                      <select class="car__start appearance-none" name="" id="car__start">
+                        <option value="TPHCM">TP. HCM </option>
+                        <option value="VUNGTAU">Vũng Tàu </option>
+                        <option value="NHATRANG">Nha Trang   </option>
+                      </select><i class="fa-solid fa-caret-down"></i>   
+                    </div>
+                    <div class="car__info">
+                      <label for="car__end">Nơi đến</label>
+                      <select class="car__end appearance-none" name="" id="car__end"> 
+                        <option value="TPHCM">TP. HCM </option>
+                        <option value="VUNGTAU">Vũng Tàu</option>
+                        <option value="NHATRANG">Nha Trang  </option>
+                      </select><i class="fa-solid fa-caret-down"></i>  
+                    </div>
+                  </div>
+                  <div class="car__payment">
+                    <h3 class="car__price">Giá tiền: <span></span></h3>
+                    <button class="car__submit" type="submit"><i class="fa-solid fa-money-bill"></i> Thuê Ngay</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
     <div class="xe">
       <div class="container container-xe">
         <button class="tieude">XE KHÁCH</button>
@@ -78,21 +164,22 @@
       <div class="phanloai">
         <div class="lua">
           <h3>Kích thước</h3>
-          <div class="thu"> 
+          <div class="thu">
             <div>
-              <input name="luachon1" type="radio">Xe khách 16 chỗ<br>
+              <input name="luachon1" type="radio" id="car__16" value="16 chỗ">
+              <label for="car__16">Xe khách 16 chỗ</label><br>
             </div>
             <div>
-              <input name="luachon1" type="radio">Xe khách 29 chỗ<br>
+              <input name="luachon1" type="radio" id="car__29" value="29 chỗ">
+              <label for="car__29">Xe khách 29 chỗ</label><br>
             </div>
             <div> 
-              <input name="luachon1" type="radio">Xe khách 35 chỗ<br>
+              <input name="luachon1" type="radio" id="car__35" value="35 chỗ">
+              <label for="car__35">Xe khách 35 chỗ </label><br>
             </div>
             <div> 
-              <input name="luachon1" type="radio">Xe khách 45 chỗ<br>
-            </div>
-            <div> 
-              <input name="luachon1" type="radio">Xe khách giường nằm<br>
+              <input name="luachon1" type="radio" id="car__45" value="45 chỗ">
+              <label for="car__45">Xe khách 45 chỗ </label><br>
             </div>
           </div>
         </div>
@@ -100,13 +187,16 @@
           <h3>Loại ghế</h3>
           <div class="thu">
             <div> 
-              <input name="luachon2" type="radio">Xe khách ghế ngồi<br>
+              <input name="luachon2" type="radio" id="car__seat" value="Xe ghế ngồi">
+              <label for="car__seat">Xe khách ghế ngồi</label><br>
             </div>
             <div>
-              <input name="luachon2" type="radio">Xe khách ghế ngả<br>
+              <input name="luachon2" type="radio" id="car__seatChange" value="Xe ghế ngã">
+              <label for="car__seatChange"> Xe khách ghế ngã</label><br>
             </div>
             <div> 
-              <input name="luachon2" type="radio">Xe khách giường nằm<br>
+              <input name="luachon2" type="radio" id="car__bed" value="Xe giường nằm">
+              <label for="car__bed">Xe khách giường nằm </label><br>
             </div>
           </div>
         </div>
@@ -114,20 +204,23 @@
           <h3>Tiện nghi</h3>
           <div class="thu"> 
             <div>
-              <input name="luachon3" type="radio">Xe khách bình dân<br>
+              <input name="luachon3" type="radio" id="car__casual" value="Xe bình dân">
+              <label for="car__casual">Xe khách bình dân </label><br>
             </div>
             <div> 
-              <input name="luachon3" type="radio">Xe khách cao cấp<br>
+              <input name="luachon3" type="radio" id="car__luxury" value="Xe cao cấp">
+              <label for="car__luxury">Xe khách cao cấp</label><br>
             </div>
           </div>
         </div>
       </div>
       <div class="dk">
-        <button class="Dangky">
+        <button class="Dangky" type="submit">
           <p>Đăng ký chuyến đi</p>
         </button>
       </div>
     </div>
+    <script type="module" src="assets/js/car-form.js"></script>
     <div class="footer">
       <div class="container">
         <div class="footer__wrap">
@@ -167,5 +260,5 @@
         </div>
       </div>
     </div>
-  </body><script src="assets/js/index.js"> </script>
+  </body><script type="module" src="assets/js/index.js"> </script>
 </html>

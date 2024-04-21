@@ -45,7 +45,7 @@ body {
 }
 .header__nav {
   width: 30%;
-  display: flex;
+  display: none;
   justify-content: flex-end;
 }
 .header__button {
@@ -66,6 +66,54 @@ body {
 .header__button:hover {
   background-color: #FFC0D9;
   color: black;
+}
+.header__user {
+  width: 30%;
+  display: none;
+  justify-content: flex-end;
+  font-size: 22px;
+}
+.header__username {
+  margin-left: 15px;
+}
+.header__info {
+  position: relative;
+  padding: 10px 50px;
+  border-radius: 10px;
+  background-color: #7E60BC;
+  color: #F9F5F0;
+  font-weight: 700;
+}
+.header__info:hover .header__list {
+  display: flex;
+}
+.header__list {
+  display: none;
+  z-index: 999;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  font-size: 15px;
+  position: absolute;
+  top: 50px;
+  left: 0px;
+  background-color: #7E60BC;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+.header__list li {
+  padding: 15px;
+}
+.header__list li i {
+  margin-right: 5px;
+}
+.header__list::before {
+  content: "";
+  height: 10px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  transform: translateY(-100%);
 }
 
 .popupLogin {
@@ -638,25 +686,48 @@ body {
 }
 
 .car {
-  background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
-  padding-top: 80px;
-  padding-bottom: 190px;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
 }
 .car__wrap {
+  width: 1000px;
+  height: auto;
   background-color: #F9F5F0;
   border-radius: 30px;
   overflow: hidden;
+  position: relative;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.car__cancel-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  background-color: red;
+  color: white;
+  padding: 10px;
+  border-radius: 100px;
+  font-size: 20px;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  cursor: pointer;
 }
 .car__title {
   font-size: 35px;
   font-weight: 700;
   text-transform: uppercase;
   text-align: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 10px 20px;
   background-color: #7E60BC;
   color: #F9F5F0;
 }
@@ -664,13 +735,10 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 60px 40px;
-}
-.car__image {
-  width: 48%;
+  padding: 40px 40px;
 }
 .car__form {
-  width: 48%;
+  width: 100%;
 }
 .car__form label {
   display: inline-block;
@@ -698,6 +766,12 @@ body {
   position: absolute;
   top: 50px;
   right: 25px;
+}
+.car__payment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 .car__price {
   display: none;
@@ -985,7 +1059,7 @@ input[type=radio] {
   margin-bottom: 0px auto;
 }
 
-.phanloai {
+.phanloai-chucnang {
   display: flex;
   flex-wrap: wrap;
   padding-left: 60px;

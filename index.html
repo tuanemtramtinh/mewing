@@ -14,9 +14,9 @@
         <div class="header__wrap">
           <div class="header__logo"><img src="assets/images/logo.png" alt=""></div>
           <div class="header__menu">
-            <div class="header__title"> <a href="../../index.html">trang chủ</a></div>
-            <div class="header__title"><a href="../../product-list.html">loại xe</a></div>
-            <div class="header__title"><a href="../../about.html">giới thiệu</a></div>
+            <div class="header__title"> <a href="index.html">trang chủ</a></div>
+            <div class="header__title"><a href="product-list.html">loại xe</a></div>
+            <div class="header__title"><a href="about.html">giới thiệu</a></div>
           </div>
           <div class="header__nav">
             <div class="header__button"> 
@@ -24,6 +24,19 @@
             </div>
             <div class="header__button"> 
               <button type="submit" id="login-button">đăng nhập</button>
+            </div>
+          </div>
+          <div class="header__user">
+            <div class="header__info"><i class="fa-solid fa-circle-user"></i><span class="header__username"> </span>
+              <ul class="header__list"> 
+                <li> 
+                  <button class="header__edit" type="submit"><i class="fa-solid fa-user-pen"></i><span>Chỉnh sửa hồ sơ</span></button>
+                </li>
+                <li> 
+                  <button class="header__logout" type="submit">
+                     <i class="fa-solid fa-right-from-bracket"></i><span>Đăng xuất</span></button>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -52,6 +65,14 @@
         <div class="popupRegister__login">
           <h2>REGISTER</h2>
           <form class="popupRegister__content-login" action=""> 
+            <div> 
+              <label for="popupRegister__fullName">Fullname</label>
+              <input type="text" placeholder="Le Van A" id="popupRegister__fullName">
+            </div>
+            <div> 
+              <label for="popupRegister__tel">Telephone </label>
+              <input type="text" placeholder="Telephone" id="popupRegister__tel">
+            </div>
             <div> 
               <label for="popupRegister__username">Username </label>
               <input class="popupRegister__username" type="text" placeholder="Username" id="popupRegister__username">
@@ -84,7 +105,7 @@
     <div class="giaodien1">
       <div class="container">
         <button class="chucnang">CHỨC NĂNG</button>
-        <div class="phanloai">
+        <div class="phanloai-chucnang">
           <button class="doingu">
             <p>Đội ngũ tài xế </p>
             <p>trên 3 năm kinh nghiệm</p><img src="assets/images/1.png" alt="lỗi tải ảnh">
@@ -142,5 +163,5 @@
         </div>
       </div>
     </div>
-  </body><script src="assets/js/index.js"> </script>
+  </body><script type="module" src="assets/js/index.js"> </script>
 </html>

@@ -12,6 +12,18 @@ html(lang="en")
         
     body 
 
+        //-Thông báo
+
+        //- div(class="alert")
+        //-     div(class="alert__wrap")
+        //-         button(type="submit" class="alert__icon")
+        //-             <i class="fa-solid fa-exclamation"></i>
+        //-         div(class="alert__content")
+        //-             span 
+        //-         button(type="submit" class="alert__cancel")
+        //-             <i class="fa-solid fa-xmark"></i>
+
+
         //- Header
         div(class="header")
             div(class="container")
@@ -20,11 +32,11 @@ html(lang="en")
                         img(src="assets/images/logo.png", alt="")
                     div(class="header__menu")
                         div(class="header__title") 
-                            a(href="../../index.html") trang chủ
+                            a(href="index.html") trang chủ
                         div(class="header__title")
-                            a(href="../../product-list.html") loại xe
+                            a(href="product-list.html") loại xe
                         div(class="header__title")
-                            a(href="../../about.html") giới thiệu
+                            a(href="about.html") giới thiệu
                     
                     div(class="header__nav")
                         div(class="header__button") 
@@ -32,7 +44,24 @@ html(lang="en")
 
                         div(class="header__button") 
                             button(type="submit" id="login-button") đăng nhập
-                        
+                    
+                    div(class="header__user")
+                        div(class="header__info")
+                            <i class="fa-solid fa-circle-user"></i>
+                            span(class="header__username") 
+                            ul(class="header__list") 
+                                li 
+                                    button(type="submit" class="header__edit")
+                                        <i class="fa-solid fa-user-pen"></i>
+                                        span Chỉnh sửa hồ sơ
+                                li 
+                                    button(type="submit" class="header__logout") 
+                                        <i class="fa-solid fa-right-from-bracket"></i>
+                                        span Đăng xuất
+
+                    
+
+
 
         //- Popup Login
 
@@ -69,6 +98,14 @@ html(lang="en")
                     form(action="" class="popupRegister__content-login") 
 
                         div 
+                            label(for="popupRegister__fullName") Fullname
+                            input(type="text" placeholder = "Le Van A" id="popupRegister__fullName") 
+
+                        div 
+                            label(for="popupRegister__tel") Telephone 
+                            input(type="text" placeholder = "Telephone" id="popupRegister__tel") 
+
+                        div 
                             label(for="popupRegister__username") Username 
                             input(type="text" placeholder = "Username" id="popupRegister__username" class="popupRegister__username") 
     
@@ -81,7 +118,10 @@ html(lang="en")
 
                         button(type="submit" id="popupRegister__submit" class="popupRegister__submit") Register
 
+                
+        //- Logout Button (beta)
 
+        //-button(type="submit" class="buttonLogout text-[30px]") Logout
 
         block main
 
@@ -142,6 +182,6 @@ html(lang="en")
                             div(class="footer__payment")
                                 img(src="assets/images/GPay.png", alt="")
 
-    <script src="assets/js/index.js"> </script>
+    <script type="module" src="assets/js/index.js"> </script>
 
 
