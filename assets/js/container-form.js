@@ -201,7 +201,9 @@ carForm.addEventListener('submit', (e) => {
         departureTime: departureTime.value,
         departurePlace: departurePlace.value,
         arrivePlace: arrivePlace.value,
-        price: outputPrice
+        price: outputPrice,
+        createdAt: serverTimestamp(),
+        type: 'container'
     })
 
     .then(() => {

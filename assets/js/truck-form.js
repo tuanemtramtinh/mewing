@@ -189,14 +189,13 @@ carForm.addEventListener('submit', (e) => {
         email: carFormEmail.value,
         carWeight: carFormWeight.value,
         carBoxType: carFormBoxType.value,
-        // carSize: carFormSize.value,
-        // carSeatType: carFormSeatType.value,
-        // carFeature: carFormFeature.value,
         departureDate: departureDate.value,
         departureTime: departureTime.value,
         departurePlace: departurePlace.value,
         arrivePlace: arrivePlace.value,
-        price: outputPrice
+        price: outputPrice,
+        createdAt: serverTimestamp(),
+        type : 'truck'
     })
 
     .then(() => {
