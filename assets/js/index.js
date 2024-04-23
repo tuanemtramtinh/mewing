@@ -125,7 +125,8 @@ popupRegisterForm.addEventListener('submit', (e) => {
                 tel: registerTel.value,
                 username: registerUsername.value,
                 email: registerEmail.value,
-                password: registerPassword.value
+                password: registerPassword.value,
+                createdAt: serverTimestamp()
             })
             .then(() => {
                 // console.log("Create and save user success");
