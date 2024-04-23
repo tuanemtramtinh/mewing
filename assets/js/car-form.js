@@ -110,49 +110,73 @@ const startEndPrice =
     {
         start: 'TPHCM',
         end: 'VUNGTAU',
-        price: '500.000 VND'
+        price: '500.000 VND',
+        time: '2:00'
     },
     {
         start: 'TPHCM',
         end: 'NHATRANG',
-        price: '1.000.000 VND'
+        price: '1.000.000 VND',
+        time: '8:30'
     },
     {
         start: 'VUNGTAU',
         end: 'NHATRANG',
-        price: '1.500.000 VND'
+        price: '1.500.000 VND',
+        time: '6:00'
     },
     {
         start: 'VUNGTAU',
         end: 'TPHCM',
-        price: '500.000 VND'
+        price: '500.000 VND',
+        time: '2:00'
     },
     {
         start: 'NHATRANG',
         end: 'TPHCM',
-        price: '1.000.000 VND'
+        price: '1.000.000 VND',
+        time: '8:30'
     },
     {
         start: 'NHATRANG',
         end: 'VUNGTAU',
-        price: '1.500.000 VND'
+        price: '1.500.000 VND',
+        time: '6:00'
     }
 ]
 
 let getDepartureDate;
 let getDepartureTime;
+let arriveTime;
 let outputPrice;
-let check;
 
 let checkAllInput = function() {
-    if (typeof getDepartureDate != 'undefined' && typeof getDepartureTime != 'undefined'){       
+    if (typeof getDepartureDate != 'undefined' && typeof getDepartureTime != 'undefined'){  
+        
         let checkStatus = startEndPrice.find(item => {
             if (item.start === departurePlace.value && item.end === arrivePlace.value && departurePlace.value !== arrivePlace.value){
                 outputPrice = item.price;
+                
+                //Arrive Time Calc
+                const endTime = item.time.split(':');
+                const startTime = getDepartureTime.split(':');
+                const time = new Date();
+                time.setHours(startTime[0], startTime[1], 0, 0);
+                time.setHours(time.getHours() + parseInt(endTime[0]));
+                time.setMinutes(time.getMinutes() + parseInt(endTime[1]));
+                let hour = time.getHours();
+                let minute = time.getMinutes();
+                hour = "" + hour;
+                minute = minute == 0 ? "0" + ("" + minute) : "" + minute;
+                arriveTime = `${hour}:${minute}`;
+
+                console.log(arriveTime);
                 return true;        
             }
             return false;
         });
+
+
 
         if (!(typeof checkStatus == 'undefined')){
             console.log(document.querySelector('.car__price span'));
@@ -193,13 +217,13 @@ carForm.addEventListener('submit', (e) => {
         carFeature: carFormFeature.value,
         departureDate: departureDate.value,
         departureTime: departureTime.value,
+        arriveTime: arriveTime,
         departurePlace: departurePlace.value,
         arrivePlace: arrivePlace.value,
         price: outputPrice,
         createdAt: serverTimestamp(),
         type: 'car'
     })
-
     .then(() => {
         alert(`Đặt xe thành công, mã đặt xe của bạn là ${carOrderId}`);
         window.location.href = 'index.html';

@@ -56,6 +56,9 @@ id_button.addEventListener('click', async (e) => {
     getDoc(carRef)
         .then((doc) => {
             if(doc.data()){
+
+                console.log(doc.data());
+                
                 const name = document.createElement("li");
                 name.innerHTML = `<span>Họ và tên:</span><span> ${doc.data().fullName} </span>`;
                 const email = document.createElement("li");
