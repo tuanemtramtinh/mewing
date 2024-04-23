@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"><script src="https://cdn.tailwindcss.com"></script>
 <script src="tailwind.config.js"> </script>
-    <title>Trang Chủ </title>
+    <title>Trang Quản Lí</title>
   </head>
   <body> 
     <div class="header">
@@ -94,40 +94,32 @@
         </div>
       </div>
     </div>
-    <div class="giaodien">
+    <div class="adminSection1">
       <div class="container">
-        <div class="wrap">
-          <div class="giaodien-title"><h1>CHÀO</h1>
-<h1>MỪNG ĐẾN</h1>
-<h1>VỚI MEWING</h1>
-<div class="line"></div>
-<h3>Đồng hành trên mọi chuyến đi</h3>
+        <div class="adminSection1__wrap">
+          <div class="adminSection1__left">
+            <h3 class="adminSection1__title">Chức năng</h3>
+            <ul class="adminSection1__section"> 
+              <li> 
+                <button class="adminSection1__userListButton" type="submit">Danh sách người dùng</button>
+              </li>
+              <li> 
+                <button class="adminSection1__userListDriver" type="submit">Danh sách tài xế</button>
+              </li>
+              <li> 
+                <button class="adminSection1__carListDriver" type="submit">Danh sách xe</button>
+              </li>
+            </ul>
+          </div>
+          <div class="adminSection1__right">
+            <div class="adminSection1__userList"></div>
+            <div class="adminSection1__driverList"></div>
+            <div class="adminSection1__carList"></div>
           </div>
         </div>
       </div>
     </div>
-    <div class="giaodien1">
-      <div class="container">
-        <button class="chucnang">CHỨC NĂNG</button>
-        <div class="phanloai-chucnang">
-          <button class="doingu">
-            <p>Đội ngũ tài xế </p>
-            <p>trên 3 năm kinh nghiệm</p><img src="assets/images/1.png" alt="lỗi tải ảnh">
-          </button>
-          <button class="doingu">
-            <p>Gía cước biết trước</p><img src="assets/images/2.png" alt="lỗi tải ảnh">
-          </button>
-          <button class="doingu">
-            <p>Kế hoạch chuyến</p>
-            <p>đi chuyên nghiệp</p><img src="assets/images/3.png" alt="lỗi tải ảnh">
-          </button>
-          <button class="doingu">
-            <p>Theo dõi tình</p>
-            <p>trạng xe</p><img src="assets/images/4.png" alt="lỗi tải ảnh">
-          </button>
-        </div>
-      </div>
-    </div>
+    <script type="module" src="assets/js/admin.js"> </script>
     <div class="footer">
       <div class="container">
         <div class="footer__wrap">

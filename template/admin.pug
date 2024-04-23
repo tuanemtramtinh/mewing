@@ -1,0 +1,31 @@
+extends layouts/default.pug
+
+block head 
+    title Trang Quản Lí
+
+block main
+
+    div(class="adminSection1")
+        div(class="container")
+            div(class="adminSection1__wrap")
+                div(class="adminSection1__left")
+                    h3(class="adminSection1__title") Chức năng
+                    ul(class="adminSection1__section") 
+                        li 
+                            button(type="submit" class="adminSection1__userListButton") Danh sách người dùng
+                        li 
+                            button(type="submit" class="adminSection1__userListDriver") Danh sách tài xế
+                        li 
+                            button(type="submit" class="adminSection1__carListDriver") Danh sách xe
+                div(class="adminSection1__right")
+                    div(class="adminSection1__userList")
+
+                    div(class="adminSection1__driverList")
+
+                    div(class="adminSection1__carList")
+
+
+    script(type="module" src="assets/js/admin.js") 
+
+                
+        
