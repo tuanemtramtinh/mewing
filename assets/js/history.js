@@ -224,11 +224,11 @@ onAuthStateChanged(auth, (user) => {
                         },
                         weight : {
                             title : 'Trọng lượng',
-                            size : value.carWeight,
+                            weight : value.carWeight,
                         },
                         boxType : {
                             title : 'Loại hộp',
-                            seatType : value.carBoxType
+                            boxType : value.carBoxType
                         },
                         departurePlace : {
                             title : 'Nơi đi',
