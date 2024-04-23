@@ -145,8 +145,7 @@ let outputPrice;
 let check;
 
 let checkAllInput = function() {
-    if (typeof getDepartureDate != 'undefined' && typeof getDepartureTime != 'undefined'){
-        
+    if (typeof getDepartureDate != 'undefined' && typeof getDepartureTime != 'undefined'){       
         let checkStatus = startEndPrice.find(item => {
             if (item.start === departurePlace.value && item.end === arrivePlace.value && departurePlace.value !== arrivePlace.value){
                 outputPrice = item.price;
