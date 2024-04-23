@@ -1382,4 +1382,101 @@ input[type="radio"] {
 
 .orderHistory{
     padding-bottom: 110px;
+    background-color: white;
+
+    &__wrap{
+        padding: 40px 0px;
+    }
+
+    &__info{
+        margin-bottom: 30px;
+    }
+
+    &__title{
+        font-size: 35px;
+        font-weight: 700;
+    }
+
+    &__subtitle{
+        font-size: 18px;
+        font-weight: 500;
+        color: rgba(0, 0, 0, 0.6);
+    }
+
+    // &__list{
+        
+    // }
+
+    &__item{
+        border: 2px solid #ddd;
+        border-radius: 30px;
+        margin-bottom: 20px;
+    }
+
+    &__intro{
+        display: flex;
+        padding: 20px 20px;
+        border-bottom: 2px solid #ddd;
+
+        li{
+            margin-right: 30px;
+
+            div:first-child{
+                font-size: 20px;
+                font-weight: 700;
+                margin-bottom: 5px;
+            }
+            div:last-child{
+                font-size: 18px;
+                color: rgba(0, 0, 0, 0.6);
+            }
+        }
+    }
+
+    &__desc{
+        padding: 20px;
+        display: flex;
+    }
+
+    &__image{
+        width: 30%;
+        aspect-ratio: 1 / 1;
+        border: 2px solid #ddd;
+        padding: 20px;
+        border-radius: 30px;
+        margin-right: 20px;
+
+        img{
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+        }
+    }
+
+    &__carName{
+        font-size: 22px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    &__content{
+        width: calc(70% - 20px);
+
+        li{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            div:first-child{
+                font-size: 20px;
+                font-weight: 700;
+                margin-bottom: 5px;
+            }
+            
+            div:last-child{
+                font-size: 18px;
+
+            }
+        }
+    }
 }

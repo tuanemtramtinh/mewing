@@ -110,38 +110,45 @@ const startEndPrice =
     {
         start: 'TPHCM',
         end: 'VUNGTAU',
-        price: '500.000 VND'
+        price: '500.000 VND',
+        time: 2
     },
     {
         start: 'TPHCM',
         end: 'NHATRANG',
-        price: '1.000.000 VND'
+        price: '1.000.000 VND',
+        time: 3
     },
     {
         start: 'VUNGTAU',
         end: 'NHATRANG',
-        price: '1.500.000 VND'
+        price: '1.500.000 VND',
+        time: 1
     },
     {
         start: 'VUNGTAU',
         end: 'TPHCM',
-        price: '500.000 VND'
+        price: '500.000 VND',
+        time: 2
     },
     {
         start: 'NHATRANG',
         end: 'TPHCM',
-        price: '1.000.000 VND'
+        price: '1.000.000 VND',
+        time: 3
     },
     {
         start: 'NHATRANG',
         end: 'VUNGTAU',
-        price: '1.500.000 VND'
+        price: '1.500.000 VND',
+        time: 1
     }
 ]
 
 let getDepartureDate;
 let getDepartureTime;
 let outputPrice;
+let outputTime;
 let check;
 
 let checkAllInput = function() {

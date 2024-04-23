@@ -30,12 +30,10 @@
           <div class="header__user">
             <div class="header__info"><i class="fa-solid fa-circle-user"></i><span class="header__username"> </span>
               <ul class="header__list"> 
-                <li> 
-                  <button class="header__history" type="submit"><i class="fa-solid fa-list-check"></i><span>Lịch sử đơn hàng</span></button>
-                </li>
-                <li> 
-                  <button class="header__edit" type="submit"><i class="fa-solid fa-user-pen"></i><span>Chỉnh sửa hồ sơ</span></button>
-                </li>
+                <li> <a href="history.html"> 
+                    <button class="header__history" type="submit"><i class="fa-solid fa-list-check"></i><span>Lịch sử đơn hàng</span></button></a></li>
+                <li> <a href="user-profile.html"> 
+                    <button class="header__edit" type="submit"><i class="fa-solid fa-user-pen"></i><span>Chỉnh sửa hồ sơ</span></button></a></li>
                 <li> 
                   <button class="header__logout" type="submit">
                      <i class="fa-solid fa-right-from-bracket"></i><span>Đăng xuất</span></button>
@@ -97,22 +95,15 @@
     <div class="orderHistory">
       <div class="container">
         <div class="orderHistory__wrap"> 
-          <div class="orderHistory__title">Lịch sử đơn hàng</div>
-          <div class="orderHistory__list">
-            <div class="orderHistory__item">
-              <div class="orderHistory__intro">
-                <div><span>Mã đơn hàng: </span><span> </span></div>
-                <div> <span>Ngày đặt:</span><span> </span></div>
-                <div> <span>Giá tiền: </span><span></span></div>
-              </div>
-              <div class="orderHistory__content">
-                <div> <span>Loại xe đặt: </span></div>
-              </div>
-            </div>
+          <div class="orderHistory__info">
+            <h2 class="orderHistory__title">Lịch sử đơn hàng </h2>
+            <h3 class="orderHistory__subtitle">Kiểm tra các đơn hàng đã đặt</h3>
           </div>
+          <div class="orderHistory__list"></div>
         </div>
       </div>
     </div>
+    <script type="module" src="assets/js/history.js"> </script>
     <div class="footer">
       <div class="container">
         <div class="footer__wrap">

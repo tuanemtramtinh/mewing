@@ -8,23 +8,11 @@ block main
     div(class="orderHistory")
         div(class="container")
             div(class="orderHistory__wrap") 
-                div(class="orderHistory__title") Lịch sử đơn hàng
+                div(class="orderHistory__info")
+                    h2(class="orderHistory__title") Lịch sử đơn hàng 
+                    h3(class="orderHistory__subtitle") Kiểm tra các đơn hàng đã đặt
 
                 div(class="orderHistory__list")
-                    
-                    div(class="orderHistory__item")
-                        div(class="orderHistory__intro")
-                            div
-                                span Mã đơn hàng: 
-                                span 
-                            div 
-                                span Ngày đặt:
-                                span 
-                            div 
-                                span Giá tiền: 
-                                span
 
-                        div(class="orderHistory__content")
-                            div 
-                                span Loại xe đặt: 
-                                
+
+    script(type="module", src="assets/js/history.js") 
