@@ -261,11 +261,11 @@ onAuthStateChanged(auth, (user) => {
                         },
                         goodsType : {
                             title : 'Loại hàng hoá',
-                            seatType : value.carGoodsType
+                            goodsType : value.carGoodsType
                         },
                         structure : {
                             title : 'Cấu trúc',
-                            feature : value.carStructure
+                            structure : value.carStructure
                         },
                         departurePlace : {
                             title : 'Nơi đi',
