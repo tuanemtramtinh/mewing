@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"><script src="https://cdn.tailwindcss.com"></script>
+<script src="tailwind.config.js"> </script>
+    <title>Trang Quản Lí</title>
+  </head>
+  <body> 
+    <div class="header">
+      <div class="container">
+        <div class="header__wrap">
+          <div class="header__logo"><a href="index.html"> <img src="assets/images/logo.png" alt=""></a></div>
+          <div class="header__menu">
+            <div class="header__title"> <a href="index.html">trang chủ</a></div>
+            <div class="header__title"><a href="product-list.html">loại xe</a></div>
+            <div class="header__title"><a href="about.html">giới thiệu</a></div>
+            <div class="header__title"><a href="search.html">tra cứu</a></div>
+          </div>
+          <div class="header__nav">
+            <div class="header__button"> 
+              <button type="submit" id="register-button">đăng ký</button>
+            </div>
+            <div class="header__button"> 
+              <button type="submit" id="login-button">đăng nhập</button>
+            </div>
+          </div>
+          <div class="header__user">
+            <div class="header__info"><i class="fa-solid fa-circle-user"></i><span class="header__username"> </span>
+              <ul class="header__list"> 
+                <li> <a href="history.html"> 
+                    <button class="header__history" type="submit"><i class="fa-solid fa-list-check"></i><span>Lịch sử đơn hàng</span></button></a></li>
+                <li> <a href="user-profile.html"> 
+                    <button class="header__edit" type="submit"><i class="fa-solid fa-user-pen"></i><span>Chỉnh sửa hồ sơ</span></button></a></li>
+                <li> 
+                  <button class="header__logout" type="submit">
+                     <i class="fa-solid fa-right-from-bracket"></i><span>Đăng xuất</span></button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="popupLogin">
+      <div class="popupLogin__wrap"><i class="fa-solid fa-x" id="cancel-button"></i>
+        <div class="popupLogin__login">
+          <h2>LOGIN </h2>
+          <form class="popupLogin__content-login" action=""> 
+            <div> 
+              <label for="popupLogin__email">Email </label>
+              <input class="popupLogin__email" type="email" placeholder="Email" id="popupLogin__email">
+            </div>
+            <div> 
+              <label for="popupLogin__pass">Password </label>
+              <input class="popupLogin__password" type="password" placeholder="Password" id="popupLogin__password">
+            </div>
+            <button class="popupLogin__submit" type="submit" id="popupLogin__submit">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="popupRegister">
+      <div class="popupRegister__wrap"><i class="fa-solid fa-x" id="cancel-button"></i>
+        <div class="popupRegister__login">
+          <h2>REGISTER</h2>
+          <form class="popupRegister__content-login" action=""> 
+            <div> 
+              <label for="popupRegister__fullName">Fullname</label>
+              <input type="text" placeholder="Le Van A" id="popupRegister__fullName">
+            </div>
+            <div> 
+              <label for="popupRegister__tel">Telephone </label>
+              <input type="text" placeholder="Telephone" id="popupRegister__tel">
+            </div>
+            <div> 
+              <label for="popupRegister__username">Username </label>
+              <input class="popupRegister__username" type="text" placeholder="Username" id="popupRegister__username">
+            </div>
+            <div> 
+              <label for="popupRegister__email">Email </label>
+              <input class="popupRegister__email" type="email" placeholder="Email" id="popupRegister__email">
+            </div>
+            <div> 
+              <label for="popupRegister__pass">Password </label>
+              <input class="popupRegister__password" type="password" placeholder="Password" id="popupRegister__password">
+            </div>
+            <button class="popupRegister__submit" type="submit" id="popupRegister__submit">Register</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="adminSection1">
+      <div class="container">
+        <div class="adminSection1__wrap">
+          <div class="adminSection1__left">
+            <h3 class="adminSection1__title">Chức năng</h3>
+            <ul class="adminSection1__section"> 
+              <li> 
+                <button class="adminSection1__userListButton" type="submit">Danh sách người dùng</button>
+              </li>
+              <li> 
+                <button class="adminSection1__userListDriver" type="submit">Danh sách tài xế</button>
+              </li>
+              <li> 
+                <button class="adminSection1__carListDriver" type="submit">Danh sách xe</button>
+              </li>
+            </ul>
+          </div>
+          <div class="adminSection1__right">
+            <div class="adminSection1__userList"></div>
+            <div class="adminSection1__driverList"></div>
+            <div class="adminSection1__carList"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="assets/js/admin.js"> </script>
+    <div class="footer">
+      <div class="container">
+        <div class="footer__wrap">
+          <div class="footer__announce">
+            <h3 class="footer__announce-title">Luôn luôn cập nhật những thông tin mới nhất của chúng tôi.</h3>
+            <form class="footer__form" action="">
+              <input type="email" name="">
+              <button type="submit">Submit <i class="fa-solid fa-envelope-open-text"></i></button>
+            </form>
+          </div>
+          <div class="footer__top">
+            <div class="footer__top-left">
+              <div class="footer__location"><i class="fa-solid fa-location-dot"></i><span>268 Lý Thường Kiệt, Phường 14, Quận 10, TP. HCM </span></div>
+              <div class="footer__location"><i class="fa-solid fa-location-dot"></i><span>Khu phố Tân Lập, Phường Đông Hòa, TP. Dĩ An, Tỉnh Bình Dương </span></div>
+              <div class="footer__telephone"><i class="fa-solid fa-phone"></i><span>0865127514</span></div>
+              <div class="footer__telephone"><i class="fa-solid fa-phone"></i><span>0819133820</span></div>
+              <div class="footer__email"><i class="fa-solid fa-envelope"></i><span>mewing@gmail.com</span></div>
+            </div>
+            <div class="footer__top-right">
+              <div class="footer__logo"><img src="assets/images/logo.png" alt=""></div>
+              <div class="footer__desc">
+                <p>Chúng tôi luôn đưa ra các giải pháp tốt nhất về phương tiện di chuyển cho khách hàng. Luôn luôn là sự lựa chọn hàng đầu của khách hàng trong việc chọn các đơn vị vận chuyển. Luôn đứng đầu về sự uy tín và sắc bén.</p>
+              </div>
+              <div class="footer__socials"><a href=""><i class="fa-brands fa-facebook-f"></i></a><a href=""><i class="fa-brands fa-x-twitter"></i></a><a href=""><i class="fa-brands fa-tiktok"></i></a><a href=""><i class="fa-brands fa-instagram"></i></a></div>
+            </div>
+          </div>
+          <div class="footer__bottom">
+            <div class="footer__bottom-left">MEWING © 2024, All Rights Reserved</div>
+            <div class="footer__bottom-right"> 
+              <div class="footer__payment"><img src="assets/images/Visa.png" alt=""></div>
+              <div class="footer__payment"><img src="assets/images/Mastercard.png" alt=""></div>
+              <div class="footer__payment"><img src="assets/images/Paypal.png" alt=""></div>
+              <div class="footer__payment"><img src="assets/images/ApplePay.png" alt=""></div>
+              <div class="footer__payment"><img src="assets/images/GPay.png" alt=""></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body><script type="module" src="assets/js/index.js"> </script>
+</html>

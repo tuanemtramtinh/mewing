@@ -290,7 +290,7 @@ onAuthStateChanged(auth, (user) => {
                 for (var key in orderContent){
                     const liElement = document.createElement('li');
                     const divFirstElement = document.createElement('div');
-                    const divSecondElement = document.createElement('div');
+                    const divSecondElement = document.createElement('div'); 
                     divFirstElement.innerHTML = orderContent[key].title;
                     divSecondElement.innerHTML = orderContent[key][key];
                     liElement.appendChild(divFirstElement);
