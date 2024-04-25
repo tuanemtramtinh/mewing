@@ -146,8 +146,8 @@ const startEndPrice =
 
 let getDepartureDate;
 let getDepartureTime;
-let outputPrice;
-let check;
+let arriveTime;
+let arriveDate;
 
 let checkAllInput = function() {
     if (typeof getDepartureDate != 'undefined' && typeof getDepartureTime != 'undefined'){
