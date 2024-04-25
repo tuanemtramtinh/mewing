@@ -111,45 +111,45 @@ const startEndPrice =
         start: 'TPHCM',
         end: 'VUNGTAU',
         price: '500.000 VND',
-        time: 2
+        time: '2:00'
     },
     {
         start: 'TPHCM',
         end: 'NHATRANG',
         price: '1.000.000 VND',
-        time: 3
+        time: '8:30'
     },
     {
         start: 'VUNGTAU',
         end: 'NHATRANG',
         price: '1.500.000 VND',
-        time: 1
+        time: '6:00'
     },
     {
         start: 'VUNGTAU',
         end: 'TPHCM',
         price: '500.000 VND',
-        time: 2
+        time: '2:00'
     },
     {
         start: 'NHATRANG',
         end: 'TPHCM',
         price: '1.000.000 VND',
-        time: 3
+        time: '8:30'
     },
     {
         start: 'NHATRANG',
         end: 'VUNGTAU',
         price: '1.500.000 VND',
-        time: 1
+        time: '6:00'
     }
 ]
 
 let getDepartureDate;
 let getDepartureTime;
 let outputPrice;
-let outputTime;
-let check;
+let arriveTime;
+let arriveDate;
 
 let checkAllInput = function() {
     if (typeof getDepartureDate != 'undefined' && typeof getDepartureTime != 'undefined'){
@@ -157,6 +157,17 @@ let checkAllInput = function() {
         let checkStatus = startEndPrice.find(item => {
             if (item.start === departurePlace.value && item.end === arrivePlace.value && departurePlace.value !== arrivePlace.value){
                 outputPrice = item.price;
+                const convertDateTime = () => {
+
+                    let dateAndTime = getDepartureDate + 'T' + getDepartureTime;
+                    dateAndTime = new Date(dateAndTime);
+                    const [hours, minutes] = item.time.split(':');
+                    dateAndTime.setHours(dateAndTime.getHours() + parseInt(hours));
+                    dateAndTime.setMinutes(dateAndTime.getMinutes() + parseInt(minutes));
+                    arriveTime = `${dateAndTime.getHours().toString().padStart(2, '0')}:${dateAndTime.getMinutes().toString().padStart(2, '0')}`;
+                    arriveDate = `${dateAndTime.getFullYear()}-${(dateAndTime.getMonth() + 1).toString().padStart(2, '0')}-${dateAndTime.getDate().toString().padStart(2, '0')}`;
+                }
+                convertDateTime();
                 return true;        
             }
             return false;
@@ -200,7 +211,9 @@ carForm.addEventListener('submit', (e) => {
         carSeatType: carFormSeatType.value,
         carFeature: carFormFeature.value,
         departureDate: departureDate.value,
+        arriveDate: arriveDate,
         departureTime: departureTime.value,
+        arriveTime: arriveTime,
         departurePlace: departurePlace.value,
         arrivePlace: arrivePlace.value,
         price: outputPrice,
