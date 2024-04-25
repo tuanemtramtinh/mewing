@@ -1186,6 +1186,7 @@ input[type=radio] {
 }
 .orderHistory__item {
   border: 2px solid #ddd;
+  background-color: white;
   border-radius: 30px;
   margin-bottom: 20px;
 }
@@ -1298,6 +1299,7 @@ input[type=radio] {
   overflow: scroll;
 }
 .adminSection1__userList {
+  display: none;
   padding: 0px 15px;
 }
 .adminSection1__userInfo {
@@ -1318,6 +1320,73 @@ input[type=radio] {
 }
 .adminSection1__userInfo li:last-child {
   margin-bottom: 0px;
+}
+.adminSection1__addDriver {
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.adminSection1__addDriverWrap {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 20px;
+}
+.adminSection1__addDriverLeft {
+  aspect-ratio: 1/1;
+  width: 30%;
+  height: 100%;
+  background-color: white;
+  padding: 15px;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+.adminSection1__addDriverLeft img {
+  border-radius: 20px;
+}
+.adminSection1__addDriverRight {
+  width: calc(70% - 30px);
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+}
+.adminSection1__addDriverForm input {
+  margin-top: 5px;
+  padding: 10px 20px;
+  color: black;
+  border-radius: 20px;
+  outline: none;
+}
+.adminSection1__addDriverForm select {
+  margin-top: 5px;
+  padding: 10px 20px;
+  color: black;
+  border-radius: 20px;
+  /* for Firefox */
+  -moz-appearance: none;
+  /* for Chrome */
+  -webkit-appearance: none;
+  outline: none;
+  position: relative;
+}
+.adminSection1__addDriverForm button {
+  margin-top: 20px;
+  width: 100%;
+  margin-top: 10px;
+  background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  font-size: 25px;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+.adminSection1__driverBasicInfo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.adminSection1__type {
+  display: none;
+  flex-direction: column;
+  margin-bottom: 10px;
 }
 
 /*# sourceMappingURL=style.css.map */

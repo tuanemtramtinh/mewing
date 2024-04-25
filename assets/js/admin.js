@@ -38,12 +38,18 @@ const db = getFirestore();
 const userListButton = document.querySelector('.adminSection1__userListButton');
 const driverListButton = document.querySelector('.adminSection1__userListDriver');
 const carListButton = document.querySelector('.adminSection1__carListDriver');
+const addDriverButton = document.querySelector('.adminSection1__addDriverButton');
 
-console.log(userListButton);
-console.log(driverListButton);
-console.log(carListButton);
+const userListFunc = document.querySelector('.adminSection1__userList');
+
+const addDriver = document.querySelector('.adminSection1__addDriver');
 
 userListButton.addEventListener('click', () => {
+    
+    userListFunc.style.display = "block";
+    addDriver.style.display = "none";
+
+
     const userRef = collection(db, 'users');
     let userList = [];
     getDocs(userRef)
@@ -71,12 +77,50 @@ userListButton.addEventListener('click', () => {
             ulElement.appendChild(email);
             ulUserList.push(ulElement);
         });
-        console.log(ulUserList);
         const userListDiv = document.querySelector('.adminSection1__userList');
         ulUserList.forEach((element) => {
             userListDiv.appendChild(element);
         });
     })
+});
+
+addDriverButton.addEventListener('click', () => {
+
+    userListFunc.style.display = "none";
+    addDriver.style.display = "flex";
+
+    const fullname = document.querySelector('#adminSection1__driverName');
+    const id = document.querySelector('#adminSection1__driverID');
+    const tel = document.querySelector('#adminSection1__driverTel');
+    const carType = document.querySelector('#adminSection1__driverCarType');
+
+    const car = document.querySelector('.adminSection1__driverCarTypeCar');
+    const truck = document.querySelector('.adminSection1__driverCarTypeTruck');
+    const container = document.querySelector('.adminSection1__driverCarTypeContainer');
+    
+    const updateDisplay = () => {
+        if (carType.value === 'Xe khách'){
+            car.style.display = "flex";
+            truck.style.display = "none";
+            container.style.display = "none";
+        }
+        else if (carType.value === 'Xe tải'){
+            car.style.display = "none";
+            truck.style.display = "flex";
+            container.style.display = "none";
+        }
+        else{
+            car.style.display = "none";
+            truck.style.display = "none";
+            container.style.display = "flex";
+        }
+    };
+
+    carType.addEventListener('change', updateDisplay);
+
+    updateDisplay();
+
+    
 });
 
 driverListButton.addEventListener('click', () => {

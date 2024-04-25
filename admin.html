@@ -102,6 +102,9 @@
                 <button class="adminSection1__userListButton" type="submit">Danh sách người dùng</button>
               </li>
               <li> 
+                <button class="adminSection1__addDriverButton" type="submit">Thêm tài xế</button>
+              </li>
+              <li> 
                 <button class="adminSection1__userListDriver" type="submit">Danh sách tài xế</button>
               </li>
               <li> 
@@ -111,6 +114,75 @@
           </div>
           <div class="adminSection1__right">
             <div class="adminSection1__userList"></div>
+            <div class="adminSection1__addDriver">
+              <div class="adminSection1__addDriverWrap">
+                <div class="adminSection1__addDriverLeft"><img src="assets/images/man.jpg" alt=""></div>
+                <div class="adminSection1__addDriverRight">
+                  <form class="adminSection1__addDriverForm" action="">
+                    <div class="adminSection1__driverBasicInfo">
+                      <label for="adminSection1__driverName">Họ và tên</label>
+                      <input class="adminSection1__driverName" type="text" id="adminSection1__driverName">
+                    </div>
+                    <div class="adminSection1__driverBasicInfo">
+                      <label for="adminSection1__driverID">Mã định danh</label>
+                      <input type="text" id="adminSection1__driverID">
+                    </div>
+                    <div class="adminSection1__driverBasicInfo">
+                      <label for="adminSection1__driverTel">Số điện thoại </label>
+                      <input type="tel" id="adminSection1__driverTel">
+                    </div>
+                    <div class="adminSection1__driverBasicInfo">
+                      <label for="adminSection1__driverCarType">Loại xe </label>
+                      <select id="adminSection1__driverCarType">
+                        <option value="Xe khách">Xe khách </option>
+                        <option value="Xe tải">Xe tải </option>
+                        <option value="Xe container">Xe container   </option>
+                      </select>
+                    </div>
+                    <div class="adminSection1__type adminSection1__driverCarTypeCar">
+                      <label for="adminSection1__driverCarTypeCarSize">Kích thước</label>
+                      <select id="adminSection1__driverCarTypeCarSize">
+                        <option value="Xe khách 16 chỗ">Xe khách 16 chỗ</option>
+                        <option value="Xe khách 29 chỗ">Xe khách 29 chỗ</option>
+                        <option value="Xe khách 35 chỗ">Xe khách 35 chỗ</option>
+                        <option value="Xe khách 45 chỗ">Xe khách 45 chỗ</option>
+                      </select>
+                    </div>
+                    <div class="adminSection1__type adminSection1__driverCarTypeTruck">
+                      <label for="adminSection1__driverCarTypeTruckWeight">Tải trọng</label>
+                      <select id="adminSection1__driverCarTypeTruckWeight">
+                        <option value="Xe tải nhẹ (dưới 3.5 tấn)">Xe tải nhẹ (dưới 3.5 tấn)</option>
+                        <option value="Xe tải trung (3.5 - 8 tấn)">Xe tải trung (3.5 - 8 tấn)</option>
+                        <option value="Xe tải nặng (trên 8 tấn)">Xe tải nặng (trên 8 tấn)</option>
+                      </select>
+                    </div>
+                    <div class="adminSection1__type adminSection1__driverCarTypeContainer">
+                      <label for="adminSection1__driverCarTypeContainerSize">Kích thước</label>
+                      <select id="adminSection1__driverCarTypeContainerSize">
+                        <option value="Xe container 10 feet">Xe container 10 feet   </option>
+                        <option value="Xe container 20 feet">Xe container 20 feet   </option>
+                        <option value="Xe container 40 feet">Xe container 40 feet   </option>
+                        <option value="Xe container 45 feet">Xe container 45 feet   </option>
+                        <option value="Xe container 50 feet">Xe container 50 feet   </option>
+                      </select>
+                    </div>
+                    <div class="adminSection1__driverBasicInfo">
+                      <label for="adminSection1__driverLicense">Giấy phép lái xe </label>
+                      <select id="adminSection1__driverLicense">
+                        <option value="B2">B2 </option>
+                        <option value="B">B </option>
+                        <option value="C1">C1 </option>
+                        <option value="C">C </option>
+                        <option value="D1">D1 </option>
+                        <option value="D2">D2 </option>
+                        <option value="D">D        </option>
+                      </select>
+                    </div>
+                    <button type="submit">THÊM TÀI XẾ</button>
+                  </form>
+                </div>
+              </div>
+            </div>
             <div class="adminSection1__driverList"></div>
             <div class="adminSection1__carList"></div>
           </div>
