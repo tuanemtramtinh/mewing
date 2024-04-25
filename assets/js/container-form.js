@@ -146,6 +146,7 @@ const startEndPrice =
 
 let getDepartureDate;
 let getDepartureTime;
+let outputPrice;
 let arriveTime;
 let arriveDate;
 
