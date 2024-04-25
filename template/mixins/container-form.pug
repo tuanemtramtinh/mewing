@@ -1,0 +1,69 @@
+mixin container-form()
+    div(class="car")
+        div(class="car__wrap")
+
+            <i class="fa-solid fa-x car__cancel-button" id="cancel-button"></i>
+
+
+            h3(class="car__title") Đặt xe
+
+            div(class="car__content")
+                div(class="car__form")
+                    form(action="")
+
+                        div(class="grid grid-cols-2 gap-[20px]")
+
+                            div(class="car__info")
+                                label(for="car__fullname") Họ và tên 
+                                input(type="text" id="car__fullname" class="car__fullname")
+
+                            div(class="car__info")
+                                label(for="car__email") Email 
+                                input(type="text" id="car__email" class="car__email") 
+
+                            div(class="car__info")
+                                label(for="car__tel") Số điện thoại 
+                                input(type="tel" id="car__tel" class="car__tel")
+
+                            div(class="car__info")
+                                label(for="car__size") Kích thước
+                                input(type="text" id="car__size" class="car__size appearance-none" )   
+
+                            div(class="car__info")
+                                label(for="car__goodsType") Loại hàng hoá
+                                input(type="text" id="car__goodsType" class="car__goodsType appearance-none" )   
+
+                            div(class="car__info")
+                                label(for="car__structure") Cấu tạo
+                                input(type="text" id="car__structure" class="car__structure appearance-none" ) 
+
+                            div(class="car__info")
+                                label(for="car__day") Ngày đi
+                                input(type="date" name="" id="car__day" class="car__day")
+
+                            div(class="car__info")
+                                label(for="car__time") Giờ xuất phát
+                                input(type="time", name="" id="car__time" class="car__time")
+
+                            div(class="car__info")
+                                label(for="car__start") Nơi đi
+                                select(name="" id="car__start" class="car__start appearance-none")
+                                    option(value="TPHCM") TP. HCM 
+                                    option(value="VUNGTAU") Vũng Tàu 
+                                    option(value="NHATRANG") Nha Trang   
+                                <i class="fa-solid fa-caret-down"></i>   
+
+                            div(class="car__info")
+                                label(for="car__end") Nơi đến
+                                select(name="" id="car__end" class="car__end appearance-none") 
+                                    option(value="TPHCM") TP. HCM 
+                                    option(value="VUNGTAU") Vũng Tàu
+                                    option(value="NHATRANG") Nha Trang  
+                                <i class="fa-solid fa-caret-down"></i>  
+
+
+                        div(class="car__payment")
+
+                            h3(class="car__price") Giá tiền: <span></span>
+
+                            button(type="submit" class="car__submit") <i class="fa-solid fa-money-bill"></i> Thuê Ngay

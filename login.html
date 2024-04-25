@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.config.js"> </script>
+    <title>Login And Register</title>
+  </head>
+  <body> 
+    <div class="auth__section">
+      <div class="auth__container container">
+        <div class="auth__wrap">
+          <!--Choosing-->
+          <div class="auth__choosing">
+            <button class="auth__choosing-button" type="click" id="login-option">Login</button>
+            <button class="auth__choosing-button" type="click" id="register-option">Register</button>
+          </div>
+          <!--Login Section-->
+          <div class="auth__login-section" id="login__section">
+            <div class="auth__info-wrap">
+              <div class="auth__logo"><img src="assets/images/MEWING.svg" alt="mewing-logo"></div>
+              <h1 class="auth__title">Login Here </h1>
+              <div class="auth__info">
+                <form class="auth__info-form" action="">
+                  <label for="login-email">Email</label>
+                  <div class="auth__input">
+                    <input id="login-email" type="email" name="" placeholder="sample@email.com"><i class="auth__right-icon fa-solid fa-envelope"></i>
+                    <button class="delete-field" type="click">
+                       <i class="auth__left-icon fa-solid fa-xmark"></i></button>
+                  </div>
+                  <label for="login-password">Password </label>
+                  <div class="auth__input relative">
+                    <input id="login-password" type="password" name="" placeholder="Password"><i class="auth__right-icon fa-solid fa-key" onclick="showPass(document.getElementById('login-password'))"></i>
+                    <button class="delete-field" type="click">
+                       <i class="auth__left-icon fa-solid fa-xmark"></i></button>
+                  </div>
+                  <button class="auth__submit" id="login-submit" type="submit" onclick="takeLogin()">
+                    <div class="relative auth__submit-wrap">
+                      <div class="auth__submit-title">Login</div><i class="auth__submit-icon fa-solid fa-right-to-bracket"></i>
+                    </div>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="auth__register-section" id="register__section">
+            <div class="auth__info-wrap">
+              <div class="auth__logo"><img src="assets/images/MEWING.svg" alt="mewing-logo"></div>
+              <h1 class="auth__title">register</h1>
+              <div class="auth__info">
+                <form class="auth__info-form" action="">
+                  <label for="register-username">Username</label>
+                  <div class="auth__input">
+                    <input id="register-username" type="text" name="" placeholder="Username"><i class="auth__right-icon fa-solid fa-user "></i>
+                    <button class="delete-field" type="click">
+                       <i class="auth__left-icon fa-solid fa-xmark"></i></button>
+                  </div>
+                  <label for="register-email">Email</label>
+                  <div class="auth__input">
+                    <input id="register-email" type="email" name="" placeholder="sample@email.com"><i class="auth__right-icon fa-solid fa-envelope"></i>
+                    <button class="delete-field" type="click">
+                       <i class="auth__left-icon fa-solid fa-xmark"></i></button>
+                  </div>
+                  <label for="register-password">Password </label>
+                  <div class="auth__input">
+                    <input id="register-password" type="password" name="" placeholder="Password"><i class="auth__right-icon fa-solid fa-key" onclick="showPass(document.getElementById('register-password'))"></i>
+                    <button class="delete-field" type="click">
+                       <i class="auth__left-icon fa-solid fa-xmark"></i></button>
+                  </div>
+                  <button class="auth__submit" id="register-submit" type="submit" onclick="takeRegister()">
+                    <div class="relative auth__submit-wrap">
+                      <div class="auth__submit-title">Register</div><i class="auth__submit-icon fa-solid fa-right-to-bracket"></i>
+                    </div>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./assets/js/login_register.js"></script>
+  </body>
+</html>

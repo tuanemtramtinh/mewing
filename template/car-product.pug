@@ -1,0 +1,67 @@
+extends layouts/default.pug
+
+block head 
+    title Xe Khách 
+
+block main
+
+    include ./mixins/car-form.pug
+
+    +car-form()
+
+    .xe
+        .container.container-xe
+            button.tieude XE KHÁCH
+
+    .ctn
+      .phanloai
+        .lua
+          h3 Kích thước
+          .thu
+            div
+                input(name="luachon1" type="radio" id="car__16" value="16 chỗ")
+                label(for="car__16") Xe khách 16 chỗ
+                br
+            div
+                input(name="luachon1", type="radio" id="car__29" value="29 chỗ")
+                label(for="car__29") Xe khách 29 chỗ
+                br
+            div 
+                input(name="luachon1", type="radio" id="car__35" value="35 chỗ")
+                label(for="car__35") Xe khách 35 chỗ 
+                br
+            div 
+                input(name="luachon1", type="radio" id="car__45" value="45 chỗ")
+                label(for="car__45") Xe khách 45 chỗ 
+                br
+        .lua
+          h3 Loại ghế
+          .thu
+            div 
+                input(name="luachon2", type="radio" id="car__seat" value="Xe ghế ngồi")
+                label(for="car__seat") Xe khách ghế ngồi
+                br
+            div
+                input(name="luachon2", type="radio" id="car__seatChange" value="Xe ghế ngã")
+                label(for="car__seatChange")  Xe khách ghế ngã
+                br
+            div 
+                input(name="luachon2", type="radio" id="car__bed" value="Xe giường nằm")
+                label(for="car__bed") Xe khách giường nằm 
+                br
+        .lua
+          h3 Tiện nghi
+          .thu 
+            div
+                input(name="luachon3", type="radio" id="car__casual" value="Xe bình dân")
+                label(for="car__casual") Xe khách bình dân 
+                br
+            div 
+                input(name="luachon3", type="radio" id="car__luxury" value="Xe cao cấp")
+                label(for="car__luxury") Xe khách cao cấp
+                br
+      .dk
+        button(type="submit" class="Dangky")
+          p Đăng ký chuyến đi
+
+    script(type="module" src="assets/js/car-form.js")

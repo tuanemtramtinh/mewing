@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"><script src="https://cdn.tailwindcss.com"></script>
+<script src="tailwind.config.js"> </script>
+    <title>Danh mục sản phẩm</title>
+  </head>
+  <body> 
+    <div class="header">
+      <div class="container">
+        <div class="header__wrap">
+          <div class="header__logo"><a href="index.html"> <img src="assets/images/logo.png" alt=""></a></div>
+          <div class="header__menu">
+            <div class="header__title"> <a href="index.html">trang chủ</a></div>
+            <div class="header__title"><a href="product-list.html">loại xe</a></div>
+            <div class="header__title"><a href="about.html">giới thiệu</a></div>
+            <div class="header__title"><a href="search.html">tra cứu</a></div>
+          </div>
+          <div class="header__nav">
+            <div class="header__button"> 
+              <button type="submit" id="register-button">đăng ký</button>
+            </div>
+            <div class="header__button"> 
+              <button type="submit" id="login-button">đăng nhập</button>
+            </div>
+          </div>
+          <div class="header__user">
+            <div class="header__info"><i class="fa-solid fa-circle-user"></i><span class="header__username"> </span>
+              <ul class="header__list"> 
+                <li> <a href="history.html"> 
+                    <button class="header__history" type="submit"><i class="fa-solid fa-list-check"></i><span>Lịch sử đơn hàng</span></button></a></li>
+                <li> <a href="user-profile.html"> 
+                    <button class="header__edit" type="submit"><i class="fa-solid fa-user-pen"></i><span>Chỉnh sửa hồ sơ</span></button></a></li>
+                <li> 
+                  <button class="header__logout" type="submit">
+                     <i class="fa-solid fa-right-from-bracket"></i><span>Đăng xuất</span></button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="popupLogin">
+      <div class="popupLogin__wrap"><i class="fa-solid fa-x" id="cancel-button"></i>
+        <div class="popupLogin__login">
+          <h2>LOGIN </h2>
+          <form class="popupLogin__content-login" action=""> 
+            <div> 
+              <label for="popupLogin__email">Email </label>
+              <input class="popupLogin__email" type="email" placeholder="Email" id="popupLogin__email">
+            </div>
+            <div> 
+              <label for="popupLogin__pass">Password </label>
+              <input class="popupLogin__password" type="password" placeholder="Password" id="popupLogin__password">
+            </div>
+            <button class="popupLogin__submit" type="submit" id="popupLogin__submit">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="popupRegister">
+      <div class="popupRegister__wrap"><i class="fa-solid fa-x" id="cancel-button"></i>
+        <div class="popupRegister__login">
+          <h2>REGISTER</h2>
+          <form class="popupRegister__content-login" action=""> 
+            <div> 
+              <label for="popupRegister__fullName">Fullname</label>
+              <input type="text" placeholder="Le Van A" id="popupRegister__fullName">
+            </div>
+            <div> 
+              <label for="popupRegister__tel">Telephone </label>
+              <input type="text" placeholder="Telephone" id="popupRegister__tel">
+            </div>
+            <div> 
+              <label for="popupRegister__username">Username </label>
+              <input class="popupRegister__username" type="text" placeholder="Username" id="popupRegister__username">
+            </div>
+            <div> 
+              <label for="popupRegister__email">Email </label>
+              <input class="popupRegister__email" type="email" placeholder="Email" id="popupRegister__email">
+            </div>
+            <div> 
+              <label for="popupRegister__pass">Password </label>
+              <input class="popupRegister__password" type="password" placeholder="Password" id="popupRegister__password">
+            </div>
+            <button class="popupRegister__submit" type="submit" id="popupRegister__submit">Register</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="product">
+      <div class="container">
+        <div class="product__wrap">
+          <h2 class="product__title">danh mục xe</h2>
+          <div class="product__list grid grid-cols-3 gap-[20px]"><a href="car-product.html"> 
+              <div class="product__item">
+                <div class="product__item-image"><img src="assets/images/product-car.png" alt=""></div>
+                <div class="product__item-detail">
+                  <h3 class="product__item-detail-title">xe khách</h3>
+                  <div class="product__item-detail-desc">
+                    <div><span>Sức chứa:</span> 4 - 16 người</div>
+                    <div><span>Chi phí:</span> 200.000 VND</div>
+                  </div>
+                </div>
+                <div class="product__item-detail-rating"><i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+                </div>
+              </div></a><a href="truck-product.html"> 
+              <div class="product__item">
+                <div class="product__item-image"><img src="assets/images/product-truck.png" alt=""></div>
+                <div class="product__item-detail">
+                  <h3 class="product__item-detail-title">xe tải</h3>
+                  <div class="product__item-detail-desc">
+                    <div><span>Sức chứa:</span> 4 - 16 người</div>
+                    <div><span>Chi phí:</span> 300.000 VND</div>
+                  </div>
+                </div>
+                <div class="product__item-detail-rating"><i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+                </div>
+              </div></a><a href="container-product.html"> 
+              <div class="product__item">
+                <div class="product__item-image"><img src="assets/images/product-container.png" alt=""></div>
+                <div class="product__item-detail">
+                  <h3 class="product__item-detail-title">xe container</h3>
+                  <div class="product__item-detail-desc">
+                    <div><span>Sức chứa:</span> 4 - 16 người</div>
+                    <div><span>Chi phí:</span> 400.000 VND</div>
+                  </div>
+                </div>
+                <div class="product__item-detail-rating"><i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+                </div>
+              </div></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="comment">
+      <div class="container">
+        <div class="comment__wrap">
+          <div class="comment__list grid grid-cols-3 gap-[20px]">
+            <div class="comment__item">
+              <h3 class="comment__guest"><span>lê văn a</span><i class="fa-solid fa-circle-check"></i></h3>
+              <div class="comment__rating"><i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+              </div>
+              <p class="comment_desc line-clamp-5">Mewing cung cấp một giao diện người dùng đơn giản và dễ sử dụng, giúp người dùng dễ dàng quản lý và theo dõi flotilla của mình một cách hiệu quả. Tính năng kéo và thả và các bảng điều khiển tương tác cho phép người dùng dễ dàng thực hiện các hoạt động quản lý xe một cách thuận tiện, giúp tối ưu hóa quá trình làm việc và tiết kiệm thời gian.</p>
+            </div>
+            <div class="comment__item">
+              <h3 class="comment__guest"><span>lê văn b</span><i class="fa-solid fa-circle-check"></i></h3>
+              <div class="comment__rating"><i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+              </div>
+              <p class="comment_desc line-clamp-5">Hệ thống quản lý xe Mewing cung cấp một loạt các tính năng mạnh mẽ để theo dõi và phân tích hoạt động của xe. Từ việc theo dõi vị trí và tốc độ của xe đến việc phân tích tiêu thụ nhiên liệu và lịch trình vận chuyển, Mewing cung cấp các báo cáo chi tiết giúp doanh nghiệp hiểu rõ hơn về hiệu suất và hiệu quả của flotilla, từ đó tối ưu hóa hoạt động và giảm chi phí.</p>
+            </div>
+            <div class="comment__item">
+              <h3 class="comment__guest"><span>lê văn c</span><i class="fa-solid fa-circle-check"></i></h3>
+              <div class="comment__rating"><i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+              </div>
+              <p class="comment_desc line-clamp-5">Mewing đặt sự an toàn và bảo mật của dữ liệu lên hàng đầu. Tính năng theo dõi xe và khả năng tương tác từ xa giúp giảm thiểu rủi ro và tăng cường an ninh cho flotilla. Hơn nữa, hệ thống mã hóa và các biện pháp bảo mật khác đảm bảo rằng thông tin quan trọng về xe và hoạt động của chúng được bảo vệ một cách chặt chẽ, đáng tin cậy.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="container">
+        <div class="footer__wrap">
+          <div class="footer__announce">
+            <h3 class="footer__announce-title">Luôn luôn cập nhật những thông tin mới nhất của chúng tôi.</h3>
+            <form class="footer__form" action="">
+              <input type="email" name="">
+              <button type="submit">Submit <i class="fa-solid fa-envelope-open-text"></i></button>
+            </form>
+          </div>
+          <div class="footer__top">
+            <div class="footer__top-left">
+              <div class="footer__location"><i class="fa-solid fa-location-dot"></i><span>268 Lý Thường Kiệt, Phường 14, Quận 10, TP. HCM </span></div>
+              <div class="footer__location"><i class="fa-solid fa-location-dot"></i><span>Khu phố Tân Lập, Phường Đông Hòa, TP. Dĩ An, Tỉnh Bình Dương </span></div>
+              <div class="footer__telephone"><i class="fa-solid fa-phone"></i><span>0865127514</span></div>
+              <div class="footer__telephone"><i class="fa-solid fa-phone"></i><span>0819133820</span></div>
+              <div class="footer__email"><i class="fa-solid fa-envelope"></i><span>mewing@gmail.com</span></div>
+            </div>
+            <div class="footer__top-right">
+              <div class="footer__logo"><img src="assets/images/logo.png" alt=""></div>
+              <div class="footer__desc">
+                <p>Chúng tôi luôn đưa ra các giải pháp tốt nhất về phương tiện di chuyển cho khách hàng. Luôn luôn là sự lựa chọn hàng đầu của khách hàng trong việc chọn các đơn vị vận chuyển. Luôn đứng đầu về sự uy tín và sắc bén.</p>
+              </div>
+              <div class="footer__socials"><a href=""><i class="fa-brands fa-facebook-f"></i></a><a href=""><i class="fa-brands fa-x-twitter"></i></a><a href=""><i class="fa-brands fa-tiktok"></i></a><a href=""><i class="fa-brands fa-instagram"></i></a></div>
+            </div>
+          </div>
+          <div class="footer__bottom">
+            <div class="footer__bottom-left">MEWING © 2024, All Rights Reserved</div>
+            <div class="footer__bottom-right"> 
+              <div class="footer__payment"><img src="assets/images/Visa.png" alt=""></div>
+              <div class="footer__payment"><img src="assets/images/Mastercard.png" alt=""></div>
+              <div class="footer__payment"><img src="assets/images/Paypal.png" alt=""></div>
+              <div class="footer__payment"><img src="assets/images/ApplePay.png" alt=""></div>
+              <div class="footer__payment"><img src="assets/images/GPay.png" alt=""></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body><script type="module" src="assets/js/index.js"> </script>
+</html>

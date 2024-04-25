@@ -1,0 +1,115 @@
+extends layouts/default.pug
+
+block head 
+    title Trang Quản Lí
+
+block main
+
+    div(class="adminSection1")
+        div(class="container")
+            div(class="adminSection1__wrap")
+                div(class="adminSection1__left")
+                    h3(class="adminSection1__title") Chức năng
+                    ul(class="adminSection1__section") 
+                        li 
+                            button(type="submit" class="adminSection1__userListButton") Danh sách người dùng
+                        li 
+                            button(type="submit" class="adminSection1__addDriverButton") Thêm tài xế
+                        li 
+                            button(type="submit" class="adminSection1__userListDriver") Danh sách tài xế
+                        li 
+                            button(type="submit" class="adminSection1__carListDriver") Danh sách xe
+                div(class="adminSection1__right")
+                    div(class="adminSection1__userList")
+
+                    div(class="adminSection1__addDriver")
+                        
+                        div(class="adminSection1__addDriverWrap")
+
+                            div(class="adminSection1__addDriverLeft")
+                                img(src="assets/images/man.jpg", alt="")
+
+
+                            div(class="adminSection1__addDriverRight")
+                                form(action="" class="adminSection1__addDriverForm")
+
+                                    div(class="adminSection1__driverBasicInfo")
+                                        label(for="adminSection1__driverName") Họ và tên
+                                        input(type="text" id="adminSection1__driverName" class="adminSection1__driverName")
+
+                                    div(class="adminSection1__driverBasicInfo")
+                                        label(for="adminSection1__driverID") Mã định danh
+                                        input(type="text" id="adminSection1__driverID")
+
+                                    div(class="adminSection1__driverBasicInfo")
+                                        label(for="adminSection1__driverTel") Số điện thoại 
+                                        input(type="tel" id="adminSection1__driverTel")
+
+                                    div(class="adminSection1__driverBasicInfo")
+                                        label(for="adminSection1__driverCarType") Loại xe 
+                                        select(id="adminSection1__driverCarType")
+                                            option(value="Xe khách") Xe khách 
+                                            option(value="Xe tải") Xe tải 
+                                            option(value="Xe container") Xe container   
+                                    
+                                    //- Xe khách
+                                    div(class="adminSection1__type adminSection1__driverCarTypeCar")
+                                        label(for="adminSection1__driverCarTypeCarSize") Kích thước
+                                        select(id="adminSection1__driverCarTypeCarSize")
+                                            option(value="Xe khách 16 chỗ") Xe khách 16 chỗ
+                                            option(value="Xe khách 29 chỗ") Xe khách 29 chỗ
+                                            option(value="Xe khách 35 chỗ") Xe khách 35 chỗ
+                                            option(value="Xe khách 45 chỗ") Xe khách 45 chỗ
+
+                                        //- label(for="adminSection1__driverCarTypeCarSeat") Loại ghế
+                                        //- select(id="adminSection1__driverCarTypeCarSeat") 
+                                        //-     option(value="Xe khách ghế ngồi") Xe khách ghế ngồi 
+                                        //-     option(value="Xe khách ghế ngã") Xe khách ghế ngã
+                                        //-     option(value="Xe khách giường nằm") Xe khách giường nằm   
+
+                                        //- label(for="adminSection1__driverCarTypeCarFeature") Tiện nghi 
+                                        //- select(id="adminSection1__driverCarTypeCarFeature")
+                                        //-     option(value="Xe khách bình dân") Xe khách bình dân 
+                                        //-     option(value="Xe khách cao cấp") Xe khách cao cấp  
+
+                                    //-Xe tải
+                                    div(class="adminSection1__type adminSection1__driverCarTypeTruck")
+                                        label(for="adminSection1__driverCarTypeTruckWeight") Tải trọng
+                                        select(id="adminSection1__driverCarTypeTruckWeight")
+                                            option(value="Xe tải nhẹ (dưới 3.5 tấn)") Xe tải nhẹ (dưới 3.5 tấn)
+                                            option(value="Xe tải trung (3.5 - 8 tấn)") Xe tải trung (3.5 - 8 tấn)
+                                            option(value="Xe tải nặng (trên 8 tấn)") Xe tải nặng (trên 8 tấn)
+
+                                    //-Xe container
+                                    div(class="adminSection1__type adminSection1__driverCarTypeContainer")
+                                        label(for="adminSection1__driverCarTypeContainerSize") Kích thước
+                                        select(id="adminSection1__driverCarTypeContainerSize")
+                                            option(value="Xe container 10 feet") Xe container 10 feet   
+                                            option(value="Xe container 20 feet") Xe container 20 feet   
+                                            option(value="Xe container 40 feet") Xe container 40 feet   
+                                            option(value="Xe container 45 feet") Xe container 45 feet   
+                                            option(value="Xe container 50 feet") Xe container 50 feet   
+
+                                    div(class="adminSection1__driverBasicInfo")
+                                        label(for="adminSection1__driverLicense") Giấy phép lái xe 
+                                        select(id="adminSection1__driverLicense")
+                                            option(value="B2") B2 
+                                            option(value="B") B 
+                                            option(value="C1") C1 
+                                            option(value="C") C 
+                                            option(value="D1") D1 
+                                            option(value="D2") D2 
+                                            option(value="D") D        
+
+                                    button(type="submit") THÊM TÀI XẾ
+
+
+                    div(class="adminSection1__driverList")
+
+                    div(class="adminSection1__carList")
+
+
+    script(type="module" src="assets/js/admin.js") 
+
+                
+        

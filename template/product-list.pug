@@ -1,0 +1,96 @@
+extends layouts/default.pug
+
+block head 
+    title Danh mục sản phẩm
+
+block main
+        -
+            var productList = [
+                {
+                    nav : 'car-product.html',
+                    img : 'assets/images/product-car.png',
+                    title : 'xe khách',
+                    capacity : '4 - 16 người',
+                    price : '200.000 VND'
+                },
+                {
+                    nav : 'truck-product.html',
+                    img : 'assets/images/product-truck.png',
+                    title : 'xe tải',
+                    capacity : '4 - 16 người',
+                    price : '300.000 VND'
+                },
+                {
+                    nav : 'container-product.html',
+                    img : 'assets/images/product-container.png',
+                    title : 'xe container',
+                    capacity : '4 - 16 người',
+                    price : '400.000 VND'
+                }
+            ];
+
+
+        //- Product List
+        div(class="product")
+            div(class="container")
+                div(class="product__wrap")
+                    h2(class="product__title") danh mục xe
+
+                    div(class="product__list grid grid-cols-3 gap-[20px]")
+
+                        each item in productList
+
+                            a(href=item.nav) 
+                                div(class="product__item")
+                                    div(class="product__item-image")
+                                        img(src=item.img, alt="")
+                                    div(class="product__item-detail")
+                                        h3(class="product__item-detail-title") #{item.title}
+                                        div(class="product__item-detail-desc")
+                                            div <span>Sức chứa:</span> #{item.capacity}
+                                            div <span>Chi phí:</span> #{item.price}
+                                    div(class="product__item-detail-rating")
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+
+
+        //- Guest Rating - Đánh giá khách hàng
+
+        -
+            var guestComments = 
+            [
+                {
+                    name:'lê văn a',
+                    desc: 'Mewing cung cấp một giao diện người dùng đơn giản và dễ sử dụng, giúp người dùng dễ dàng quản lý và theo dõi flotilla của mình một cách hiệu quả. Tính năng kéo và thả và các bảng điều khiển tương tác cho phép người dùng dễ dàng thực hiện các hoạt động quản lý xe một cách thuận tiện, giúp tối ưu hóa quá trình làm việc và tiết kiệm thời gian.'
+                },
+                {
+                    name: 'lê văn b',
+                    desc: 'Hệ thống quản lý xe Mewing cung cấp một loạt các tính năng mạnh mẽ để theo dõi và phân tích hoạt động của xe. Từ việc theo dõi vị trí và tốc độ của xe đến việc phân tích tiêu thụ nhiên liệu và lịch trình vận chuyển, Mewing cung cấp các báo cáo chi tiết giúp doanh nghiệp hiểu rõ hơn về hiệu suất và hiệu quả của flotilla, từ đó tối ưu hóa hoạt động và giảm chi phí.'
+                },
+                {
+                    name: 'lê văn c',
+                    desc: 'Mewing đặt sự an toàn và bảo mật của dữ liệu lên hàng đầu. Tính năng theo dõi xe và khả năng tương tác từ xa giúp giảm thiểu rủi ro và tăng cường an ninh cho flotilla. Hơn nữa, hệ thống mã hóa và các biện pháp bảo mật khác đảm bảo rằng thông tin quan trọng về xe và hoạt động của chúng được bảo vệ một cách chặt chẽ, đáng tin cậy.'
+                }
+            ];
+
+        div(class="comment")
+            div(class="container")
+                div(class="comment__wrap")
+                    div(class="comment__list grid grid-cols-3 gap-[20px]")
+                        each comment in guestComments
+                            div(class="comment__item")
+                                h3(class="comment__guest")
+                                    span #{comment.name}
+                                    <i class="fa-solid fa-circle-check"></i>
+                                
+                                div(class="comment__rating")
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+
+                                p(class="comment_desc line-clamp-5") #{comment.desc}

@@ -1,0 +1,95 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="assets/css/style.css")
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <script src="https://cdn.tailwindcss.com"></script>
+        script(src="tailwind.config.js") 
+        title Login And Register
+    body 
+
+        div(class="auth__section")
+            div(class="auth__container container")
+                div(class = "auth__wrap")
+
+
+                    //Choosing
+                    div(class="auth__choosing")
+                        button(type="click" id="login-option" class="auth__choosing-button") Login
+                        button(type="click" id="register-option" class="auth__choosing-button") Register
+
+                    //Login Section
+                    div(id="login__section" class="auth__login-section")
+                        div(class="auth__info-wrap")
+
+                            div(class="auth__logo")
+                                img(src="assets/images/MEWING.svg", alt="mewing-logo" class = "")
+
+                            h1(class="auth__title") Login Here 
+
+                            div(class="auth__info")
+                                form(action="" class="auth__info-form")
+
+                                    label(for="login-email" class="") Email
+                                    div(class="auth__input")
+                                        input(id="login-email" type="email" name="" placeholder="sample@email.com" class="")
+                                        <i class="auth__right-icon fa-solid fa-envelope"></i>
+                                        button(type="click" class="delete-field") 
+                                            <i class="auth__left-icon fa-solid fa-xmark"></i>
+                                        
+                                    label(for="login-password" class="") Password 
+                                    div(class="auth__input relative")
+                                        input(id="login-password" type="password" name="" placeholder="Password" class="")
+                                        <i class="auth__right-icon fa-solid fa-key" onclick="showPass(document.getElementById('login-password'))"></i>
+                                        button(type="click" class="delete-field") 
+                                            <i class="auth__left-icon fa-solid fa-xmark"></i>
+                                        
+                                    button(class="auth__submit" id="login-submit" type="submit" onclick="takeLogin()")
+                                        div(class="relative auth__submit-wrap")
+                                            div(class="auth__submit-title") Login
+                                            <i class="auth__submit-icon fa-solid fa-right-to-bracket"></i>
+
+                    //-Register Section
+                    div(id="register__section" class="auth__register-section")
+                        div(class="auth__info-wrap")
+
+                            div(class="auth__logo")
+                                img(src="assets/images/MEWING.svg", alt="mewing-logo" class = "")
+
+                            h1(class="auth__title") register
+
+                            div(class="auth__info")
+                                form(action="" class="auth__info-form")
+
+                                    label(for="register-username", class="") Username
+                                    div(class="auth__input")
+                                        input(id="register-username" type="text" name="" placeholder="Username" class="")
+                                        <i class="auth__right-icon fa-solid fa-user "></i>
+                                        button(type="click" class="delete-field") 
+                                            <i class="auth__left-icon fa-solid fa-xmark"></i>
+                                        
+                                    label(for="register-email" class="") Email
+                                    div(class="auth__input")
+                                        input(id="register-email" type="email" name="" placeholder="sample@email.com" class="")
+                                        <i class="auth__right-icon fa-solid fa-envelope"></i>
+                                        button(type="click" class="delete-field") 
+                                            <i class="auth__left-icon fa-solid fa-xmark"></i>
+                                        
+                                    label(for="register-password" class="") Password 
+                                    div(class="auth__input")
+                                        input(id="register-password" type="password" name="" placeholder="Password" class="")
+                                        <i class="auth__right-icon fa-solid fa-key" onclick="showPass(document.getElementById('register-password'))"></i>
+                                        button(type="click" class="delete-field") 
+                                            <i class="auth__left-icon fa-solid fa-xmark"></i>
+                                        
+                                    button(id="register-submit" class="auth__submit" type="submit" onclick="takeRegister()")
+                                        div(class="relative auth__submit-wrap")
+                                            div(class="auth__submit-title") Register
+                                            <i class="auth__submit-icon fa-solid fa-right-to-bracket"></i>
+
+        script(src="./assets/js/login_register.js")
+
+
+                        

@@ -1,0 +1,18 @@
+extends layouts/default.pug
+
+block head 
+    title Lịch sử đơn hàng 
+
+block main 
+
+    div(class="orderHistory")
+        div(class="container")
+            div(class="orderHistory__wrap") 
+                div(class="orderHistory__info")
+                    h2(class="orderHistory__title") Lịch sử đơn hàng 
+                    h3(class="orderHistory__subtitle") Kiểm tra các đơn hàng đã đặt
+
+                div(class="orderHistory__list")
+
+
+    script(type="module", src="assets/js/history.js") 

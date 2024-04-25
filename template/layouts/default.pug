@@ -1,0 +1,184 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="assets/css/style.css")
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css")
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="tailwind.config.js"> </script>
+
+        block head
+        
+    body 
+
+        //- Header
+        div(class="header")
+            div(class="container")
+                div(class="header__wrap")
+                    div(class="header__logo")
+                        a(href="index.html") 
+                            img(src="assets/images/logo.png", alt="")
+                    div(class="header__menu")
+                        div(class="header__title") 
+                            a(href="index.html") trang chủ
+                        div(class="header__title")
+                            a(href="product-list.html") loại xe
+                        div(class="header__title")
+                            a(href="about.html") giới thiệu
+                        div(class="header__title")
+                            a(href="search.html") tra cứu
+                    
+                    div(class="header__nav")
+                        div(class="header__button") 
+                            button(type="submit" id="register-button") đăng ký
+
+                        div(class="header__button") 
+                            button(type="submit" id="login-button") đăng nhập
+                    
+                    div(class="header__user")
+                        div(class="header__info")
+                            <i class="fa-solid fa-circle-user"></i>
+                            span(class="header__username") 
+                            ul(class="header__list") 
+                                li 
+                                    a(href="history.html") 
+                                        button(type="submit" class="header__history")
+                                            <i class="fa-solid fa-list-check"></i>
+                                            span Lịch sử đơn hàng
+                                li 
+                                    a(href="user-profile.html") 
+                                        button(type="submit" class="header__edit")
+                                            <i class="fa-solid fa-user-pen"></i>
+                                            span Chỉnh sửa hồ sơ
+                                li 
+                                    button(type="submit" class="header__logout") 
+                                        <i class="fa-solid fa-right-from-bracket"></i>
+                                        span Đăng xuất
+
+                    
+
+
+
+        //- Popup Login
+
+        div(class="popupLogin")
+
+            div(class="popupLogin__wrap")
+                
+                <i class="fa-solid fa-x" id="cancel-button"></i>
+
+                div(class="popupLogin__login")
+                    h2 LOGIN 
+
+                    form(action="" class="popupLogin__content-login") 
+    
+                        div 
+                            label(for="popupLogin__email") Email 
+                            input(type="email" placeholder = "Email" id="popupLogin__email" class="popupLogin__email")
+                        div 
+                            label(for="popupLogin__pass") Password 
+                            input(type="password" placeholder = "Password" id="popupLogin__password" class="popupLogin__password") 
+
+                        button(type="submit" id="popupLogin__submit" class="popupLogin__submit") Login
+
+        //- Popup Register
+        div(class="popupRegister")
+
+            div(class="popupRegister__wrap")
+                
+                <i class="fa-solid fa-x" id="cancel-button"></i>
+
+                div(class="popupRegister__login")
+                    h2 REGISTER
+
+                    form(action="" class="popupRegister__content-login") 
+
+                        div 
+                            label(for="popupRegister__fullName") Fullname
+                            input(type="text" placeholder = "Le Van A" id="popupRegister__fullName") 
+
+                        div 
+                            label(for="popupRegister__tel") Telephone 
+                            input(type="text" placeholder = "Telephone" id="popupRegister__tel") 
+
+                        div 
+                            label(for="popupRegister__username") Username 
+                            input(type="text" placeholder = "Username" id="popupRegister__username" class="popupRegister__username") 
+    
+                        div 
+                            label(for="popupRegister__email") Email 
+                            input(type="email" placeholder = "Email" id="popupRegister__email" class="popupRegister__email")
+                        div 
+                            label(for="popupRegister__pass") Password 
+                            input(type="password" placeholder = "Password" id="popupRegister__password" class="popupRegister__password") 
+
+                        button(type="submit" id="popupRegister__submit" class="popupRegister__submit") Register
+
+                
+        //- Logout Button (beta)
+
+        //-button(type="submit" class="buttonLogout text-[30px]") Logout
+
+        block main
+
+        //- Footer
+        div(class="footer")
+            div(class="container")
+                div(class="footer__wrap")
+
+                    div(class="footer__announce")
+                        h3(class="footer__announce-title") Luôn luôn cập nhật những thông tin mới nhất của chúng tôi.
+
+                        form(action="" class="footer__form")
+                            input(type="email", name="") 
+                            button(type="submit") Submit <i class="fa-solid fa-envelope-open-text"></i>
+
+
+                    div(class="footer__top")
+
+                        div(class="footer__top-left")
+                            div(class="footer__location")
+                                <i class="fa-solid fa-location-dot"></i>
+                                span 268 Lý Thường Kiệt, Phường 14, Quận 10, TP. HCM 
+                            div(class="footer__location")
+                                <i class="fa-solid fa-location-dot"></i>
+                                span Khu phố Tân Lập, Phường Đông Hòa, TP. Dĩ An, Tỉnh Bình Dương 
+                            div(class="footer__telephone")
+                                <i class="fa-solid fa-phone"></i>
+                                span 0865127514
+                            div(class="footer__telephone")
+                                <i class="fa-solid fa-phone"></i>
+                                span 0819133820
+                            div(class="footer__email")
+                                <i class="fa-solid fa-envelope"></i>
+                                span mewing@gmail.com
+
+                        div(class="footer__top-right")
+                            div(class="footer__logo")
+                                img(src="assets/images/logo.png", alt="")
+                            div(class="footer__desc")
+                                p Chúng tôi luôn đưa ra các giải pháp tốt nhất về phương tiện di chuyển cho khách hàng. Luôn luôn là sự lựa chọn hàng đầu của khách hàng trong việc chọn các đơn vị vận chuyển. Luôn đứng đầu về sự uy tín và sắc bén.
+                            div(class="footer__socials")
+                                a(href="") <i class="fa-brands fa-facebook-f"></i>
+                                a(href="") <i class="fa-brands fa-x-twitter"></i>
+                                a(href="") <i class="fa-brands fa-tiktok"></i>
+                                a(href="") <i class="fa-brands fa-instagram"></i>
+
+                    div(class="footer__bottom")
+                        div(class="footer__bottom-left") MEWING © 2024, All Rights Reserved
+                        div(class="footer__bottom-right") 
+                            div(class="footer__payment")
+                                img(src="assets/images/Visa.png", alt="")
+                            div(class="footer__payment")
+                                img(src="assets/images/Mastercard.png", alt="")
+                            div(class="footer__payment")
+                                img(src="assets/images/Paypal.png", alt="")
+                            div(class="footer__payment")
+                                img(src="assets/images/ApplePay.png", alt="")
+                            div(class="footer__payment")
+                                img(src="assets/images/GPay.png", alt="")
+
+    <script type="module" src="assets/js/index.js"> </script>
+
+
