@@ -1351,9 +1351,11 @@ input[type="radio"] {
     }
 
     &__result{
+        display: none;
         background-color: #F9F5F0;
         border-radius: 20px;
         overflow: hidden;
+        margin-bottom: 30px;
     }
 
     &__result-title{
@@ -1376,6 +1378,59 @@ input[type="radio"] {
         }
     }
 
+    &__progress{
+        display: none;
+        background-color: #F9F5F0;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+
+    &__progress-title{
+        display: flex;
+        justify-content: center;
+        font-size: 25px;
+        font-weight: 700;
+        color: white;
+        text-transform: uppercase;
+        background-color: #7E60BC;
+        padding: 20px ;
+    }
+
+    &__progress-content{
+        font-size: 20px;
+        padding: 20px 40px;
+    }
+
+}
+
+
+.progress{
+    background-color:grey;
+    border-radius: 20px;
+    width: 100%;
+}
+  
+.progress-done{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 30px;
+    background-image: repeating-linear-gradient(to left, 
+    #0546e0, 
+    #1172f9,
+    #4892f9
+    );
+    box-shadow: 0 5px 5px -6px #0546e0, 0 3px 7px #1172f9;
+    border-radius: 20px;
+    color: #fff;
+    height: 100%;
+    width: 0;
+    transition: 1s ease 0.3s;
+
+    i{
+        font-size: 25px;
+    }
 }
 
 //History - Lịch sử đơn hàng
@@ -1656,3 +1711,5 @@ input[type="radio"] {
         margin-bottom: 10px;
     }
 }
+
+

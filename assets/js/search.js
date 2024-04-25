@@ -44,17 +44,22 @@ onAuthStateChanged(auth, (user) => {
 })
 
 //Progress Bar
-let finalValue = 50;
-let Max = 100;
-
+var timeStart;
+var timeEnd;
 function changeWidth(){
     const progress = document.querySelector(".progress-done");
-    progress.style.width = `${(finalValue / Max) * 100}%`;
-    if(finalValue < Max){
-        progress.innerHTML = `<span class="material-symbols-outlined">local_shipping</span>`;
+    const now = moment();
+    const diff_Start__Now = timeStart.diff(now, 'second');
+    const diff_Start__End = timeStart.diff(timeEnd, 'second');
+    const diff_Now__end = now.diff(timeEnd, 'second');
+    if(diff_Now__end <= 0){
+        const percentage = (diff_Start__Now / diff_Start__End)*100;
+        progress.style.width = `${Math.round(percentage)}%`;
+        progress.innerHTML = `<i class="fa-solid fa-truck-moving fa-bounce"></i>`;
     }
     else{
-        progress.innerHTML = `<span class="material-symbols-outlined">done</span>`;
+        progress.style.width = `100%`;
+        progress.innerHTML = `<i class="fa-solid fa-truck-moving fa-bounce"></i>`;
     }
 }
 
@@ -63,9 +68,18 @@ function changeWidth(){
 const id_button = document.querySelector(".search__form button");
 const id_input = document.querySelector("#search__input");
 const result = document.querySelector(".search__result-list");
+const searchResult = document.querySelector('.search__result');
+const searchResultList = document.querySelector('.search__result-list');
+const searchProgress = document.querySelector('.search__progress');
+const searchProgressContent = document.querySelector('.search__progress-content');
+
 
 id_button.addEventListener('click', async (e) => {
     e.preventDefault();
+    searchResultList.innerHTML = '';
+    searchProgressContent.innerHTML = '';
+    searchResult.style.display = 'block';
+    searchProgress.style.display = 'block';
     const carRef = doc(db, "carOrders", id_input.value);
     const truckRef = doc(db, "truckOrders", id_input.value);
     const containerRef = doc(db, "containerOrders", id_input.value);
@@ -89,11 +103,13 @@ id_button.addEventListener('click', async (e) => {
                 const arrive_Place = document.createElement("li");
                 arrive_Place.innerHTML = `<span>Nơi đến:</span><span> ${doc.data().arrivePlace} </span>`;
                 const departure_Time = document.createElement("li");
-                departure_Time.innerHTML = `<span>Thời gian đi:</span><span> ${doc.data().departureTime} </span>`;
+                timeStart = moment(`${doc.data().departureDate} ${doc.data().departureTime}`, "YYYY-MM-DD HH:mm:ss");
+                departure_Time.innerHTML = `<span>Thời gian đi:</span><span> ${timeStart} </span>`;
+                const arrive_Time = document.createElement("li");
+                timeEnd = moment(`${doc.data().arriveDate} ${doc.data().arriveTime}`, "YYYY-MM-DD HH:mm:ss");
+                arrive_Time.innerHTML = `<span>Thời gian đến:</span> <span>${timeEnd}</span>`;
                 const Price = document.createElement("li");
                 Price.innerHTML = `<span>Giá:</span><span> ${doc.data().price} </span>`;
-                const Progress_bar = document.createElement("li");
-                Progress_bar.innerHTML = `<div class="progress"><div class="progress-done"></div></div>`;
                 result.appendChild(name);
                 result.appendChild(email);
                 result.appendChild(tel);
@@ -103,9 +119,14 @@ id_button.addEventListener('click', async (e) => {
                 result.appendChild(departure_Place);
                 result.appendChild(arrive_Place);
                 result.appendChild(departure_Time);
+                result.appendChild(arrive_Time);
                 result.appendChild(Price);
-                result.appendChild(Progress_bar);
-                changeWidth();
+
+                const Progress_bar = document.createElement("div");
+                Progress_bar.classList.add('progress');
+                Progress_bar.innerHTML = '<div class="progress-done"></div>';
+                searchProgressContent.appendChild(Progress_bar);
+                setInterval(changeWidth, 1000);
             }
         })
     getDoc(truckRef)
@@ -126,7 +147,11 @@ id_button.addEventListener('click', async (e) => {
                 const arrive_Place = document.createElement("li");
                 arrive_Place.innerHTML = `<span>Nơi đến:</span><span> ${doc.data().arrivePlace} </span>`;
                 const departure_Time = document.createElement("li");
-                departure_Time.innerHTML = `<span>Thời gian đi:</span><span> ${doc.data().departureTime} </span>`;
+                timeStart = moment(`${doc.data().departureDate} ${doc.data().departureTime}`, "YYYY-MM-DD HH:mm:ss");
+                departure_Time.innerHTML = `<span>Thời gian đi:</span><span> ${timeStart} </span>`;
+                const arrive_Time = document.createElement("li");
+                timeEnd = moment(`${doc.data().arriveDate} ${doc.data().arriveTime}`, "YYYY-MM-DD HH:mm:ss");
+                arrive_Time.innerHTML = `<span>Thời gian đến:</span> <span>${timeEnd}</span>`;
                 const Price = document.createElement("li");
                 Price.innerHTML = `<span>Giá:</span><span> ${doc.data().price} </span>`;
                 result.appendChild(name);
@@ -137,7 +162,14 @@ id_button.addEventListener('click', async (e) => {
                 result.appendChild(departure_Place);
                 result.appendChild(arrive_Place);
                 result.appendChild(departure_Time);
+                result.appendChild(arrive_Time);
                 result.appendChild(Price);
+                
+                const Progress_bar = document.createElement("div");
+                Progress_bar.classList.add('progress');
+                Progress_bar.innerHTML = '<div class="progress-done"></div>';
+                searchProgressContent.appendChild(Progress_bar);
+                setInterval(changeWidth, 1000);
             }
         })
     getDoc(containerRef)
@@ -160,7 +192,11 @@ id_button.addEventListener('click', async (e) => {
                 const arrive_Place = document.createElement("li");
                 arrive_Place.innerHTML = `<span>Nơi đến:</span><span> ${doc.data().arrivePlace} </span>`;
                 const departure_Time = document.createElement("li");
-                departure_Time.innerHTML = `<span>Thời gian đi:</span><span> ${doc.data().departureTime} </span>`;
+                timeStart = moment(`${doc.data().departureDate} ${doc.data().departureTime}`, "YYYY-MM-DD HH:mm:ss");
+                departure_Time.innerHTML = `<span>Thời gian đi:</span><span> ${timeStart} </span>`;
+                const arrive_Time = document.createElement("li");
+                timeEnd = moment(`${doc.data().arriveDate} ${doc.data().arriveTime}`, "YYYY-MM-DD HH:mm:ss");
+                arrive_Time.innerHTML = `<span>Thời gian đến:</span> <span>${timeEnd}</span>`;
                 const Price = document.createElement("li");
                 Price.innerHTML = `<span>Giá:</span><span> ${doc.data().price} </span>`;
                 result.appendChild(name);
@@ -172,7 +208,14 @@ id_button.addEventListener('click', async (e) => {
                 result.appendChild(departure_Place);
                 result.appendChild(arrive_Place);
                 result.appendChild(departure_Time);
+                result.appendChild(arrive_Time);
                 result.appendChild(Price);
+                
+                const Progress_bar = document.createElement("div");
+                Progress_bar.classList.add('progress');
+                Progress_bar.innerHTML = '<div class="progress-done"></div>';
+                searchProgressContent.appendChild(Progress_bar);
+                setInterval(changeWidth, 1000);
             }
         })
 })
