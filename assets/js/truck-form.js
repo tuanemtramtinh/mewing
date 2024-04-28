@@ -95,52 +95,7 @@ tripRegister.addEventListener('click', () => {
 
         car.style.display = "flex";
 
-        //Kiểm tra tài xế có loại xe phù hợp hay không
-
-        const q = query(collection(db, 'drivers'));
-        getDocs(q).then((querySnapshot) => {
-            const driverList = querySnapshot.docs.map(async (doc) => {
-                let driver = {
-                    driverId: doc.id,
-                    driverName: doc.data().fullName,
-                    driverLicense: doc.data().license,
-                    driverTel: doc.data().tel
-                };
         
-                const subq = query(collection(db, `drivers/${doc.id}/Vehicles`));
-                const subQuerySnapshot = await getDocs(subq);
-        
-                subQuerySnapshot.forEach((subDoc) => {
-                    driver.carWeight = subDoc.data().Weight;
-                    driver.carType = subDoc.data().Type;
-                    driver.carID = subDoc.data().ID;
-                });
-        
-                return driver;
-            });
-            return Promise.all(driverList);
-        }).then((driverList) => {
-
-            let flag = false;
-
-            //Kiểm tra điều kiện của tài xế . Thêm điều kiện về kiểm tra lịch trình hiện tại, 
-            //Cái này chỉ mới kiểm tra kích thước của xe tài xế và kích thước xe khách chọn.
-
-            console.log(driverList);
-
-            driverList.forEach((driver) => {
-                if (driver.carWeight === carWeightCheck.value){
-                    const option =  document.createElement('option');
-                    option.value = `${driver.driverId}:${driver.carID}`;
-                    option.innerHTML = `${driver.driverName} - ${driver.driverTel}`;
-                    carDriverList.appendChild(option);
-                    flag = true;
-                }
-            });
-
-            if (flag == false) alert("Hiện tại không có tài xế");
-        });
-
     }
     else{
         alert('Hãy nhập đầy đủ các ô');
@@ -215,12 +170,62 @@ let checkAllInput = function() {
                     arriveDate = `${dateAndTime.getFullYear()}-${(dateAndTime.getMonth() + 1).toString().padStart(2, '0')}-${dateAndTime.getDate().toString().padStart(2, '0')}`;
                 }
                 convertDateTime();
-                return true;        
-            }
-            return false;
-        });
+
+
+                //Kiểm tra tài xế có loại xe phù hợp hay không
+
+                const q = query(collection(db, 'drivers'));
+                getDocs(q).then((querySnapshot) => {
+                    const driverList = querySnapshot.docs.map(async (doc) => {
+                        let driver = {
+                            driverId: doc.id,
+                            driverName: doc.data().fullName,
+                            driverLicense: doc.data().license,
+                            driverTel: doc.data().tel
+                        };
+                
+                        const subq = query(collection(db, `drivers/${doc.id}/Vehicles`));
+                        const subQuerySnapshot = await getDocs(subq);
+                
+                        subQuerySnapshot.forEach((subDoc) => {
+                            driver.carWeight = subDoc.data().Weight;
+                            driver.carType = subDoc.data().Type;
+                            driver.carID = subDoc.data().ID;
+                        });
+                
+                        return driver;
+                    });
+                    return Promise.all(driverList);
+                }).then((driverList) => {
+
+                    let flag = false;
+
+                    //Kiểm tra điều kiện của tài xế . Thêm điều kiện về kiểm tra lịch trình hiện tại, 
+                    //Cái này chỉ mới kiểm tra kích thước của xe tài xế và kích thước xe khách chọn.
+
+                    console.log(driverList);
+
+                    driverList.forEach((driver) => {
+                        if (driver.carWeight === carFormWeight.value){
+                            const option =  document.createElement('option');
+                            option.value = `${driver.driverId}:${driver.carID}`;
+                            option.innerHTML = `${driver.driverName} - ${driver.driverTel}`;
+                            carDriverList.appendChild(option);
+                            flag = true;
+                        }
+                    });
+
+                    if (flag == false) alert("Hiện tại không có tài xế");
+                });
+
+                    return true;        
+                }
+                return false;
+            });
 
         if (!(typeof checkStatus == 'undefined')){
+            const driverSelector = document.querySelector('.car__driver');
+            driverSelector.style.display = "block";
             document.querySelector('.car__price span').innerHTML = outputPrice;
             document.querySelector('.car__price').style.display = 'block';
         }

@@ -946,6 +946,11 @@ body {
         }
     }
 
+    &__driver{
+        display: none;
+        font-size: 18px;
+    }
+
     &__payment{
         display: flex;
         justify-content: center;

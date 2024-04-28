@@ -787,6 +787,10 @@ body {
   top: 50px;
   right: 25px;
 }
+.car__driver {
+  display: none;
+  font-size: 18px;
+}
 .car__payment {
   display: flex;
   justify-content: center;
