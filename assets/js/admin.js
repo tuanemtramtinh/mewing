@@ -11,7 +11,7 @@ import{
     addDoc, deleteDoc, doc, setDoc,
     query, where,
     orderBy, serverTimestamp,
-    getDoc, updateDoc
+    getDoc, updateDoc, getCountFromServer
 } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -35,6 +35,53 @@ const db = getFirestore();
 
 //-------------------Firebase-------------------
 
+
+//History--------------------------------------------------------------------------
+
+const fetchData = async (userAccount) => {
+    //console.log(userAccount);
+    const carRef = collection(db, 'carOrders');    
+    const carQuery  = query(carRef, where('userId', '==', userAccount));
+    let array = [];
+    const carSnapshot = await getDocs(carQuery);
+    carSnapshot.docs.forEach((doc) => {
+        array.push({...doc.data(), id : doc.id});
+    });
+    return array;
+};
+
+const compareTime = (a, b) => {
+    if (a.createdAt.seconds !== b.createdAt.seconds){
+        return a.createdAt.seconds - b.createdAt.seconds;
+    }
+    return a.createdAt.nanoseconds - b.createdAt.nanoseconds;
+}
+
+const timeConvert = (a) => {
+    const {seconds, nanoseconds} = a.createdAt;
+    const totalMiliseconds = (seconds * 1000) + (nanoseconds / 1e6);
+    const date = new Date(totalMiliseconds);
+    date.setUTCHours(date.getUTCHours() + 7);
+    // Extract year, month, and day
+    const year = date.getUTCFullYear();
+    const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
+    const day = date.getUTCDate().toString().padStart(2, '0');
+    // Extract hours and minutes
+    const hours = date.getUTCHours().toString().padStart(2, '0');
+    const minutes = date.getUTCMinutes().toString().padStart(2, '0');
+    const formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}`;
+    return formattedDateTime;
+}
+
+const carImageSource = 'assets/images/product-car.png';
+const truckImageSource = 'assets/images/product-truck.png';
+const containerImageSource = 'assets/images/product-container.png';
+
+
+
+
+//History--------------------------------------------------------------------------
+
 const userListButton = document.querySelector('.adminSection1__userListButton');
 const driverListButton = document.querySelector('.adminSection1__userListDriver');
 const carListButton = document.querySelector('.adminSection1__carListDriver');
@@ -46,51 +93,288 @@ const addDriver = document.querySelector('.adminSection1__addDriver');
 
 const driverListFunc = document.querySelector('.adminSection1__driverList');
 
+const popupHistory = document.querySelector('.popupHistory');
+const popupHistoryCancelButton = document.querySelector('.popupHistory__cancel-button');
+
+popupHistoryCancelButton.addEventListener('click', () => {
+    popupHistory.style.display = 'none';
+});
+
 userListButton.addEventListener('click', () => {
     userListFunc.innerHTML = '';
     userListFunc.style.display = "block";
     addDriver.style.display = "none";
-    userListFunc.innerHTML = '';
+    driverListFunc.style.display = "none";
     driverListFunc.innerHTML ='';
 
     const userRef = collection(db, 'users');
-    let userList = [];
-    getDocs(userRef)
-    .then((snapshot) => {
-        snapshot.docs.forEach((doc) => {
-            userList.push({...doc.data()});
-        })
 
-        let ulUserList = [];
-        userList.forEach((user) => {
-            const username = document.createElement('li');
-            username.innerHTML = `<span>Tên đăng nhập: </span> <span>${user.username}</span>`;
-            const fullname = document.createElement('li');
-            fullname.innerHTML = `<span>Họ và tên: </span><span>${user.fullName}</span>`;
-            const tel = document.createElement('li');
-            tel.innerHTML = `<span>Số điện thoại: </span><span>${user.tel}</span>`;
-            const email = document.createElement('li');
-            email.innerHTML = `<span>Email: </span><span>${user.email}</span>`
-            
-            let ulElement = document.createElement('ul');
-            ulElement.classList.add('adminSection1__userInfo');
-            ulElement.appendChild(username);
-            ulElement.appendChild(fullname);
-            ulElement.appendChild(tel);
-            ulElement.appendChild(email);
-            ulUserList.push(ulElement);
-        });
-        const userListDiv = document.querySelector('.adminSection1__userList');
-        ulUserList.forEach((element) => {
-            userListDiv.appendChild(element);
-        });
+    getCountFromServer(userRef).then((snapshot) => {
+        const numOfUserDiv = document.createElement('div');
+        numOfUserDiv.classList.add('adminSection1__userCount')
+        numOfUserDiv.innerHTML = `<span>Tổng số lượng người dùng: </span><span>${snapshot.data().count}</span>`;
+        userListFunc.appendChild(numOfUserDiv);
     })
+    .then(() => {
+        let userList = [];
+        getDocs(userRef)
+        .then((snapshot) => {
+
+            snapshot.docs.forEach((doc) => {
+                userList.push({...doc.data(), id : doc.id});
+            })
+
+            let ulUserList = [];
+            userList.forEach((user) => {
+                const username = document.createElement('li');
+                username.innerHTML = `<span>Tên đăng nhập: </span> <span>${user.username}</span>`;
+                const fullname = document.createElement('li');
+                fullname.innerHTML = `<span>Họ và tên: </span><span>${user.fullName}</span>`;
+                const tel = document.createElement('li');
+                tel.innerHTML = `<span>Số điện thoại: </span><span>${user.tel}</span>`;
+                const email = document.createElement('li');
+                email.innerHTML = `<span>Email: </span><span>${user.email}</span>`
+                const button = document.createElement('i');
+                button.classList.add("fa-solid");
+                button.classList.add("fa-chevron-right");
+                button.classList.add("popupHistory-button");
+                
+                let ulElement = document.createElement('ul');
+                ulElement.classList.add('adminSection1__userInfo');
+                ulElement.appendChild(username);
+                ulElement.appendChild(fullname);
+                ulElement.appendChild(tel);
+                ulElement.appendChild(email);
+                ulElement.appendChild(button);
+                ulUserList.push(ulElement);
+            });
+            const userListDiv = document.querySelector('.adminSection1__userList');
+            ulUserList.forEach((element) => {
+                userListDiv.appendChild(element);
+            });
+
+
+            const popupHistoryButtons = document.querySelectorAll('.popupHistory-button');
+            //console.log(popupHistoryButtons);
+
+            popupHistoryButtons.forEach((button, index) => {
+                button.addEventListener('click', () => {
+                    document.querySelector('.orderHistory__list').innerHTML = '';
+                    popupHistory.style.display = 'flex';
+                    fetchData(userList[index].id)
+                    .then((array) => {
+                        let historyOrder = [];
+                        historyOrder = array;
+                        historyOrder.sort(compareTime);
+                        historyOrder = historyOrder.map((value) => {
+                            const time = timeConvert(value).split(" ");
+                            return {
+                                ...value,
+                                orderDate: time[0],
+                                orderTime: time[1],
+                            };
+                        });
+
+                        const orderHistoryList = document.querySelector('.orderHistory__list');
+
+                        historyOrder.forEach((value) => {
+                            
+                            //Item
+                            const orderHistoryItem = document.createElement('div');
+                            orderHistoryItem.classList.add('orderHistory__item');
+
+                            //Intro
+                            const orderHistoryIntro = document.createElement('ul');
+                            orderHistoryIntro.classList.add('orderHistory__intro');
+                            const orderId = document.createElement('li');
+                            orderId.innerHTML = `<div>Mã đơn hàng</div> <div>${value.id}</div>`;
+                            const orderDate = document.createElement('li');
+                            orderDate.innerHTML = `<div>Ngày đặt</div> <div>${value.orderDate}</div>`;
+                            const orderTime = document.createElement('li');
+                            orderTime.innerHTML = `<div>Thời gian</div> <div>${value.orderTime}</div>`;
+                            const price = document.createElement('li');
+                            price.innerHTML = `<div>Giá tiền</div> <div>${value.price}</div>`;
+                            orderHistoryIntro.appendChild(orderId);
+                            orderHistoryIntro.appendChild(orderDate);
+                            orderHistoryIntro.appendChild(orderTime);
+                            orderHistoryIntro.appendChild(price);
+
+                            //Desc
+                            const orderHistoryDesc = document.createElement('div');
+                            orderHistoryDesc.classList.add('orderHistory__desc');
+
+                            //Image
+                            const orderHistoryImage = document.createElement('div');
+                            orderHistoryImage.classList.add('orderHistory__image');
+                            const imageElement = document.createElement('img');
+                            const orderHistoryCarName = document.createElement('div');
+                            orderHistoryCarName.classList.add('orderHistory__carName');
+                            if (value.type === 'Xe khách'){
+                                imageElement.src = carImageSource;
+                                orderHistoryCarName.innerHTML = 'Xe khách';
+                            } 
+                            else if (value.type === 'Xe tải'){
+                                imageElement.src = truckImageSource;
+                                orderHistoryCarName.innerHTML = 'Xe tải';
+                            }
+                            else if (value.type === 'Xe container'){
+                                imageElement.src = containerImageSource;
+                                orderHistoryCarName.innerHTML = 'Xe container';
+                            }
+                            orderHistoryImage.appendChild(imageElement);
+                            orderHistoryImage.appendChild(orderHistoryCarName);
+
+                            //Content
+
+                            const orderHistoryContent = document.createElement('ul');
+                            orderHistoryContent.classList.add('orderHistory__content');
+                            orderHistoryContent.classList.add('grid');
+                            orderHistoryContent.classList.add('grid-cols-3');
+                            orderHistoryContent.classList.add('gap-[20px]');
+                            
+                            let orderContent;
+                            if (value.type === 'Xe khách'){
+                                orderContent = {
+                                    type : {
+                                        title : 'Loại xe đặt',
+                                        type : value.type
+                                    },
+                                    size : {
+                                        title : 'Kích thước',
+                                        size : value.carSize,
+                                    },
+                                    seatType : {
+                                        title : 'Loại ghế',
+                                        seatType : value.carSeatType
+                                    },
+                                    feature : {
+                                        title : 'Tiện nghi',
+                                        feature : value.carFeature
+                                    },
+                                    departurePlace : {
+                                        title : 'Nơi đi',
+                                        departurePlace : value.departurePlace
+                                    },
+                                    arrivePlace : {
+                                        title : 'Nơi đến',
+                                        arrivePlace : value.arrivePlace
+                                    },
+                                    departureTime : {
+                                        title : 'Giờ xuất phát',
+                                        departureTime : value.departureTime
+                                    },
+                                    arriveTime : {
+                                        title : 'Giờ đến',
+                                        arriveTime : value.arriveTime
+                                    }
+                                    
+                                };
+                            }
+                            else if (value.type === 'Xe tải'){
+                                orderContent = {
+                                    type : {
+                                        title : 'Loại xe đặt',
+                                        type : value.type
+                                    },
+                                    weight : {
+                                        title : 'Trọng lượng',
+                                        weight : value.carWeight,
+                                    },
+                                    boxType : {
+                                        title : 'Loại hộp',
+                                        boxType : value.carBoxType
+                                    },
+                                    departurePlace : {
+                                        title : 'Nơi đi',
+                                        departurePlace : value.departurePlace
+                                    },
+                                    arrivePlace : {
+                                        title : 'Nơi đến',
+                                        arrivePlace : value.arrivePlace
+                                    },
+                                    departureTime : {
+                                        title : 'Giờ xuất phát',
+                                        departureTime : value.departureTime
+                                    },
+                                    arriveTime : {
+                                        title : 'Giờ đến',
+                                        arriveTime : value.arriveTime
+                                    }
+                                    
+                                };
+                            }
+                            else{
+                                orderContent = {
+                                    type : {
+                                        title : 'Loại xe đặt',
+                                        type : value.type
+                                    },
+                                    size : {
+                                        title : 'Kích thước',
+                                        size : value.carSize,
+                                    },
+                                    goodsType : {
+                                        title : 'Loại hàng hoá',
+                                        goodsType : value.carGoodsType
+                                    },
+                                    structure : {
+                                        title : 'Cấu trúc',
+                                        structure : value.carStructure
+                                    },
+                                    departurePlace : {
+                                        title : 'Nơi đi',
+                                        departurePlace : value.departurePlace
+                                    },
+                                    arrivePlace : {
+                                        title : 'Nơi đến',
+                                        arrivePlace : value.arrivePlace
+                                    },
+                                    departureTime : {
+                                        title : 'Giờ xuất phát',
+                                        departureTime : value.departureTime
+                                    },
+                                    arriveTime : {
+                                        title : 'Giờ đến',
+                                        arriveTime : value.arriveTime
+                                    }
+                                    
+                                };
+                            }
+
+                            for (var key in orderContent){
+                                const liElement = document.createElement('li');
+                                const divFirstElement = document.createElement('div');
+                                const divSecondElement = document.createElement('div'); 
+                                divFirstElement.innerHTML = orderContent[key].title;
+                                divSecondElement.innerHTML = orderContent[key][key];
+                                liElement.appendChild(divFirstElement);
+                                liElement.appendChild(divSecondElement);
+                                orderHistoryContent.appendChild(liElement);
+                            }
+
+                            orderHistoryDesc.appendChild(orderHistoryImage);
+                            orderHistoryDesc.appendChild(orderHistoryContent);
+                            
+                            orderHistoryItem.appendChild(orderHistoryIntro);
+                            orderHistoryItem.appendChild(orderHistoryDesc);
+
+                            //console.log(orderHistoryItem);
+                            orderHistoryList.appendChild(orderHistoryItem);
+                        });           
+                    });
+                });
+            });
+        });
+    });
 });
 
 addDriverButton.addEventListener('click', () => {
 
     userListFunc.style.display = "none";
+    userListFunc.innerHTML = '';
     addDriver.style.display = "flex";
+    driverListFunc.style.display = "none";
+    driverListFunc.innerHTML ='';
 
     const fullname = document.querySelector('#adminSection1__driverName');
     const id = document.querySelector('#adminSection1__driverID');
@@ -203,10 +487,18 @@ driverListButton.addEventListener('click', async () => {
     driverListFunc.innerHTML = '';
     driverListFunc.style.display = "block";
     addDriver.style.display = "none";
-    driverListFunc.innerHTML = '';
+    userListFunc.style.display = 'none';
+    userListFunc.innerHTML = '';
 
     try {
         const driverRef = collection(db, 'drivers');
+        const driverCount = await getCountFromServer(driverRef);
+        const numOfDriverDiv = document.createElement('div');
+        numOfDriverDiv.classList.add('adminSection1__userCount')
+        numOfDriverDiv.innerHTML = `<span>Tổng số lượng tài xế: </span><span>${driverCount.data().count}</span>`;
+        driverListFunc.appendChild(numOfDriverDiv);
+
+
         const driverSnapshot = await getDocs(driverRef);
         const driverList = driverSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
@@ -228,19 +520,28 @@ driverListButton.addEventListener('click', async () => {
             const vehiclesSnapshot = await getDocs(vehiclesRef);
             const vehicleList = vehiclesSnapshot.docs.map(doc => doc.data());
 
+            //console.log(vehicleList);
             if (vehicleList.length > 0) {
                 for (const vehicle of vehicleList) {
                     const vehicleType = document.createElement('li');
                     vehicleType.innerHTML = `<span>Loại xe: </span><span>${vehicle.Type}</span>`;
                     const vehicleWeight = document.createElement('li');
-                    vehicleWeight.innerHTML = `<span>Kích thước: </span><span>${vehicle.Size}</span>`;
+                    
+                    if (vehicle.Type == 'Xe khách' || vehicle.Type == 'Xe container'){
+                        vehicleWeight.innerHTML = `<span>Kích thước: </span><span>${vehicle.Size}</span>`;
+                    }
+                    else{
+                        vehicleWeight.innerHTML = `<span>Trọng lượng: </span><span>${vehicle.Weight}</span>`;
+                    }
+                    const vehicleId = document.createElement('li');
+                    vehicleId.innerHTML = `<span>Biển số xe: </span><span>${vehicle.ID}</span>`;
+                    // let ulVehicleElement = document.createElement('ul');
+                    // ulVehicleElement.classList.add('adminSection1__driverInfo');
+                    ulElement.appendChild(vehicleType);
+                    ulElement.appendChild(vehicleWeight);
+                    ulElement.appendChild(vehicleId);
 
-                    let ulVehicleElement = document.createElement('ul');
-                    ulVehicleElement.classList.add('adminSection1__driverInfo');
-                    ulVehicleElement.appendChild(vehicleType);
-                    ulVehicleElement.appendChild(vehicleWeight);
-
-                    ulElement.appendChild(ulVehicleElement);
+                    // ulElement.appendChild(ulVehicleElement);
                 }
             }
             const license = document.createElement('li');
@@ -259,8 +560,308 @@ driverListButton.addEventListener('click', async () => {
     }
 });
 
+const statisticButton = document.querySelector('.adminSection1__statistic');
 
 
-carListButton.addEventListener('click', () => {
-    
+console.log(statisticButton);
+
+const sortByMonth = (async () => {
+    const carQuery = query(collection(db, 'carOrders'));
+    const carSnapshot = await getDocs(carQuery);
+    const currentYear = new Date().getFullYear();
+    let groupedData = {
+        January : {
+            count: 0,
+            price: 0
+        },
+        Feburary : {
+            count: 0,
+            price: 0
+        },
+        March: {
+            count: 0,
+            price: 0
+        },
+        April: {
+            count: 0,
+            price: 0
+        },
+        May: {
+            count: 0,
+            price: 0
+        },
+        June: {
+            count: 0,
+            price: 0
+        },
+        July: {
+            count: 0,
+            price: 0
+        },
+        August: {
+            count: 0,
+            price: 0
+        },
+        September: {
+            count: 0,
+            price: 0
+        },
+        October: {
+            count: 0,
+            price: 0
+        },
+        November: {
+            count: 0,
+            price: 0
+        },
+        December: {
+            count: 0,
+            price: 0
+        }
+    }; // Change the variable name to groupedData
+
+    carSnapshot.forEach((doc) => {
+        const getDate = new Date(doc.data().createdAt.seconds * 1000 + doc.data().createdAt.nanoseconds / 1000000);
+        const month = getDate.toLocaleString('default', { month: 'long' }); // Get the month name (e.g., January, February)
+        if (getDate.getFullYear() == currentYear){
+            let price = parseInt(doc.data().price.split(' ')[0].replace(/\./g, '')); //Bỏ dấu . trong giá
+            groupedData[month].price += price;
+            groupedData[month].count += 1;
+        }
+    });
+
+    // console.log(groupedData);
+    let monthlyRevenue = [];
+    for (const item in groupedData){
+        monthlyRevenue.push({
+            month: item,
+            price : groupedData[item].price,
+            count: groupedData[item].count
+        })
+    }
+    return monthlyRevenue;
+    // console.log(groupedData);
+})
+
+// sortByMonth();
+
+const sortByWeek = (async () => {
+    const carQuery = query(collection(db, 'carOrders'));
+    const carSnapshot = await getDocs(carQuery);
+    let array = [];
+    const today = new Date();
+    const currentWeekStart = new Date(today.getFullYear(), today.getMonth(), today.getDate() - today.getDay());
+    const currentWeekEnd = new Date(today.getFullYear(), today.getMonth(), today.getDate() + (6 - today.getDay()));;
+    let groupedData = {
+        Sunday: {
+            price: 0,
+            count: 0
+        },
+        Monday : {
+            price: 0,
+            count: 0
+        },
+        Tuesday: {
+            price: 0,
+            count: 0
+        },
+        Wednesday: {
+            price: 0,
+            count: 0
+        },
+        Thursday: {
+            price: 0,
+            count: 0
+        },
+        Friday: {
+            price: 0,
+            count: 0
+        },
+        Saturday: {
+            price: 0,
+            count: 0
+        },
+    };
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    carSnapshot.forEach((doc) => {
+        const getDate = new Date(doc.data().createdAt.seconds * 1000 + doc.data().createdAt.nanoseconds / 1000000);
+        const day = getDate.getDay();
+        if (getDate >= currentWeekStart && getDate <= currentWeekEnd){
+            let price = parseInt(doc.data().price.split(' ')[0].replace(/\./g, '')); //Bỏ dấu . trong giá
+            groupedData[daysOfWeek[day]].price += price;
+            groupedData[daysOfWeek[day]].count += 1;
+        }
+    });
+    let weeklyRevenue = [];
+    for (const day in groupedData){
+        weeklyRevenue.push({
+            day: day,
+            price: groupedData[day].price,
+            count: groupedData[day].count,
+        });
+    }
+    return weeklyRevenue;
 });
+
+// let weeklyArray = [];
+// let monthlyArray = [];
+
+const sortByMonthAndWeek = (async () => {
+    const monthlyRevenue = await sortByMonth();
+    const weeklyRevenue = await sortByWeek();
+    return {monthlyRevenue, weeklyRevenue};
+});
+
+const statisticList = document.querySelector('.adminSection1__statisticList');
+
+sortByMonthAndWeek()
+.then(({ monthlyRevenue, weeklyRevenue }) => {
+    statisticButton.addEventListener('click', async () => {
+        statisticList.style.display = 'block';
+        // const canvas = document.getElementById('myChart');
+        let myChart;
+        const ctx = document.getElementById('myChart').getContext('2d');
+        myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [''],
+                datasets: [{
+                    label: '',
+                    data: [],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',  // Red
+                        'rgba(54, 162, 235, 0.2)',  // Blue
+                        'rgba(255, 206, 86, 0.2)',  // Yellow
+                        'rgba(75, 192, 192, 0.2)',  // Green
+                        'rgba(153, 102, 255, 0.2)', // Purple
+                        'rgba(255, 159, 64, 0.2)',  // Orange
+                        'rgba(220, 20, 60, 0.2)',   // Crimson
+                        'rgba(0, 128, 0, 0.2)',     // Green (Dark)
+                        'rgba(255, 0, 255, 0.2)',   // Magenta
+                        'rgba(255, 140, 0, 0.2)',   // Dark Orange
+                        'rgba(0, 0, 128, 0.2)',     // Navy
+                        'rgba(128, 0, 128, 0.2)'    // Purple (Dark)
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',   // Border color for Red
+                        'rgba(54, 162, 235, 1)',   // Border color for Blue
+                        'rgba(255, 206, 86, 1)',   // Border color for Yellow
+                        'rgba(75, 192, 192, 1)',   // Border color for Green
+                        'rgba(153, 102, 255, 1)',  // Border color for Purple
+                        'rgba(255, 159, 64, 1)',   // Border color for Orange
+                        'rgba(220, 20, 60, 1)',    // Border color for Crimson
+                        'rgba(0, 128, 0, 1)',      // Border color for Green (Dark)
+                        'rgba(255, 0, 255, 1)',    // Border color for Magenta
+                        'rgba(255, 140, 0, 1)',    // Border color for Dark Orange
+                        'rgba(0, 0, 128, 1)',      // Border color for Navy
+                        'rgba(128, 0, 128, 1)'     // Border color for Purple (Dark)
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    }
+                },
+                maintainAspectRatio: false,
+                // width: 1100,
+                // height: 600,
+            }
+        });
+        const statisticSectionItem = document.querySelectorAll('.adminSection1__statisticSectionItem');
+        const chartFunctionItem = document.querySelectorAll('.adminSection1__chartFunctionItem');
+        const chartLeft = document.querySelector('.adminSection1__chartLeft');
+        const chartRight = document.querySelector('.adminSection1__chartRight');
+        statisticSectionItem.forEach(async (item, index) => {
+            item.addEventListener('click', async () => {
+                if (index == 0){ //User
+
+                    chartLeft.style.display = 'none';
+                    chartRight.style.display = 'block';
+                    chartRight.style.width = '100%';
+
+                    const userRef = collection(db, "users");
+                    const userSnapshot = await getCountFromServer(userRef);
+                    const userCount = userSnapshot.data().count;
+    
+                    const driverRef = collection(db, "drivers");
+                    const driverSnapshot = await getCountFromServer(driverRef);
+                    const driverCount = driverSnapshot.data().count;
+
+                    myChart.data.labels = ['Users', 'Drivers'];
+                    myChart.data.datasets[0].label = 'Số lượng tài xế và người dùng';
+                    myChart.data.datasets[0].data = [userCount, driverCount];
+                    myChart.update();
+                }
+                else if (index == 1){ //Revenue
+                    chartLeft.style.display = 'block';
+                    chartRight.style.display = 'block';
+                    chartRight.style.width = 'calc(80% - 20px)';
+                    chartFunctionItem.forEach((value, i) => {
+                        value.addEventListener('click', () => {
+                            if(i == 0){
+                                const dayArray = weeklyRevenue.map(item => item.day);
+                                const Revenue = weeklyRevenue.map(item => item.price);
+                                // console.log(Revenue);
+                                if (myChart){
+                                    myChart.data.labels = dayArray;
+                                    myChart.data.datasets[0].label = 'Doanh thu theo tuần';
+                                    myChart.data.datasets[0].data = Revenue;
+
+                                    myChart.update();
+                                }
+                            }
+                            else if (i == 1){
+                                const monthArray = monthlyRevenue.map(item => item.month);
+                                const Revenue = monthlyRevenue.map(item => item.price);
+                                console.log(Revenue);
+                                if (myChart){
+                                    myChart.data.labels = monthArray;
+                                    myChart.data.datasets[0].label = 'Doanh thu theo tháng';
+                                    myChart.data.datasets[0].data = Revenue;
+
+                                    myChart.update();
+                                }
+                            }
+                        });
+                    });
+                }
+                else{ //OrderNum
+                    chartLeft.style.display = 'block';
+                    chartRight.style.display = 'block';
+                    chartRight.style.width = 'calc(80% - 20px)';
+                    chartFunctionItem.forEach((value, i) => {
+                        value.addEventListener('click', () => {
+                            if(i == 0){
+                                const dayArray = weeklyRevenue.map(item => item.day);
+                                const Count = weeklyRevenue.map(item => item.count);
+                                // console.log(Revenue);
+                                if (myChart){
+                                    myChart.data.labels = dayArray;
+                                    myChart.data.datasets[0].label = 'Lượng xe đặt theo tuần';
+                                    myChart.data.datasets[0].data = Count;
+
+                                    myChart.update();
+                                }
+                            }
+                            else if (i == 1){
+                                const monthArray = monthlyRevenue.map(item => item.month);
+                                const Count = monthlyRevenue.map(item => item.count);
+                                // console.log(Revenue);
+                                if (myChart){
+                                    myChart.data.labels = monthArray;
+                                    myChart.data.datasets[0].label = 'Lượng xe đặt theo tháng';
+                                    myChart.data.datasets[0].data = Count;
+                                    myChart.update();
+                                }
+                            }
+                        });
+                    });
+                }
+            });
+        });
+    });
+});
+

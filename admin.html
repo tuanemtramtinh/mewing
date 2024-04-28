@@ -8,6 +8,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="tailwind.config.js"> </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Trang Quản Lí</title>
   </head>
   <body> 
@@ -94,6 +95,15 @@
         </div>
       </div>
     </div>
+    <div class="popupHistory orderHistory">
+      <div class="popupHistory__wrap orderHistory__wrap"><i class="fa-solid fa-x popupHistory__cancel-button"></i>
+        <div class="orderHistory__info">
+          <h2 class="orderHistory__title">Lịch sử đơn hàng </h2>
+          <h3 class="orderHistory__subtitle">Kiểm tra các đơn hàng đã đặt</h3>
+        </div>
+        <div class="orderHistory__list"></div>
+      </div>
+    </div>
     <div class="adminSection1">
       <div class="container">
         <div class="adminSection1__wrap">
@@ -104,18 +114,20 @@
                 <button class="adminSection1__userListButton" type="submit">Danh sách người dùng</button>
               </li>
               <li> 
-                <button class="adminSection1__addDriverButton" type="submit">Thêm tài xế</button>
-              </li>
-              <li> 
                 <button class="adminSection1__userListDriver" type="submit">Danh sách tài xế</button>
               </li>
               <li> 
-                <button class="adminSection1__carListDriver" type="submit">Danh sách xe</button>
+                <button class="adminSection1__addDriverButton" type="submit">Thêm tài xế</button>
+              </li>
+              <li> 
+                <button class="adminSection1__statistic" type="submit">Thống kê</button>
               </li>
             </ul>
           </div>
           <div class="adminSection1__right">
-            <div class="adminSection1__userList"></div>
+            <div class="adminSection1__userList">
+              <div class="adminSection1__userCount"><span>Tổng số người dùng: </span><span> </span></div>
+            </div>
             <div class="adminSection1__addDriver">
               <div class="adminSection1__addDriverWrap">
                 <div class="adminSection1__addDriverLeft"><img src="assets/images/kpi-lai-xe.png" alt=""></div>
@@ -186,7 +198,28 @@
               </div>
             </div>
             <div class="adminSection1__driverList"></div>
-            <div class="adminSection1__carList"></div>
+            <div class="adminSection1__statisticList">
+              <div class="adminSection1__statisticListWrap">
+                <div class="adminSection1__statisticSection">
+                  <div class="adminSection1__statisticSectionList grid grid-cols-3 gap-[20px]">
+                    <button class="adminSection1__statisticSectionItem" type="submit">NGƯỜI DÙNG</button>
+                    <button class="adminSection1__statisticSectionItem" type="submit">DOANH THU</button>
+                    <button class="adminSection1__statisticSectionItem" type="submit">SỐ LƯỢT ĐẶT </button>
+                  </div>
+                </div>
+                <div class="adminSection1__chart">
+                  <div class="adminSection1__chartLeft">
+                    <div class="adminSection1__chartFunctionList">
+                      <button class="adminSection1__chartFunctionItem">THEO TUẦN</button>
+                      <button class="adminSection1__chartFunctionItem">THEO NĂM</button>
+                    </div>
+                  </div>
+                  <div class="adminSection1__chartRight">
+                    <canvas id="myChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
