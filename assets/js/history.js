@@ -46,26 +46,26 @@ const containerRef = collection(db, 'containerOrders');
 const fetchData = async () => {
 
     const carQuery  = query(carRef, where('userId', '==', userAccount.uid));
-    const truckQuery = query(truckRef, where('userId', '==', userAccount.uid));
-    const containerQuery = query(containerRef, where('userId', '==', userAccount.uid));
+    // const truckQuery = query(truckRef, where('userId', '==', userAccount.uid));
+    // const containerQuery = query(containerRef, where('userId', '==', userAccount.uid));
 
     let array = [];
 
     const carSnapshot = await getDocs(carQuery);
-    const truckSnapshot = await getDocs(truckQuery);
-    const containerSnapshot = await getDocs(containerQuery);
+    // const truckSnapshot = await getDocs(truckQuery);
+    // const containerSnapshot = await getDocs(containerQuery);
 
     carSnapshot.docs.forEach((doc) => {
         array.push({...doc.data(), id : doc.id});
     });
 
-    truckSnapshot.docs.forEach((doc) => {
-        array.push({...doc.data(), id : doc.id});
-    });
+    // truckSnapshot.docs.forEach((doc) => {
+    //     array.push({...doc.data(), id : doc.id});
+    // });
 
-    containerSnapshot.docs.forEach((doc) => {
-        array.push({...doc.data(), id : doc.id});
-    })    
+    // containerSnapshot.docs.forEach((doc) => {
+    //     array.push({...doc.data(), id : doc.id});
+    // })    
 
     return array;
 };
@@ -98,12 +98,6 @@ const timeConvert = (a) => {
 const carImageSource = 'assets/images/product-car.png';
 const truckImageSource = 'assets/images/product-truck.png';
 const containerImageSource = 'assets/images/product-container.png';
-// const orderHistoryItem = document.querySelector('.orderHistory__item');
-// const orderHistoryIntro = orderHistoryItem.querySelector('.orderHistory__intro');
-// const orderHistoryImage = document.querySelector('.orderHistory__image img');
-// const orderHistoryCarName = document.querySelector('.orderHistory__carName');
-// const orderHistoryContent = document.querySelector('.orderHistory__content');
-
 
 onAuthStateChanged(auth, (user) => {
     if(user){
@@ -155,15 +149,15 @@ onAuthStateChanged(auth, (user) => {
                 const imageElement = document.createElement('img');
                 const orderHistoryCarName = document.createElement('div');
                 orderHistoryCarName.classList.add('orderHistory__carName');
-                if (value.type === 'car'){
+                if (value.type === 'Xe khách'){
                     imageElement.src = carImageSource;
                     orderHistoryCarName.innerHTML = 'Xe khách';
                 } 
-                else if (value.type === 'truck'){
+                else if (value.type === 'Xe tải'){
                     imageElement.src = truckImageSource;
                     orderHistoryCarName.innerHTML = 'Xe tải';
                 }
-                else if (value.type === 'container'){
+                else if (value.type === 'Xe container'){
                     imageElement.src = containerImageSource;
                     orderHistoryCarName.innerHTML = 'Xe container';
                 }
@@ -179,7 +173,7 @@ onAuthStateChanged(auth, (user) => {
                 orderHistoryContent.classList.add('gap-[20px]');
                 
                 let orderContent;
-                if (value.type === 'car'){
+                if (value.type === 'Xe khách'){
                     orderContent = {
                         type : {
                             title : 'Loại xe đặt',
@@ -216,7 +210,7 @@ onAuthStateChanged(auth, (user) => {
                         
                     };
                 }
-                else if (value.type === 'truck'){
+                else if (value.type === 'Xe tải'){
                     orderContent = {
                         type : {
                             title : 'Loại xe đặt',

@@ -66,6 +66,8 @@ const departureTime = document.querySelector('.car__time');
 const departurePlace = document.querySelector('.car__start');
 const arrivePlace = document.querySelector('.car__end');
 const carForm = document.querySelector('.car__form form');
+const carDriverList = document.querySelector('.car__driverList');
+
 
 tripRegister.addEventListener('click', () => {
 
@@ -77,9 +79,7 @@ tripRegister.addEventListener('click', () => {
         alert('Vui lòng đăng nhập để thực hiện chức năng này');
         //location.reload();
     }
-    else if (carSizeCheck && carSeatTypeCheck && carFeatureCheck){
-        console.log(carSizeCheck, carSeatTypeCheck, carFeatureCheck);
-        
+    else if (carSizeCheck && carSeatTypeCheck && carFeatureCheck){        
         const userDocRef = doc(db, 'users', userAccount.uid);
 
         getDoc(userDocRef)
@@ -94,6 +94,51 @@ tripRegister.addEventListener('click', () => {
 
 
         car.style.display = "flex";
+
+        //Kiểm tra tài xế có loại xe phù hợp hay không
+
+        const q = query(collection(db, 'drivers'));
+        getDocs(q).then((querySnapshot) => {
+            const driverList = querySnapshot.docs.map(async (doc) => {
+                let driver = {
+                    driverId: doc.id,
+                    driverName: doc.data().fullName,
+                    driverLicense: doc.data().license,
+                    driverTel: doc.data().tel
+                };
+        
+                const subq = query(collection(db, `drivers/${doc.id}/Vehicles`));
+                const subQuerySnapshot = await getDocs(subq);
+        
+                subQuerySnapshot.forEach((subDoc) => {
+                    driver.carSize = subDoc.data().Size;
+                    driver.carType = subDoc.data().Type;
+                    driver.carID = subDoc.data().ID;
+                });
+        
+                return driver;
+            });
+            return Promise.all(driverList);
+        }).then((driverList) => {
+
+            let flag = false;
+
+            //Kiểm tra điều kiện của tài xế . Thêm điều kiện về kiểm tra lịch trình hiện tại, 
+            //Cái này chỉ mới kiểm tra kích thước của xe tài xế và kích thước xe khách chọn.
+
+            driverList.forEach((driver) => {
+                if (driver.carSize === carSizeCheck.value){
+                    const option =  document.createElement('option');
+                    option.value = `${driver.driverId}:${driver.carID}`;
+                    option.innerHTML = `${driver.driverName} - ${driver.driverTel}`;
+                    carDriverList.appendChild(option);
+                    flag = true;
+                }
+            });
+
+            if (flag == false) alert("Hiện tại không có tài xế");
+        });
+
     }
     else{
         alert('Hãy nhập đầy đủ các ô');
@@ -203,6 +248,8 @@ carForm.addEventListener('submit', (e) => {
     const carOrderId = crypto.randomUUID();
 
     setDoc(doc(db, 'carOrders', carOrderId), {
+        driverId: carDriverList.value.split(':')[0],
+        carId: carDriverList.value.split(':')[1],
         userId: userAccount.uid,
         fullName : carFormFullname.value,
         tel: carFormTel.value,
@@ -218,7 +265,7 @@ carForm.addEventListener('submit', (e) => {
         arrivePlace: arrivePlace.value,
         price: outputPrice,
         createdAt: serverTimestamp(),
-        type: 'car'
+        type: 'Xe khách'
     })
 
     .then(() => {

@@ -5,7 +5,6 @@ mixin truck-form()
 
             <i class="fa-solid fa-x car__cancel-button" id="cancel-button"></i>
 
-
             h3(class="car__title") Đặt xe
 
             div(class="car__content")
@@ -58,6 +57,13 @@ mixin truck-form()
                                     option(value="VUNGTAU") Vũng Tàu
                                     option(value="NHATRANG") Nha Trang  
                                 <i class="fa-solid fa-caret-down"></i>  
+
+                            div(class="car__info")
+                                label(for="car__driverList") Danh sách tài xế 
+                                select(name="" id="car__driverList" class="car__driverList appearance-none")
+                                // Chỗ này in ra mấy thằng tài xế đang rảnh
+                                // option .....
+                                // Truyền bằng js
 
 
                         div(class="car__payment")

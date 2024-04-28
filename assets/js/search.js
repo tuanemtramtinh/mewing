@@ -85,7 +85,7 @@ id_button.addEventListener('click', async (e) => {
     const containerRef = doc(db, "containerOrders", id_input.value);
     getDoc(carRef)
         .then((doc) => {
-            if(doc.data()){
+            if(doc.data().type == "Xe khách"){
                 const name = document.createElement("li");
                 name.innerHTML = `<span>Họ và tên:</span><span> ${doc.data().fullName} </span>`;
                 const email = document.createElement("li");
@@ -128,10 +128,7 @@ id_button.addEventListener('click', async (e) => {
                 searchProgressContent.appendChild(Progress_bar);
                 setInterval(changeWidth, 1000);
             }
-        })
-    getDoc(truckRef)
-        .then((doc) => {
-            if(doc.data()){
+            else if (doc.data().type == "Xe tải"){
                 const name = document.createElement("li");
                 name.innerHTML = `<span>Họ và tên:</span><span> ${doc.data().fullName} </span>`;
                 const email = document.createElement("li");
@@ -171,10 +168,7 @@ id_button.addEventListener('click', async (e) => {
                 searchProgressContent.appendChild(Progress_bar);
                 setInterval(changeWidth, 1000);
             }
-        })
-    getDoc(containerRef)
-        .then((doc) => {
-            if(doc.data()){
+            else {
                 const name = document.createElement("li");
                 name.innerHTML = `<span>Họ và tên:</span><span> ${doc.data().fullName} </span>`;
                 const email = document.createElement("li");
@@ -218,4 +212,93 @@ id_button.addEventListener('click', async (e) => {
                 setInterval(changeWidth, 1000);
             }
         })
+    // getDoc(truckRef)
+    //     .then((doc) => {
+    //         if(doc.data()){
+    //             const name = document.createElement("li");
+    //             name.innerHTML = `<span>Họ và tên:</span><span> ${doc.data().fullName} </span>`;
+    //             const email = document.createElement("li");
+    //             email.innerHTML = `<span>Email:</span><span> ${doc.data().email} </span>`;
+    //             const tel = document.createElement("li");
+    //             tel.innerHTML = `<span>Số điện thoại: </span><span> ${doc.data().tel} </span>`;
+    //             const car_Weight = document.createElement("li");
+    //             car_Weight.innerHTML = `<span>Tải trọng:</span><span> ${doc.data().carWeight} </span>`;
+    //             const car_Box_Type = document.createElement("li");
+    //             car_Box_Type.innerHTML = `<span>Kiểu thùng xe:</span><span> ${doc.data().carBoxType} </span>`;
+    //             const departure_Place = document.createElement("li");
+    //             departure_Place.innerHTML = `<span>Nơi đi:</span><span> ${doc.data().departurePlace} </span>`;
+    //             const arrive_Place = document.createElement("li");
+    //             arrive_Place.innerHTML = `<span>Nơi đến:</span><span> ${doc.data().arrivePlace} </span>`;
+    //             const departure_Time = document.createElement("li");
+    //             timeStart = moment(`${doc.data().departureDate} ${doc.data().departureTime}`, "YYYY-MM-DD HH:mm:ss");
+    //             departure_Time.innerHTML = `<span>Thời gian đi:</span><span> ${timeStart} </span>`;
+    //             const arrive_Time = document.createElement("li");
+    //             timeEnd = moment(`${doc.data().arriveDate} ${doc.data().arriveTime}`, "YYYY-MM-DD HH:mm:ss");
+    //             arrive_Time.innerHTML = `<span>Thời gian đến:</span> <span>${timeEnd}</span>`;
+    //             const Price = document.createElement("li");
+    //             Price.innerHTML = `<span>Giá:</span><span> ${doc.data().price} </span>`;
+    //             result.appendChild(name);
+    //             result.appendChild(email);
+    //             result.appendChild(tel);
+    //             result.appendChild(car_Weight);
+    //             result.appendChild(car_Box_Type);
+    //             result.appendChild(departure_Place);
+    //             result.appendChild(arrive_Place);
+    //             result.appendChild(departure_Time);
+    //             result.appendChild(arrive_Time);
+    //             result.appendChild(Price);
+                
+    //             const Progress_bar = document.createElement("div");
+    //             Progress_bar.classList.add('progress');
+    //             Progress_bar.innerHTML = '<div class="progress-done"></div>';
+    //             searchProgressContent.appendChild(Progress_bar);
+    //             setInterval(changeWidth, 1000);
+    //         }
+    //     })
+    // getDoc(containerRef)
+    //     .then((doc) => {
+    //         if(doc.data()){
+    //             const name = document.createElement("li");
+    //             name.innerHTML = `<span>Họ và tên:</span><span> ${doc.data().fullName} </span>`;
+    //             const email = document.createElement("li");
+    //             email.innerHTML = `<span>Email:</span><span> ${doc.data().email} </span>`;
+    //             const tel = document.createElement("li");
+    //             tel.innerHTML = `<span>Số điện thoại: </span><span> ${doc.data().tel} </span>`
+    //             const size = document.createElement("li");
+    //             size.innerHTML = `<span>Kích thước:</span><span> ${doc.data().carSize} </span>`;
+    //             const goods_Type = document.createElement("li");
+    //             goods_Type.innerHTML = `<span>Loại hàng hóa:</span><span> ${doc.data().carGoodsType} </span>`;
+    //             const Structure = document.createElement("li");
+    //             Structure.innerHTML = `<span>Cấu tạo xe:</span><span> ${doc.data().carStructure} </span>`;
+    //             const departure_Place = document.createElement("li");
+    //             departure_Place.innerHTML = `<span>Nơi đi:</span><span> ${doc.data().departurePlace} </span>`;
+    //             const arrive_Place = document.createElement("li");
+    //             arrive_Place.innerHTML = `<span>Nơi đến:</span><span> ${doc.data().arrivePlace} </span>`;
+    //             const departure_Time = document.createElement("li");
+    //             timeStart = moment(`${doc.data().departureDate} ${doc.data().departureTime}`, "YYYY-MM-DD HH:mm:ss");
+    //             departure_Time.innerHTML = `<span>Thời gian đi:</span><span> ${timeStart} </span>`;
+    //             const arrive_Time = document.createElement("li");
+    //             timeEnd = moment(`${doc.data().arriveDate} ${doc.data().arriveTime}`, "YYYY-MM-DD HH:mm:ss");
+    //             arrive_Time.innerHTML = `<span>Thời gian đến:</span> <span>${timeEnd}</span>`;
+    //             const Price = document.createElement("li");
+    //             Price.innerHTML = `<span>Giá:</span><span> ${doc.data().price} </span>`;
+    //             result.appendChild(name);
+    //             result.appendChild(email);
+    //             result.appendChild(tel);
+    //             result.appendChild(size);
+    //             result.appendChild(goods_Type);
+    //             result.appendChild(Structure);
+    //             result.appendChild(departure_Place);
+    //             result.appendChild(arrive_Place);
+    //             result.appendChild(departure_Time);
+    //             result.appendChild(arrive_Time);
+    //             result.appendChild(Price);
+                
+    //             const Progress_bar = document.createElement("div");
+    //             Progress_bar.classList.add('progress');
+    //             Progress_bar.innerHTML = '<div class="progress-done"></div>';
+    //             searchProgressContent.appendChild(Progress_bar);
+    //             setInterval(changeWidth, 1000);
+    //         }
+    //     })
 })

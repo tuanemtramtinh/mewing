@@ -27,7 +27,7 @@ block main
                         div(class="adminSection1__addDriverWrap")
 
                             div(class="adminSection1__addDriverLeft")
-                                img(src="assets/images/man.jpg", alt="")
+                                img(src="assets/images/kpi-lai-xe.png", alt="")
 
 
                             div(class="adminSection1__addDriverRight")
@@ -37,9 +37,9 @@ block main
                                         label(for="adminSection1__driverName") Họ và tên
                                         input(type="text" id="adminSection1__driverName" class="adminSection1__driverName")
 
-                                    div(class="adminSection1__driverBasicInfo")
-                                        label(for="adminSection1__driverID") Mã định danh
-                                        input(type="text" id="adminSection1__driverID")
+                                    //- div(class="adminSection1__driverBasicInfo")
+                                    //-     label(for="adminSection1__driverID") Mã định danh
+                                    //-     input(type="text" id="adminSection1__driverID")
 
                                     div(class="adminSection1__driverBasicInfo")
                                         label(for="adminSection1__driverTel") Số điện thoại 
@@ -99,9 +99,13 @@ block main
                                             option(value="C") C 
                                             option(value="D1") D1 
                                             option(value="D2") D2 
-                                            option(value="D") D        
+                                            option(value="D") D    
 
-                                    button(type="submit") THÊM TÀI XẾ
+                                    div(class="adminSection1__driverBasicInfo")
+                                        label(for="adminSection1__driverCarId") Biển số xe 
+                                        input(type="text" id="adminSection1__driverCarId")
+
+                                    button(type="submit" id="add__Driver") THÊM TÀI XẾ
 
 
                     div(class="adminSection1__driverList")

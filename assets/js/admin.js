@@ -132,6 +132,7 @@ const adminSection1__driverCarTypeCarSize = document.querySelector("#adminSectio
 const adminSection1__driverCarTypeTruckWeight = document.querySelector("#adminSection1__driverCarTypeTruckWeight");
 const adminSection1__driverCarTypeContainerSize = document.querySelector("#adminSection1__driverCarTypeContainerSize");
 const adminSection1__driverLicense = document.querySelector("#adminSection1__driverLicense");
+const adminSection1__driverCarId = document.querySelector("#adminSection1__driverCarId");
 
 function create_UUID(){
     var dt = new Date().getTime();
@@ -153,6 +154,7 @@ add__Driver_button.addEventListener('click', async (event) => {
     const car_Type = adminSection1__driverCarType.value;
     const driver_License = adminSection1__driverLicense.value;
     let car_Size;
+    const car_ID = adminSection1__driverCarId.value;;
     let truck_Weight;
     let container_Size;
 
@@ -170,15 +172,16 @@ add__Driver_button.addEventListener('click', async (event) => {
         switch(car_Type) {
             case "Xe khách":
                 car_Size = adminSection1__driverCarTypeCarSize.value;
-                vehicleData = { Type: car_Type, Size: car_Size };
+                
+                vehicleData = { Type: car_Type, Size: car_Size, ID: car_ID };
                 break;
             case "Xe tải":
                 truck_Weight = adminSection1__driverCarTypeTruckWeight.value;
-                vehicleData = { Type: car_Type, Weight: truck_Weight };
+                vehicleData = { Type: car_Type, Weight: truck_Weight, ID: car_ID };
                 break;
             case "Xe container":
                 container_Size = adminSection1__driverCarTypeContainerSize.value;
-                vehicleData = { Type: car_Type, Size: container_Size };
+                vehicleData = { Type: car_Type, Size: container_Size, ID: car_ID };
                 break;
             default:
                 throw new Error("Invalid car type");
