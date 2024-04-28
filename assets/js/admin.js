@@ -162,7 +162,8 @@ add__Driver_button.addEventListener('click', async (event) => {
         await setDoc(doc(db, 'drivers', driver_ID), {
             fullName: driver_Name,
             tel: driver_Tel,
-            license: driver_License
+            license: driver_License,
+            schedule: []
         });
 
         let subCollectionRef = collection(db, `drivers/${driver_ID}/Vehicles`);

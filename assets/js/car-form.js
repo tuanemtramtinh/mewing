@@ -11,7 +11,7 @@ import{
     addDoc, deleteDoc, doc, setDoc,
     query, where,
     orderBy, serverTimestamp,
-    getDoc, updateDoc
+    getDoc, updateDoc, arrayUnion
 } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -180,7 +180,8 @@ let checkAllInput = function() {
                             driverId: doc.id,
                             driverName: doc.data().fullName,
                             driverLicense: doc.data().license,
-                            driverTel: doc.data().tel
+                            driverTel: doc.data().tel,
+                            schedule: doc.data().schedule
                         };
                 
                         const subq = query(collection(db, `drivers/${doc.id}/Vehicles`));
@@ -199,11 +200,29 @@ let checkAllInput = function() {
 
                     let flag = false;
 
+                    const newBooking = {
+                        departureTime: `${getDepartureDate}T${getDepartureTime}`,
+                        arriveTime: `${arriveDate}T${arriveTime}`
+                    }
+
+                    const checkSchedule = (driver, newBooking) => {
+                        const newStart = newBooking.departureTime;
+                        const newEnd = newBooking.arriveTime;
+                        for(var i = 0; i < driver.schedule.length; i++){
+                            const start = driver.schedule[i].departureTime;
+                            const end = driver.schedule[i].arriveTime;
+                            if(newStart < end && newEnd > start){
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+
                     //Kiểm tra điều kiện của tài xế . Thêm điều kiện về kiểm tra lịch trình hiện tại, 
                     //Cái này chỉ mới kiểm tra kích thước của xe tài xế và kích thước xe khách chọn.
 
                     driverList.forEach((driver) => {
-                        if (driver.carSize === carFormSize.value){
+                        if (driver.carSize === carFormSize.value && checkSchedule(driver, newBooking)){
                             const option =  document.createElement('option');
                             option.value = `${driver.driverId}:${driver.carID}`;
                             option.innerHTML = `${driver.driverName} - ${driver.driverTel}`;
@@ -246,12 +265,19 @@ carForm.addEventListener('input', (e) => {
 
 const carOrderRef = collection(db, 'carOrders');
 
-carForm.addEventListener('submit', (e) => {
+carForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const carOrderId = crypto.randomUUID();
-
-    setDoc(doc(db, 'carOrders', carOrderId), {
+    const driverRef = doc(db, 'drivers', carDriverList.value.split(':')[0]);
+    const newBooking = {
+        departureTime: `${getDepartureDate}T${getDepartureTime}`,
+        arriveTime: `${arriveDate}T${arriveTime}`
+    }
+    await updateDoc(driverRef, {
+        schedule: arrayUnion(newBooking)
+    })
+    await setDoc(doc(db, 'carOrders', carOrderId), {
         driverId: carDriverList.value.split(':')[0],
         carId: carDriverList.value.split(':')[1],
         userId: userAccount.uid,
@@ -271,10 +297,6 @@ carForm.addEventListener('submit', (e) => {
         createdAt: serverTimestamp(),
         type: 'Xe khách'
     })
-
-    .then(() => {
-        alert(`Đặt xe thành công, mã đặt xe của bạn là ${carOrderId}`);
-        window.location.href = 'index.html';
-    })
-
+    alert(`Đặt xe thành công, mã đặt xe của bạn là ${carOrderId}`);
+    window.location.href = 'index.html';
 });
