@@ -93,6 +93,8 @@ const addDriver = document.querySelector('.adminSection1__addDriver');
 
 const driverListFunc = document.querySelector('.adminSection1__driverList');
 
+const statisticList = document.querySelector('.adminSection1__statisticList');
+
 const popupHistory = document.querySelector('.popupHistory');
 const popupHistoryCancelButton = document.querySelector('.popupHistory__cancel-button');
 
@@ -106,6 +108,7 @@ userListButton.addEventListener('click', () => {
     addDriver.style.display = "none";
     driverListFunc.style.display = "none";
     driverListFunc.innerHTML ='';
+    statisticList.style.display = 'none';
 
     const userRef = collection(db, 'users');
 
@@ -375,6 +378,7 @@ addDriverButton.addEventListener('click', () => {
     addDriver.style.display = "flex";
     driverListFunc.style.display = "none";
     driverListFunc.innerHTML ='';
+    statisticList.style.display = 'none';
 
     const fullname = document.querySelector('#adminSection1__driverName');
     const id = document.querySelector('#adminSection1__driverID');
@@ -490,6 +494,7 @@ driverListButton.addEventListener('click', async () => {
     addDriver.style.display = "none";
     userListFunc.style.display = 'none';
     userListFunc.innerHTML = '';
+    statisticList.style.display = 'none';
 
     try {
         const driverRef = collection(db, 'drivers');
@@ -713,64 +718,71 @@ const sortByMonthAndWeek = (async () => {
     return {monthlyRevenue, weeklyRevenue};
 });
 
-const statisticList = document.querySelector('.adminSection1__statisticList');
+let myChart;
 
 sortByMonthAndWeek()
 .then(({ monthlyRevenue, weeklyRevenue }) => {
     statisticButton.addEventListener('click', async () => {
         statisticList.style.display = 'block';
+        userListFunc.style.display = 'none';
+        userListFunc.innerHTML = '';
+        driverListFunc.style.display = 'none';
+        driverListFunc.innerHTML = '';
+        addDriver.style.display = 'none';
         // const canvas = document.getElementById('myChart');
-        let myChart;
         const ctx = document.getElementById('myChart').getContext('2d');
-        myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: [''],
-                datasets: [{
-                    label: '',
-                    data: [],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',  // Red
-                        'rgba(54, 162, 235, 0.2)',  // Blue
-                        'rgba(255, 206, 86, 0.2)',  // Yellow
-                        'rgba(75, 192, 192, 0.2)',  // Green
-                        'rgba(153, 102, 255, 0.2)', // Purple
-                        'rgba(255, 159, 64, 0.2)',  // Orange
-                        'rgba(220, 20, 60, 0.2)',   // Crimson
-                        'rgba(0, 128, 0, 0.2)',     // Green (Dark)
-                        'rgba(255, 0, 255, 0.2)',   // Magenta
-                        'rgba(255, 140, 0, 0.2)',   // Dark Orange
-                        'rgba(0, 0, 128, 0.2)',     // Navy
-                        'rgba(128, 0, 128, 0.2)'    // Purple (Dark)
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',   // Border color for Red
-                        'rgba(54, 162, 235, 1)',   // Border color for Blue
-                        'rgba(255, 206, 86, 1)',   // Border color for Yellow
-                        'rgba(75, 192, 192, 1)',   // Border color for Green
-                        'rgba(153, 102, 255, 1)',  // Border color for Purple
-                        'rgba(255, 159, 64, 1)',   // Border color for Orange
-                        'rgba(220, 20, 60, 1)',    // Border color for Crimson
-                        'rgba(0, 128, 0, 1)',      // Border color for Green (Dark)
-                        'rgba(255, 0, 255, 1)',    // Border color for Magenta
-                        'rgba(255, 140, 0, 1)',    // Border color for Dark Orange
-                        'rgba(0, 0, 128, 1)',      // Border color for Navy
-                        'rgba(128, 0, 128, 1)'     // Border color for Purple (Dark)
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    x: {
-                        beginAtZero: true
-                    }
+        if (myChart == null){
+            myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [''],
+                    datasets: [{
+                        label: '',
+                        data: [],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',  // Red
+                            'rgba(54, 162, 235, 0.2)',  // Blue
+                            'rgba(255, 206, 86, 0.2)',  // Yellow
+                            'rgba(75, 192, 192, 0.2)',  // Green
+                            'rgba(153, 102, 255, 0.2)', // Purple
+                            'rgba(255, 159, 64, 0.2)',  // Orange
+                            'rgba(220, 20, 60, 0.2)',   // Crimson
+                            'rgba(0, 128, 0, 0.2)',     // Green (Dark)
+                            'rgba(255, 0, 255, 0.2)',   // Magenta
+                            'rgba(255, 140, 0, 0.2)',   // Dark Orange
+                            'rgba(0, 0, 128, 0.2)',     // Navy
+                            'rgba(128, 0, 128, 0.2)'    // Purple (Dark)
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',   // Border color for Red
+                            'rgba(54, 162, 235, 1)',   // Border color for Blue
+                            'rgba(255, 206, 86, 1)',   // Border color for Yellow
+                            'rgba(75, 192, 192, 1)',   // Border color for Green
+                            'rgba(153, 102, 255, 1)',  // Border color for Purple
+                            'rgba(255, 159, 64, 1)',   // Border color for Orange
+                            'rgba(220, 20, 60, 1)',    // Border color for Crimson
+                            'rgba(0, 128, 0, 1)',      // Border color for Green (Dark)
+                            'rgba(255, 0, 255, 1)',    // Border color for Magenta
+                            'rgba(255, 140, 0, 1)',    // Border color for Dark Orange
+                            'rgba(0, 0, 128, 1)',      // Border color for Navy
+                            'rgba(128, 0, 128, 1)'     // Border color for Purple (Dark)
+                        ],
+                        borderWidth: 1
+                    }]
                 },
-                maintainAspectRatio: false,
-                // width: 1100,
-                // height: 600,
-            }
-        });
+                options: {
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        }
+                    },
+                    maintainAspectRatio: false,
+                    // width: 1100,
+                    // height: 600,
+                }
+            });
+        }
+        
         const statisticSectionItem = document.querySelectorAll('.adminSection1__statisticSectionItem');
         const chartFunctionItem = document.querySelectorAll('.adminSection1__chartFunctionItem');
         const chartLeft = document.querySelector('.adminSection1__chartLeft');
