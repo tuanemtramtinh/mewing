@@ -5,6 +5,19 @@ block head
 
 block main
 
+    div(class="popupHistory orderHistory")
+        div(class="popupHistory__wrap orderHistory__wrap")
+
+            <i class="fa-solid fa-x popupHistory__cancel-button"></i>
+
+
+            div(class="orderHistory__info")
+                    h2(class="orderHistory__title") Lịch sử đơn hàng 
+                    h3(class="orderHistory__subtitle") Kiểm tra các đơn hàng đã đặt
+
+            div(class="orderHistory__list")
+
+
     div(class="adminSection1")
         div(class="container")
             div(class="adminSection1__wrap")
@@ -14,13 +27,16 @@ block main
                         li 
                             button(type="submit" class="adminSection1__userListButton") Danh sách người dùng
                         li 
-                            button(type="submit" class="adminSection1__addDriverButton") Thêm tài xế
-                        li 
                             button(type="submit" class="adminSection1__userListDriver") Danh sách tài xế
                         li 
-                            button(type="submit" class="adminSection1__carListDriver") Danh sách xe
+                            button(type="submit" class="adminSection1__addDriverButton") Thêm tài xế
+                        li 
+                            button(type="submit" class="adminSection1__statistic") Thống kê
                 div(class="adminSection1__right")
                     div(class="adminSection1__userList")
+                        div(class="adminSection1__userCount")
+                            span Tổng số người dùng: 
+                            span 
 
                     div(class="adminSection1__addDriver")
                         
@@ -36,10 +52,6 @@ block main
                                     div(class="adminSection1__driverBasicInfo")
                                         label(for="adminSection1__driverName") Họ và tên
                                         input(type="text" id="adminSection1__driverName" class="adminSection1__driverName")
-
-                                    //- div(class="adminSection1__driverBasicInfo")
-                                    //-     label(for="adminSection1__driverID") Mã định danh
-                                    //-     input(type="text" id="adminSection1__driverID")
 
                                     div(class="adminSection1__driverBasicInfo")
                                         label(for="adminSection1__driverTel") Số điện thoại 
@@ -60,17 +72,6 @@ block main
                                             option(value="Xe khách 29 chỗ") Xe khách 29 chỗ
                                             option(value="Xe khách 35 chỗ") Xe khách 35 chỗ
                                             option(value="Xe khách 45 chỗ") Xe khách 45 chỗ
-
-                                        //- label(for="adminSection1__driverCarTypeCarSeat") Loại ghế
-                                        //- select(id="adminSection1__driverCarTypeCarSeat") 
-                                        //-     option(value="Xe khách ghế ngồi") Xe khách ghế ngồi 
-                                        //-     option(value="Xe khách ghế ngã") Xe khách ghế ngã
-                                        //-     option(value="Xe khách giường nằm") Xe khách giường nằm   
-
-                                        //- label(for="adminSection1__driverCarTypeCarFeature") Tiện nghi 
-                                        //- select(id="adminSection1__driverCarTypeCarFeature")
-                                        //-     option(value="Xe khách bình dân") Xe khách bình dân 
-                                        //-     option(value="Xe khách cao cấp") Xe khách cao cấp  
 
                                     //-Xe tải
                                     div(class="adminSection1__type adminSection1__driverCarTypeTruck")
@@ -107,10 +108,32 @@ block main
 
                                     button(type="submit" id="add__Driver") THÊM TÀI XẾ
 
-
+    
                     div(class="adminSection1__driverList")
 
-                    div(class="adminSection1__carList")
+                    div(class="adminSection1__statisticList")
+                        div(class="adminSection1__statisticListWrap")
+
+                            div(class="adminSection1__statisticSection")
+                                div(class="adminSection1__statisticSectionList grid grid-cols-3 gap-[20px]")
+                                    button(type="submit" class="adminSection1__statisticSectionItem") NGƯỜI DÙNG
+                                    button(type="submit" class="adminSection1__statisticSectionItem") DOANH THU
+                                    button(type="submit" class="adminSection1__statisticSectionItem") SỐ LƯỢT ĐẶT 
+
+                            div(class="adminSection1__chart")
+                                div(class="adminSection1__chartLeft")
+                                    div(class="adminSection1__chartFunctionList")
+                                        button(class="adminSection1__chartFunctionItem") THEO TUẦN
+                                        button(class="adminSection1__chartFunctionItem") THEO NĂM
+                                div(class="adminSection1__chartRight")
+                                    canvas(id="myChart" class="")
+                            //- div(class="adminSection1__statisticFilter")
+                            //-     div(class="adminSection1__statisticFilterList")
+                            //-         div(class="adminSection1__statisticFilterItem") Theo tuần
+                            //-         div(class="adminSection1__statisticFilterItem") Theo năm
+
+
+                                
 
 
     script(type="module" src="assets/js/admin.js") 

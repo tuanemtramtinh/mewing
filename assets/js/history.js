@@ -40,33 +40,15 @@ const db = getFirestore();
 let historyOrder = [];
 let userAccount = null;
 const carRef = collection(db, 'carOrders');
-const truckRef = collection(db, 'truckOrders');
-const containerRef = collection(db, 'containerOrders');
 
 const fetchData = async () => {
 
     const carQuery  = query(carRef, where('userId', '==', userAccount.uid));
-    // const truckQuery = query(truckRef, where('userId', '==', userAccount.uid));
-    // const containerQuery = query(containerRef, where('userId', '==', userAccount.uid));
-
     let array = [];
-
     const carSnapshot = await getDocs(carQuery);
-    // const truckSnapshot = await getDocs(truckQuery);
-    // const containerSnapshot = await getDocs(containerQuery);
-
     carSnapshot.docs.forEach((doc) => {
         array.push({...doc.data(), id : doc.id});
     });
-
-    // truckSnapshot.docs.forEach((doc) => {
-    //     array.push({...doc.data(), id : doc.id});
-    // });
-
-    // containerSnapshot.docs.forEach((doc) => {
-    //     array.push({...doc.data(), id : doc.id});
-    // })    
-
     return array;
 };
 
@@ -77,7 +59,6 @@ const compareTime = (a, b) => {
 
     return a.createdAt.nanoseconds - b.createdAt.nanoseconds;
 }
-
 
 const timeConvert = (a) => {
     const {seconds, nanoseconds} = a.createdAt;

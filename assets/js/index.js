@@ -36,9 +36,7 @@ const db = getFirestore();
 //-------------------Firebase-------------------
 
 const admin = {
-    username : 'admin',
-    email: 'admin@gmail.com',
-    password: 'admin@123'
+    email: 'mewinghcmut@gmail.com'
 }
 
 const loginButton = document.querySelector("#login-button");
@@ -74,28 +72,36 @@ cancelButtons.forEach((button) => {
 const headerNav = document.querySelector('.header__nav');
 const headerUser = document.querySelector('.header__user');
 const headerUsername = document.querySelector('.header__username');
+const headerList = document.querySelector('.header__list');
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
 
         
         headerNav.style.display = "none";
-        headerUser.style.display = "flex";
+        headerUser.style.display = "flex";        
 
         const userDocRef = doc(db, 'users', user.uid);
         getDoc(userDocRef)
             .then((doc) => {
 
-                if (doc.data().username === admin.username && 
-                    doc.data().email === admin.email &&
-                    doc.data().password === admin.password ){
-                        //navigate....
-                    //alert("HelloWorld");
+                if ( doc.data().email === admin.email){
+                    const sectionElement = document.createElement('li');
+                    sectionElement.innerHTML = 
+                    `
+                    <a href="admin.html"> 
+                            <button class="header__history" type="submit">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <span>Quản lí</span>
+                            </button>
+                    </a>
+                    `;
+                    headerList.insertBefore(sectionElement, headerList.firstChild);
 
                 }
-                else{
+                // else{
                     
-                }
+                // }
                 headerUsername.innerHTML = doc.data().username;
             })
         

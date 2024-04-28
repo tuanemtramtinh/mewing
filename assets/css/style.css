@@ -1190,6 +1190,13 @@ input[type=radio] {
 .search__result-list li {
   margin-bottom: 10px;
 }
+.search__result-list li span:first-child {
+  font-weight: 700;
+}
+.search__result-list li:last-child span:last-child {
+  color: #60D03D;
+  font-weight: 700;
+}
 .search__progress {
   display: none;
   background-color: #F9F5F0;
@@ -1365,11 +1372,22 @@ input[type=radio] {
 }
 .adminSection1__right {
   width: 70%;
-  overflow: scroll;
+  overflow: auto;
 }
 .adminSection1__userList {
   display: none;
   padding: 0px 15px;
+}
+.adminSection1__userCount {
+  text-align: center;
+  padding: 10px;
+  font-size: 25px;
+  margin-bottom: 30px;
+  border-radius: 20px;
+  background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  color: white;
+  font-weight: 700;
 }
 .adminSection1__userInfo {
   background-color: white;
@@ -1377,6 +1395,7 @@ input[type=radio] {
   font-size: 17px;
   border-radius: 20px;
   margin-bottom: 20px;
+  position: relative;
 }
 .adminSection1__userInfo span:first-child {
   font-weight: 700;
@@ -1388,6 +1407,47 @@ input[type=radio] {
   margin-bottom: 10px;
 }
 .adminSection1__userInfo li:last-child {
+  margin-bottom: 0px;
+}
+.adminSection1__userInfo i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
+  color: #F9F5F0;
+  position: absolute;
+  top: 60px;
+  right: 50px;
+  font-size: 25px;
+  cursor: pointer;
+}
+.adminSection1__driverList {
+  display: none;
+  padding: 0px 15px;
+}
+.adminSection1__driverInfo {
+  background-color: white;
+  padding: 10px 15px;
+  font-size: 17px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.adminSection1__driverInfo span:first-child {
+  font-weight: 700;
+}
+.adminSection1__driverInfo:last-child {
+  margin-bottom: 0px;
+}
+.adminSection1__driverInfo li {
+  margin-bottom: 10px;
+}
+.adminSection1__driverInfo li:last-child {
   margin-bottom: 0px;
 }
 .adminSection1__addDriver {
@@ -1456,6 +1516,99 @@ input[type=radio] {
   display: none;
   flex-direction: column;
   margin-bottom: 10px;
+}
+.adminSection1__statisticList {
+  display: none;
+}
+.adminSection1__statisticListWrap {
+  margin-left: 15px;
+}
+.adminSection1__statisticSection {
+  margin-bottom: 100px;
+}
+.adminSection1__statisticSectionItem {
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #F9F5F0;
+  background-color: #574380;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 20px;
+}
+.adminSection1__statisticSectionItem:hover {
+  background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+}
+.adminSection1__chart {
+  display: flex;
+  justify-content: space-between;
+  height: 500px;
+}
+.adminSection1__chartLeft {
+  display: none;
+  width: 20%;
+}
+.adminSection1__chartFunctionItem {
+  width: 100%;
+  font-size: 18px;
+  color: #F9F5F0;
+  background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.adminSection1__chartRight {
+  display: none;
+  width: calc(80% - 20px);
+}
+
+.popupHistory {
+  padding-bottom: 0px;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.popupHistory__wrap {
+  overflow: auto;
+  background-color: #F9F5F0;
+  width: 1240px;
+  height: 850px;
+  border-radius: 20px;
+  padding: 20px 20px;
+  position: relative;
+}
+.popupHistory__cancel-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  background-color: red;
+  color: white;
+  padding: 10px;
+  border-radius: 100px;
+  font-size: 20px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+#myChart {
+  width: 1000px;
+  background-color: #F9F5F0;
+  border-radius: 20px;
+  padding: 10px 20px;
 }
 
 /*# sourceMappingURL=style.css.map */
