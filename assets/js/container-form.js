@@ -189,7 +189,8 @@ let checkAllInput = function() {
                             driverId: doc.id,
                             driverName: doc.data().fullName,
                             driverLicense: doc.data().license,
-                            driverTel: doc.data().tel
+                            driverTel: doc.data().tel,
+                            schedule: doc.data().schedule
                         };
                 
                         const subq = query(collection(db, `drivers/${doc.id}/Vehicles`));
@@ -208,11 +209,29 @@ let checkAllInput = function() {
 
                     let flag = false;
 
+                    const newBooking = {
+                        departureTime: `${getDepartureDate}T${getDepartureTime}`,
+                        arriveTime: `${arriveDate}T${arriveTime}`
+                    }
+
+                    const checkSchedule = (driver, newBooking) => {
+                        const newStart = newBooking.departureTime;
+                        const newEnd = newBooking.arriveTime;
+                        for(var i = 0; i < driver.schedule.length; i++){
+                            const start = driver.schedule[i].departureTime;
+                            const end = driver.schedule[i].arriveTime;
+                            if(newStart < end && newEnd > start){
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+
                     //Kiểm tra điều kiện của tài xế . Thêm điều kiện về kiểm tra lịch trình hiện tại, 
                     //Cái này chỉ mới kiểm tra kích thước của xe tài xế và kích thước xe khách chọn.
 
                     driverList.forEach((driver) => {
-                        if (driver.carSize === carFormSize.value){
+                        if (driver.carSize === carFormSize.value && checkSchedule(driver, newBooking)){
                             const option =  document.createElement('option');
                             option.value = `${driver.driverId}:${driver.carID}`;
                             option.innerHTML = `${driver.driverName} - ${driver.driverTel}`;
