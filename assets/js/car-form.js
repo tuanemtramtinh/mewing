@@ -200,6 +200,8 @@ let checkAllInput = function() {
 
                     let flag = false;
 
+                    console.log(flag);
+
                     const newBooking = {
                         departureTime: `${getDepartureDate}T${getDepartureTime}`,
                         arriveTime: `${arriveDate}T${arriveTime}`
@@ -222,6 +224,7 @@ let checkAllInput = function() {
                     //Cái này chỉ mới kiểm tra kích thước của xe tài xế và kích thước xe khách chọn.
 
                     driverList.forEach((driver) => {
+                        console.log(driver.schedule);
                         if (driver.carSize === carFormSize.value && checkSchedule(driver, newBooking)){
                             const option =  document.createElement('option');
                             option.value = `${driver.driverId}:${driver.carID}`;
@@ -268,6 +271,7 @@ const carOrderRef = collection(db, 'carOrders');
 carForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    console.log(carDriverList.value);   
     const carOrderId = crypto.randomUUID();
     const driverRef = doc(db, 'drivers', carDriverList.value.split(':')[0]);
     const newBooking = {

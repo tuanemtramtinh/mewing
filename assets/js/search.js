@@ -59,7 +59,7 @@ function changeWidth(){
     }
     else{
         progress.style.width = `100%`;
-        progress.innerHTML = `<i class="fa-solid fa-truck-moving fa-bounce"></i>`;
+        progress.innerHTML = `<i class="fa-solid fa-check"></i>`;
     }
 }
 
@@ -81,8 +81,6 @@ id_button.addEventListener('click', async (e) => {
     searchResult.style.display = 'block';
     searchProgress.style.display = 'block';
     const carRef = doc(db, "carOrders", id_input.value);
-    const truckRef = doc(db, "truckOrders", id_input.value);
-    const containerRef = doc(db, "containerOrders", id_input.value);
     getDoc(carRef)
         .then((doc) => {
             if(doc.data().type == "Xe khách"){

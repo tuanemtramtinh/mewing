@@ -1619,6 +1619,7 @@ input[type="radio"] {
             button{
                 padding: 10px 20px;
                 border-radius: 20px;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
             }
 
             button:hover{
@@ -1870,6 +1871,133 @@ input[type="radio"] {
 
     &__button-modified{
         background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+    }
+
+    &__repair{
+        display: none;
+    }
+
+    &__repairWrap{
+        margin-left: 15px;
+    }
+
+    &__repairTitle{
+        text-align: center;
+        padding: 10px;
+        font-size: 25px;
+        margin-bottom: 30px;
+        border-radius: 20px;
+        background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        color: white;
+        font-weight: 700;
+        i{
+            margin-right: 10px;
+        }
+    }
+
+    &__repairForm{
+        label{
+            display: block;
+            margin-bottom: 10px;
+            
+            i{
+                margin-right: 5px;
+            }
+        }
+        input, select{
+            display: block;
+            width: 100%;
+            color: black;
+            padding: 10px 20px;
+            border-radius: 20px;
+        }
+    }
+    &__repairInfo{
+        font-size: 18px;
+        font-weight: 700;
+        color: #F9F5F0;
+        margin-bottom: 30px;
+    }
+
+    &__repairCarInfo{
+        font-size: 18px;
+        color: black;
+        margin-bottom: 20px;
+        background-color: #F9F5F0;
+        border-radius: 20px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        overflow: hidden;
+    }
+
+    &__repairCarInfoTitle{
+        font-size: 20px;
+        background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+        padding: 10px 20px;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: white;
+        text-align: center;
+    }
+
+    &__repairCarInfoList{
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+
+    }
+
+    &__repairCarLeft{
+        width: 30%;
+    }
+
+    &__repairCarImage{
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        margin-bottom: 20px;
+        img{
+            padding: 10px;
+            object-fit: contain;
+        }
+    }
+
+    &__repairCarDesc{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__repairCarRight{
+        width: calc(70% - 20px);
+
+        div{
+            margin-bottom: 10px;
+        }
+
+        div span{
+            font-size: 20px;
+            &:first-child{
+                font-weight: 700;
+            }
+        }
+    }
+
+    &__repairButtonSubmit{
+        font-size: 20px;
+        font-weight: 700;
+        color: white;
+        background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+        display: block;
+        width: 100%;
+        padding: 10px 20px;
+        border-radius: 20px;
     }
 }
 

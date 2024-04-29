@@ -27,6 +27,8 @@ block main
                         li 
                             button(type="submit" class="adminSection1__userListButton") Danh sách người dùng
                         li 
+                            button(type="submit" class="adminSection1__repairButton") Đặt lịch bảo dưỡng
+                        li 
                             button(type="submit" class="adminSection1__userListDriver") Danh sách tài xế
                         li 
                             button(type="submit" class="adminSection1__addDriverButton") Thêm tài xế
@@ -127,14 +129,58 @@ block main
                                         button(class="adminSection1__chartFunctionItem") THEO NĂM
                                 div(class="adminSection1__chartRight")
                                     canvas(id="myChart" class="")
-                            //- div(class="adminSection1__statisticFilter")
-                            //-     div(class="adminSection1__statisticFilterList")
-                            //-         div(class="adminSection1__statisticFilterItem") Theo tuần
-                            //-         div(class="adminSection1__statisticFilterItem") Theo năm
 
+                    div(class="adminSection1__repair")
+                        div(class="adminSection1__repairWrap")  
 
+                            h2(class="adminSection1__repairTitle")
+                                <i class="fa-solid fa-screwdriver-wrench"></i>
+                                span ĐẶT LỊCH BẢO DƯỠNG
+
+                            form(action="" class="adminSection1__repairForm")
+
+                                div(class="adminSection1__repairInfo")
+                                    label(for="adminSection1__repairCar") 
+                                        <i class="fa-solid fa-car"></i>
+                                        span Chọn xe bảo dưỡng 
+                                    select(name="" id="adminSection1__repairCair" class="adminSection1__repairCar") 
+                                        //option(value="49F-696.69") 49F-696.69
+
+                                div(class="adminSection1__repairCarInfo")
+                                    h3(class="adminSection1__repairCarInfoTitle") Thông tin xe được bảo dưỡng 
+                                    div(class="adminSection1__repairCarInfoList")
+                                        div(class="adminSection1__repairCarLeft")
+                                            div(class="adminSection1__repairCarType")
+                                                div(class="adminSection1__repairCarImage")
+                                                    img(src="", alt="") 
+                                                    //Xe tải thì truyền hình xe tải, ô tô truyền hình ô tô and so on.
+                                                div(class="adminSection1__repairCarDesc")
+                                                    // Loại xe
+                                                    span 
+                                        div(class="adminSection1__repairCarRight")
+                                            div(class="adminSection1__repairCarOwner")
+                                                span Chủ sở hữu: 
+                                                span 
+                                            div(class="adminSection1__repairCarWeight")
+                                                span Kích thước: 
+                                                span 
+                                            div(class="adminSection1__repairCarID")
+                                                span Biển số xe:  
+                                                span 
+
+                                div(class="adminSection1__repairInfo")
+                                    label(for="adminSection1__repairType") Loại bảo dưỡng
+                                    select(name="" id="adminSection1__repairType" class="adminSection1__repairType") 
+                                        option(value="Bảo dưỡng cơ bản") Bão dưỡng cơ bản
+                                        option(value="Bảo dưỡng trung bình") Bảo dưỡng trung bình 
+                                        option(value="Bảo dưỡng nặng") Bảo dưỡng nặng   
+                                        
+                                div(class="adminSection1__repairInfo")
+                                    label(for="adminSection1__repairDate") Ngày bảo dưỡng
+                                    input(type="date", name="" id="adminSection1__repairDate")  
+
+                                button(type="submit" class="adminSection1__repairButtonSubmit") ĐẶT LỊCH 
                                 
-
 
     script(type="module" src="assets/js/admin.js") 
 

@@ -86,6 +86,7 @@ const userListButton = document.querySelector('.adminSection1__userListButton');
 const driverListButton = document.querySelector('.adminSection1__userListDriver');
 const addDriverButton = document.querySelector('.adminSection1__addDriverButton');
 const statisticButton = document.querySelector('.adminSection1__statistic');
+const repairButton = document.querySelector('.adminSection1__repairButton');
 
 const userListFunc = document.querySelector('.adminSection1__userList');
 
@@ -94,6 +95,10 @@ const addDriver = document.querySelector('.adminSection1__addDriver');
 const driverListFunc = document.querySelector('.adminSection1__driverList');
 
 const statisticList = document.querySelector('.adminSection1__statisticList');
+
+const repair = document.querySelector('.adminSection1__repair');
+
+console.log(repair);
 
 const popupHistory = document.querySelector('.popupHistory');
 
@@ -108,12 +113,14 @@ userListButton.addEventListener('click', () => {
     driverListButton.className = 'adminSection1__userListDriver';
     addDriverButton.className = 'adminSection1__addDriverButton';
     statisticButton.className = 'adminSection1__statistic';
+    repairButton.className = 'adminSection1__repairButton';
     userListFunc.innerHTML = '';
     userListFunc.style.display = "block";
     addDriver.style.display = "none";
     driverListFunc.style.display = "none";
     driverListFunc.innerHTML ='';
     statisticList.style.display = 'none';
+    repair.style.display = 'none';
 
     const userRef = collection(db, 'users');
 
@@ -382,6 +389,7 @@ addDriverButton.addEventListener('click', () => {
     driverListButton.className = 'adminSection1__userListDriver';
     addDriverButton.classList.add('adminSection1__button-modified');
     statisticButton.className = 'adminSection1__statistic';
+    repairButton.className = 'adminSection1__repairButton';
 
     userListFunc.style.display = "none";
     userListFunc.innerHTML = '';
@@ -389,6 +397,7 @@ addDriverButton.addEventListener('click', () => {
     driverListFunc.style.display = "none";
     driverListFunc.innerHTML ='';
     statisticList.style.display = 'none';
+    repair.style.display = 'none'
 
     const fullname = document.querySelector('#adminSection1__driverName');
     const id = document.querySelector('#adminSection1__driverID');
@@ -504,6 +513,7 @@ driverListButton.addEventListener('click', async () => {
     driverListButton.classList.add('adminSection1__button-modified');
     addDriverButton.className = 'adminSection1__addDriverButton';
     statisticButton.className = 'adminSection1__statistic';
+    repairButton.className = 'adminSection1__repairButton';
 
     driverListFunc.innerHTML = '';
     driverListFunc.style.display = "block";
@@ -511,6 +521,7 @@ driverListButton.addEventListener('click', async () => {
     userListFunc.style.display = 'none';
     userListFunc.innerHTML = '';
     statisticList.style.display = 'none';
+    repair.style.display = 'none';
 
     try {
         const driverRef = collection(db, 'drivers');
@@ -738,6 +749,7 @@ sortByMonthAndWeek()
         driverListButton.className='adminSection1__userListDriver';
         addDriverButton.className = 'adminSection1__addDriverButton';
         statisticButton.classList.add('adminSection1__button-modified');
+        repairButton.className = 'adminSection1__repairButton';
 
         statisticList.style.display = 'block';
         userListFunc.style.display = 'none';
@@ -745,6 +757,8 @@ sortByMonthAndWeek()
         driverListFunc.style.display = 'none';
         driverListFunc.innerHTML = '';
         addDriver.style.display = 'none';
+        repair.style.display = 'none';
+
         const ctx = document.getElementById('myChart').getContext('2d');
         if (myChart == null){
             myChart = new Chart(ctx, {
@@ -929,3 +943,19 @@ sortByMonthAndWeek()
     });
 });
 
+
+repairButton.addEventListener('click', () => {
+    userListButton.className='adminSection1__userListButton';
+    driverListButton.className='adminSection1__userListDriver';
+    addDriverButton.className = 'adminSection1__addDriverButton';
+    statisticButton.className = 'adminSection1__statistic';
+    repairButton.classList.add('adminSection1__button-modified');
+
+    statisticList.style.display = 'none';
+    userListFunc.style.display = 'none';
+    userListFunc.innerHTML = '';
+    driverListFunc.style.display = 'none';
+    driverListFunc.innerHTML = '';
+    addDriver.style.display = 'none';
+    repair.style.display = 'block';
+});

@@ -9,10 +9,11 @@
 <script src="tailwind.config.js"> </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <title>Xe Tải</title>
   </head>
   <body> 
-    <div class="header">
+    <div class="header" data-aos="fade-down" data-aos-delay="500" data-aos-duration="1000">
       <div class="container">
         <div class="header__wrap">
           <div class="header__logo"><a href="index.html"> <img src="assets/images/logo.png" alt=""></a></div>
@@ -267,5 +268,7 @@
         </div>
       </div>
     </div>
-  </body><script type="module" src="assets/js/index.js"> </script>
+  </body><script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script> AOS.init(); </script>
+<script type="module" src="assets/js/index.js"> </script>
 </html>

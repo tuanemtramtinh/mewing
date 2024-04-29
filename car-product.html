@@ -9,10 +9,11 @@
 <script src="tailwind.config.js"> </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <title>Xe Khách </title>
   </head>
   <body> 
-    <div class="header">
+    <div class="header" data-aos="fade-down" data-aos-delay="500" data-aos-duration="1000">
       <div class="container">
         <div class="header__wrap">
           <div class="header__logo"><a href="index.html"> <img src="assets/images/logo.png" alt=""></a></div>
@@ -190,7 +191,7 @@
               <label for="car__35">Xe khách 35 chỗ </label><br>
             </div>
             <div> 
-              <input name="luachon1" type="radio" id="car__45" value="Xe khách45 chỗ">
+              <input name="luachon1" type="radio" id="car__45" value="Xe khách 45 chỗ">
               <label for="car__45">Xe khách 45 chỗ </label><br>
             </div>
           </div>
@@ -272,5 +273,7 @@
         </div>
       </div>
     </div>
-  </body><script type="module" src="assets/js/index.js"> </script>
+  </body><script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script> AOS.init(); </script>
+<script type="module" src="assets/js/index.js"> </script>
 </html>
