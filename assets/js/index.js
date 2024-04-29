@@ -33,6 +33,7 @@ initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore();
 
+
 //-------------------Firebase-------------------
 
 const admin = {
@@ -170,3 +171,4 @@ buttonLogout.addEventListener('click', () => {
             console.log('Sign out success');
         })
 })
+

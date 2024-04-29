@@ -84,8 +84,8 @@ const containerImageSource = 'assets/images/product-container.png';
 
 const userListButton = document.querySelector('.adminSection1__userListButton');
 const driverListButton = document.querySelector('.adminSection1__userListDriver');
-const carListButton = document.querySelector('.adminSection1__carListDriver');
 const addDriverButton = document.querySelector('.adminSection1__addDriverButton');
+const statisticButton = document.querySelector('.adminSection1__statistic');
 
 const userListFunc = document.querySelector('.adminSection1__userList');
 
@@ -96,6 +96,7 @@ const driverListFunc = document.querySelector('.adminSection1__driverList');
 const statisticList = document.querySelector('.adminSection1__statisticList');
 
 const popupHistory = document.querySelector('.popupHistory');
+
 const popupHistoryCancelButton = document.querySelector('.popupHistory__cancel-button');
 
 popupHistoryCancelButton.addEventListener('click', () => {
@@ -103,6 +104,10 @@ popupHistoryCancelButton.addEventListener('click', () => {
 });
 
 userListButton.addEventListener('click', () => {
+    userListButton.classList.add('adminSection1__button-modified');
+    driverListButton.className = 'adminSection1__userListDriver';
+    addDriverButton.className = 'adminSection1__addDriverButton';
+    statisticButton.className = 'adminSection1__statistic';
     userListFunc.innerHTML = '';
     userListFunc.style.display = "block";
     addDriver.style.display = "none";
@@ -373,6 +378,11 @@ userListButton.addEventListener('click', () => {
 
 addDriverButton.addEventListener('click', () => {
 
+    userListButton.className='adminSection1__userListButton';
+    driverListButton.className = 'adminSection1__userListDriver';
+    addDriverButton.classList.add('adminSection1__button-modified');
+    statisticButton.className = 'adminSection1__statistic';
+
     userListFunc.style.display = "none";
     userListFunc.innerHTML = '';
     addDriver.style.display = "flex";
@@ -489,6 +499,12 @@ add__Driver_button.addEventListener('click', async (event) => {
 
 
 driverListButton.addEventListener('click', async () => {
+
+    userListButton.className='adminSection1__userListButton';
+    driverListButton.classList.add('adminSection1__button-modified');
+    addDriverButton.className = 'adminSection1__addDriverButton';
+    statisticButton.className = 'adminSection1__statistic';
+
     driverListFunc.innerHTML = '';
     driverListFunc.style.display = "block";
     addDriver.style.display = "none";
@@ -566,7 +582,6 @@ driverListButton.addEventListener('click', async () => {
     }
 });
 
-const statisticButton = document.querySelector('.adminSection1__statistic');
 
 
 console.log(statisticButton);
@@ -636,7 +651,6 @@ const sortByMonth = (async () => {
         }
     });
 
-    // console.log(groupedData);
     let monthlyRevenue = [];
     for (const item in groupedData){
         monthlyRevenue.push({
@@ -646,7 +660,6 @@ const sortByMonth = (async () => {
         })
     }
     return monthlyRevenue;
-    // console.log(groupedData);
 })
 
 // sortByMonth();
@@ -709,9 +722,6 @@ const sortByWeek = (async () => {
     return weeklyRevenue;
 });
 
-// let weeklyArray = [];
-// let monthlyArray = [];
-
 const sortByMonthAndWeek = (async () => {
     const monthlyRevenue = await sortByMonth();
     const weeklyRevenue = await sortByWeek();
@@ -723,13 +733,18 @@ let myChart;
 sortByMonthAndWeek()
 .then(({ monthlyRevenue, weeklyRevenue }) => {
     statisticButton.addEventListener('click', async () => {
+
+        userListButton.className='adminSection1__userListButton';
+        driverListButton.className='adminSection1__userListDriver';
+        addDriverButton.className = 'adminSection1__addDriverButton';
+        statisticButton.classList.add('adminSection1__button-modified');
+
         statisticList.style.display = 'block';
         userListFunc.style.display = 'none';
         userListFunc.innerHTML = '';
         driverListFunc.style.display = 'none';
         driverListFunc.innerHTML = '';
         addDriver.style.display = 'none';
-        // const canvas = document.getElementById('myChart');
         const ctx = document.getElementById('myChart').getContext('2d');
         if (myChart == null){
             myChart = new Chart(ctx, {
@@ -777,19 +792,24 @@ sortByMonthAndWeek()
                         }
                     },
                     maintainAspectRatio: false,
-                    // width: 1100,
-                    // height: 600,
                 }
             });
-        }
-        
+        }   
         const statisticSectionItem = document.querySelectorAll('.adminSection1__statisticSectionItem');
         const chartFunctionItem = document.querySelectorAll('.adminSection1__chartFunctionItem');
         const chartLeft = document.querySelector('.adminSection1__chartLeft');
         const chartRight = document.querySelector('.adminSection1__chartRight');
-        statisticSectionItem.forEach(async (item, index) => {
+        statisticSectionItem.forEach(async (item, index, arr) => {
             item.addEventListener('click', async () => {
                 if (index == 0){ //User
+                    
+                    chartFunctionItem.forEach((x) => {
+                        x.className = 'adminSection1__chartFunctionItem';
+                    })
+
+                    item.classList.add('adminSection1__button-modified');
+                    arr[1].className = 'adminSection1__statisticSectionItem';
+                    arr[2].className = 'adminSection1__statisticSectionItem';
 
                     chartLeft.style.display = 'none';
                     chartRight.style.display = 'block';
@@ -809,12 +829,25 @@ sortByMonthAndWeek()
                     myChart.update();
                 }
                 else if (index == 1){ //Revenue
+
+                    chartFunctionItem.forEach((x) => {
+                        x.className = 'adminSection1__chartFunctionItem';
+                    })
+
+                    item.classList.add('adminSection1__button-modified');
+                    arr[0].className = 'adminSection1__statisticSectionItem';
+                    arr[2].className = 'adminSection1__statisticSectionItem';
+
                     chartLeft.style.display = 'block';
                     chartRight.style.display = 'block';
                     chartRight.style.width = 'calc(80% - 20px)';
-                    chartFunctionItem.forEach((value, i) => {
+                    chartFunctionItem.forEach((value, i, arrChart) => {
                         value.addEventListener('click', () => {
                             if(i == 0){
+
+                                value.classList.add('adminSection1__button-modified');
+                                arrChart[1].className = 'adminSection1__chartFunctionItem';
+
                                 const dayArray = weeklyRevenue.map(item => item.day);
                                 const Revenue = weeklyRevenue.map(item => item.price);
                                 // console.log(Revenue);
@@ -827,6 +860,10 @@ sortByMonthAndWeek()
                                 }
                             }
                             else if (i == 1){
+
+                                value.classList.add('adminSection1__button-modified');
+                                arrChart[0].className = 'adminSection1__chartFunctionItem';
+
                                 const monthArray = monthlyRevenue.map(item => item.month);
                                 const Revenue = monthlyRevenue.map(item => item.price);
                                 console.log(Revenue);
@@ -842,27 +879,41 @@ sortByMonthAndWeek()
                     });
                 }
                 else{ //OrderNum
+
+                    chartFunctionItem.forEach((x) => {
+                        x.className = 'adminSection1__chartFunctionItem';
+                    })
+
+                    item.classList.add('adminSection1__button-modified');
+                    arr[0].className = 'adminSection1__statisticSectionItem';
+                    arr[1].className = 'adminSection1__statisticSectionItem';
+
                     chartLeft.style.display = 'block';
                     chartRight.style.display = 'block';
                     chartRight.style.width = 'calc(80% - 20px)';
-                    chartFunctionItem.forEach((value, i) => {
+                    chartFunctionItem.forEach((value, i, arrChart) => {
                         value.addEventListener('click', () => {
                             if(i == 0){
+
+                                value.classList.add('adminSection1__button-modified');
+                                arrChart[1].className = 'adminSection1__chartFunctionItem';
+
                                 const dayArray = weeklyRevenue.map(item => item.day);
                                 const Count = weeklyRevenue.map(item => item.count);
-                                // console.log(Revenue);
                                 if (myChart){
                                     myChart.data.labels = dayArray;
                                     myChart.data.datasets[0].label = 'Lượng xe đặt theo tuần';
                                     myChart.data.datasets[0].data = Count;
-
                                     myChart.update();
                                 }
                             }
                             else if (i == 1){
+
+                                value.classList.add('adminSection1__button-modified');
+                                arrChart[0].className = 'adminSection1__chartFunctionItem';
+
                                 const monthArray = monthlyRevenue.map(item => item.month);
                                 const Count = monthlyRevenue.map(item => item.count);
-                                // console.log(Revenue);
                                 if (myChart){
                                     myChart.data.labels = monthArray;
                                     myChart.data.datasets[0].label = 'Lượng xe đặt theo tháng';

@@ -1452,12 +1452,9 @@ input[type="radio"] {
     justify-content: center;
     align-items: center;
     padding: 15px 30px;
-    background-image: repeating-linear-gradient(to left, 
-    #0546e0, 
-    #1172f9,
-    #4892f9
-    );
-    box-shadow: 0 5px 5px -6px #0546e0, 0 3px 7px #1172f9;
+    background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    // box-shadow: 0 5px 5px -6px #0546e0, 0 3px 7px #1172f9;
     border-radius: 20px;
     color: #fff;
     height: 100%;
@@ -1616,16 +1613,18 @@ input[type="radio"] {
         font-size: 22px;
         color: white;
 
-        li{
-            padding: 10px 20px;
+        li{ 
             margin-bottom: 50px;
-        }
 
-        li:hover{
-            display: inline-block;
-            border-radius: 20px;
-            background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
-            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            button{
+                padding: 10px 20px;
+                border-radius: 20px;
+            }
+
+            button:hover{
+                background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            }
         }
     }
 
@@ -1850,18 +1849,27 @@ input[type="radio"] {
         width: 100%;
         font-size: 18px;
         color: #F9F5F0;
-        background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+        background-color: #574380;
+        // background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         padding: 10px 20px;
         border-radius: 20px;
         text-align: center;
         font-weight: 700;
         margin-bottom: 20px;
+
+        &:hover{
+            background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+        }
     }
 
     &__chartRight{
         display: none;
         width: calc(80% - 20px);
+    }
+
+    &__button-modified{
+        background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
     }
 }
 

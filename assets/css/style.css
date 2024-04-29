@@ -1229,8 +1229,8 @@ input[type=radio] {
   justify-content: center;
   align-items: center;
   padding: 15px 30px;
-  background-image: repeating-linear-gradient(to left, #0546e0, #1172f9, #4892f9);
-  box-shadow: 0 5px 5px -6px #0546e0, 0 3px 7px #1172f9;
+  background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 20px;
   color: #fff;
   height: 100%;
@@ -1361,12 +1361,13 @@ input[type=radio] {
   color: white;
 }
 .adminSection1__section li {
-  padding: 10px 20px;
   margin-bottom: 50px;
 }
-.adminSection1__section li:hover {
-  display: inline-block;
+.adminSection1__section li button {
+  padding: 10px 20px;
   border-radius: 20px;
+}
+.adminSection1__section li button:hover {
   background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
@@ -1552,7 +1553,7 @@ input[type=radio] {
   width: 100%;
   font-size: 18px;
   color: #F9F5F0;
-  background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+  background-color: #574380;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 10px 20px;
   border-radius: 20px;
@@ -1560,9 +1561,15 @@ input[type=radio] {
   font-weight: 700;
   margin-bottom: 20px;
 }
+.adminSection1__chartFunctionItem:hover {
+  background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+}
 .adminSection1__chartRight {
   display: none;
   width: calc(80% - 20px);
+}
+.adminSection1__button-modified {
+  background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
 }
 
 .popupHistory {
