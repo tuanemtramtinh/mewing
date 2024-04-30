@@ -974,7 +974,7 @@ allDriverRef.forEach(async (driver) => {
     allVehicleRef.forEach(async (vehicle) => {
         const vehicle_ID = vehicle.data().ID;
         const vehicle_id = vehicle.id;
-        const vehicle_Size = vehicle.data().Size;
+        const vehicle_Size = vehicle.data().Type === "Xe tải" ? vehicle.data().Weight : vehicle.data().Size;
         const append_Vehicle = document.createElement('option');
         mapVehicle.set(`${fullName}_${vehicle_ID}_${vehicle_Size}`, `${driver_ID}_${vehicle_id}`);
         append_Vehicle.style.value = `${fullName}_${vehicle_ID}_${vehicle_Size}`;
