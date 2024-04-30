@@ -11,7 +11,7 @@ import{
     addDoc, deleteDoc, doc, setDoc,
     query, where,
     orderBy, serverTimestamp,
-    getDoc, updateDoc, getCountFromServer
+    getDoc, updateDoc, getCountFromServer,arrayUnion
 } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -39,7 +39,6 @@ const db = getFirestore();
 //History--------------------------------------------------------------------------
 
 const fetchData = async (userAccount) => {
-    //console.log(userAccount);
     const carRef = collection(db, 'carOrders');    
     const carQuery  = query(carRef, where('userId', '==', userAccount));
     let array = [];
@@ -97,8 +96,6 @@ const driverListFunc = document.querySelector('.adminSection1__driverList');
 const statisticList = document.querySelector('.adminSection1__statisticList');
 
 const repair = document.querySelector('.adminSection1__repair');
-
-console.log(repair);
 
 const popupHistory = document.querySelector('.popupHistory');
 
@@ -170,7 +167,6 @@ userListButton.addEventListener('click', () => {
 
 
             const popupHistoryButtons = document.querySelectorAll('.popupHistory-button');
-            //console.log(popupHistoryButtons);
 
             popupHistoryButtons.forEach((button, index) => {
                 button.addEventListener('click', () => {
@@ -373,7 +369,6 @@ userListButton.addEventListener('click', () => {
                             orderHistoryItem.appendChild(orderHistoryIntro);
                             orderHistoryItem.appendChild(orderHistoryDesc);
 
-                            //console.log(orderHistoryItem);
                             orderHistoryList.appendChild(orderHistoryItem);
                         });           
                     });
@@ -470,7 +465,7 @@ add__Driver_button.addEventListener('click', async (event) => {
             fullName: driver_Name,
             tel: driver_Tel,
             license: driver_License,
-            schedule: []
+            schedule: [],
         });
 
         let subCollectionRef = collection(db, `drivers/${driver_ID}/Vehicles`);
@@ -481,15 +476,15 @@ add__Driver_button.addEventListener('click', async (event) => {
             case "Xe khách":
                 car_Size = adminSection1__driverCarTypeCarSize.value;
                 
-                vehicleData = { Type: car_Type, Size: car_Size, ID: car_ID };
+                vehicleData = { Type: car_Type, Size: car_Size, ID: car_ID , maintaince:[]};
                 break;
             case "Xe tải":
                 truck_Weight = adminSection1__driverCarTypeTruckWeight.value;
-                vehicleData = { Type: car_Type, Weight: truck_Weight, ID: car_ID };
+                vehicleData = { Type: car_Type, Weight: truck_Weight, ID: car_ID , maintaince:[]};
                 break;
             case "Xe container":
                 container_Size = adminSection1__driverCarTypeContainerSize.value;
-                vehicleData = { Type: car_Type, Size: container_Size, ID: car_ID };
+                vehicleData = { Type: car_Type, Size: container_Size, ID: car_ID , maintaince:[]};
                 break;
             default:
                 throw new Error("Invalid car type");
@@ -553,7 +548,6 @@ driverListButton.addEventListener('click', async () => {
             const vehiclesSnapshot = await getDocs(vehiclesRef);
             const vehicleList = vehiclesSnapshot.docs.map(doc => doc.data());
 
-            //console.log(vehicleList);
             if (vehicleList.length > 0) {
                 for (const vehicle of vehicleList) {
                     const vehicleType = document.createElement('li');
@@ -592,10 +586,6 @@ driverListButton.addEventListener('click', async () => {
         console.error("Error fetching driver or vehicle data: ", error);
     }
 });
-
-
-
-console.log(statisticButton);
 
 const sortByMonth = (async () => {
     const carQuery = query(collection(db, 'carOrders'));
@@ -864,7 +854,6 @@ sortByMonthAndWeek()
 
                                 const dayArray = weeklyRevenue.map(item => item.day);
                                 const Revenue = weeklyRevenue.map(item => item.price);
-                                // console.log(Revenue);
                                 if (myChart){
                                     myChart.data.labels = dayArray;
                                     myChart.data.datasets[0].label = 'Doanh thu theo tuần';
@@ -880,7 +869,6 @@ sortByMonthAndWeek()
 
                                 const monthArray = monthlyRevenue.map(item => item.month);
                                 const Revenue = monthlyRevenue.map(item => item.price);
-                                console.log(Revenue);
                                 if (myChart){
                                     myChart.data.labels = monthArray;
                                     myChart.data.datasets[0].label = 'Doanh thu theo tháng';
@@ -959,3 +947,134 @@ repairButton.addEventListener('click', () => {
     addDriver.style.display = 'none';
     repair.style.display = 'block';
 });
+
+
+//-> For maintaince
+const maintainceTime = new Map();
+maintainceTime.set('Bảo dưỡng cơ bản', '6:00');
+maintainceTime.set('Bảo dưỡng trung bình', '12:00');
+maintainceTime.set('Bảo dưỡng nặng', '24:00');
+
+
+const adminSection1__repairCar = document.querySelector("#adminSection1__repairCair");
+const adminSection1__repairCarOwner = document.querySelector(".adminSection1__repairCarOwner").children[1];
+const adminSection1__repairCarWeight = document.querySelector(".adminSection1__repairCarWeight").children[1];
+const adminSection1__repairCarID = document.querySelector(".adminSection1__repairCarID").children[1];
+const adminSection1__repairButton = document.querySelector(".adminSection1__repairButton");
+const adminSection1__repairType = document.querySelector("#adminSection1__repairType");
+const adminSection1__repairDate = document.querySelector("#adminSection1__repairDate");
+const adminSection1__repairButtonSubmit = document.querySelector(".adminSection1__repairButtonSubmit");
+const allDriverRef = await getDocs(collection(db, 'drivers'));
+const mapVehicle = new Map();
+let isFirstOption = true;
+allDriverRef.forEach(async (driver) => {
+    const fullName = driver.data().fullName;
+    const driver_ID = driver.id;
+    const allVehicleRef = await getDocs(collection(db, `drivers/${driver.id}/Vehicles`));
+    allVehicleRef.forEach(async (vehicle) => {
+        const vehicle_ID = vehicle.data().ID;
+        const vehicle_id = vehicle.id;
+        const vehicle_Size = vehicle.data().Size;
+        const append_Vehicle = document.createElement('option');
+        mapVehicle.set(`${fullName}_${vehicle_ID}_${vehicle_Size}`, `${driver_ID}_${vehicle_id}`);
+        append_Vehicle.style.value = `${fullName}_${vehicle_ID}_${vehicle_Size}`;
+        append_Vehicle.innerText = `${fullName}_${vehicle_ID}_${vehicle_Size}`;
+        if(isFirstOption){
+            append_Vehicle.setAttribute('selected', 'selected');
+            isFirstOption = false;
+        }
+        adminSection1__repairCar.appendChild(append_Vehicle);
+    });
+});
+
+function update_admin__repairInfo(){
+    const string_split = adminSection1__repairCar.value.split('_');
+    adminSection1__repairCarOwner.innerText = `${string_split[0]}`;
+    adminSection1__repairCarWeight.innerText = `${string_split[2]}`;
+    adminSection1__repairCarID.innerText = `${string_split[1]}`;
+}
+
+adminSection1__repairCar.addEventListener('change', (event) => {
+    event.preventDefault();
+    update_admin__repairInfo();
+});
+
+adminSection1__repairButton.addEventListener('click', () => {
+    update_admin__repairInfo();
+});
+
+adminSection1__repairButtonSubmit.addEventListener('click', async (event) => {
+    event.preventDefault();
+
+    try{
+        const getIDs = () => {
+            const ids = mapVehicle.get(adminSection1__repairCar.value).split('_');
+            return ids;
+        }
+        const addupEndTime = (startDate, maintenanceType) => {
+            const maintenanceDuration = maintainceTime.get(maintenanceType);
+            const [hours, minutes] = maintenanceDuration.split(':').map(Number);
+    
+            startDate.setHours(startDate.getHours() + hours);
+            startDate.setMinutes(startDate.getMinutes() + minutes);
+    
+            return startDate.getFullYear() +
+                '-' + String(startDate.getMonth() + 1).padStart(2, '0') +
+                '-' + String(startDate.getDate()).padStart(2, '0') +
+                'T' + String(startDate.getHours()).padStart(2, '0') +
+                ':' + String(startDate.getMinutes()).padStart(2, '0');
+        };
+        const isScheduleAvailable = (vehicle_data, new_start, new_end) => {
+            var flag = true;
+            vehicle_data.maintaince.forEach((element) => {
+                const start = element.time_start;
+                const end = element.time_end;
+                if(new_start <= end && new_end >= start){
+                    flag = false;
+                }
+            });
+            return flag;
+        }
+    
+        const isDriverScheduleAvailable = (driver_data, new_start, new_end) => {
+            var flag = true;
+            driver_data.schedule.forEach((element) => {
+                const end = element.arriveTime;
+                const start = element.departureTime;
+                if(new_start < end && new_end > start){
+                    flag = false;
+                }
+            })
+            return flag;
+        }
+
+        const [driver_ID, vehicle_ID] = getIDs();
+        const type_maintain = adminSection1__repairType.value;
+        const timeStart = `${adminSection1__repairDate.value}T07:00`;
+        const timeEnd = addupEndTime(new Date(timeStart), type_maintain);
+
+        const vehicleRef = doc(db, `drivers/${driver_ID}/Vehicles/${vehicle_ID}`);
+        const driverRef = doc(db, `drivers/${driver_ID}`);
+
+        const [vehicle_data, driver_data] = await Promise.all([
+            getDoc(vehicleRef).then(doc => doc.data()),
+            getDoc(driverRef).then(doc => doc.data())
+        ]);
+        if (isScheduleAvailable(vehicle_data, timeStart, timeEnd) && isDriverScheduleAvailable(driver_data, timeStart, timeEnd)) {
+            await updateDoc(vehicleRef, {
+                maintaince: arrayUnion({
+                    maintaince_type: type_maintain,
+                    time_start: timeStart,
+                    time_end: timeEnd
+                })
+            });
+            alert("Bạn đã đăng ký lịch bảo trì thành công");
+            window.location.reload();
+        } else {
+            alert("Trùng lịch");
+        }
+    }catch (error) {
+        console.error("Lỗi khi tạo lịch: ", error);
+        alert("Xảy ra lỗi khi tạo lịch");
+    }
+})

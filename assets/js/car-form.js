@@ -191,6 +191,7 @@ let checkAllInput = function() {
                             driver.carSize = subDoc.data().Size;
                             driver.carType = subDoc.data().Type;
                             driver.carID = subDoc.data().ID;
+                            driver.maintaince = subDoc.data().maintaince;
                         });
                 
                         return driver;
@@ -207,13 +208,22 @@ let checkAllInput = function() {
                         arriveTime: `${arriveDate}T${arriveTime}`
                     }
 
-                    const checkSchedule = (driver, newBooking) => {
-                        const newStart = newBooking.departureTime;
-                        const newEnd = newBooking.arriveTime;
+                    const isDriverScheduleAvailable = (driver, newBooking) => {
                         for(var i = 0; i < driver.schedule.length; i++){
                             const start = driver.schedule[i].departureTime;
                             const end = driver.schedule[i].arriveTime;
-                            if(newStart < end && newEnd > start){
+                            if(newBooking.departureTime < end && newBooking.arriveTime > start){
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+
+                    const isVehicleScheduleAvailable = (driver, newBooking) => {
+                        for(var i = 0; i < driver.maintaince.length; i++){
+                            const start = driver.maintaince[i].time_start;
+                            const end = driver.maintaince[i].time_end;
+                            if(newBooking.departureTime < end && newBooking.arriveTime > start){
                                 return false;
                             }
                         }
@@ -224,8 +234,7 @@ let checkAllInput = function() {
                     //Cái này chỉ mới kiểm tra kích thước của xe tài xế và kích thước xe khách chọn.
 
                     driverList.forEach((driver) => {
-                        console.log(driver.schedule);
-                        if (driver.carSize === carFormSize.value && checkSchedule(driver, newBooking)){
+                        if (driver.carSize === carFormSize.value && isDriverScheduleAvailable(driver, newBooking) && isVehicleScheduleAvailable(driver, newBooking)){
                             const option =  document.createElement('option');
                             option.value = `${driver.driverId}:${driver.carID}`;
                             option.innerHTML = `${driver.driverName} - ${driver.driverTel}`;
