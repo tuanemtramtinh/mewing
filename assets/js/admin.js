@@ -39,13 +39,21 @@ const db = getFirestore();
 //History--------------------------------------------------------------------------
 
 const fetchData = async (userAccount) => {
-    const carRef = collection(db, 'carOrders');    
-    const carQuery  = query(carRef, where('userId', '==', userAccount));
+
+    const carQuery  = query(collection(db, 'carOrders'), where('userId', '==', userAccount));
     let array = [];
     const carSnapshot = await getDocs(carQuery);
-    carSnapshot.docs.forEach((doc) => {
-        array.push({...doc.data(), id : doc.id});
+    const promises = carSnapshot.docs.map(async (doc) => {
+        const driverQuery = query(collection(db, 'drivers'));
+        const driverSnapshot = await getDocs(driverQuery);
+        // console.log(doc.data().driverId);
+        const drivers = driverSnapshot.docs.map(i => ({ id: i.id, fullName: i.data().fullName }));
+        const driver = drivers.find(i => i.id == doc.data().driverId);
+        if (driver){
+            array.push({ ...doc.data(), id: doc.id, driver: driver.fullName });
+        }
     });
+    await Promise.all(promises);
     return array;
 };
 
@@ -72,15 +80,11 @@ const timeConvert = (a) => {
     return formattedDateTime;
 }
 
+
+//History--------------------------------------------------------------------------
 const carImageSource = 'assets/images/product-car.png';
 const truckImageSource = 'assets/images/product-truck.png';
 const containerImageSource = 'assets/images/product-container.png';
-
-
-
-
-//History--------------------------------------------------------------------------
-
 const userListButton = document.querySelector('.adminSection1__userListButton');
 const driverListButton = document.querySelector('.adminSection1__userListDriver');
 const addDriverButton = document.querySelector('.adminSection1__addDriverButton');
@@ -246,6 +250,10 @@ userListButton.addEventListener('click', () => {
                             let orderContent;
                             if (value.type === 'Xe khách'){
                                 orderContent = {
+                                    driver: {
+                                        title : 'Tên tài xế',
+                                        driver : value.driver
+                                    },
                                     type : {
                                         title : 'Loại xe đặt',
                                         type : value.type
@@ -270,19 +278,27 @@ userListButton.addEventListener('click', () => {
                                         title : 'Nơi đến',
                                         arrivePlace : value.arrivePlace
                                     },
-                                    departureTime : {
-                                        title : 'Giờ xuất phát',
-                                        departureTime : value.departureTime
+                                    departureDate : {
+                                        title : 'Ngày đi',
+                                        departureDate : `${value.departureDate} - ${value.departureTime}`
                                     },
-                                    arriveTime : {
-                                        title : 'Giờ đến',
-                                        arriveTime : value.arriveTime
+                                    arriveDate: {
+                                        title : 'Ngày đến',
+                                        arriveDate : `${value.arriveDate} - ${value.arriveTime}`
+                                    },
+                                    carId : {
+                                        title : 'Biển số xe',
+                                        carId : value.carId
                                     }
                                     
                                 };
                             }
                             else if (value.type === 'Xe tải'){
                                 orderContent = {
+                                    driver: {
+                                        title : 'Tên tài xế',
+                                        driver : value.driver
+                                    },
                                     type : {
                                         title : 'Loại xe đặt',
                                         type : value.type
@@ -303,19 +319,27 @@ userListButton.addEventListener('click', () => {
                                         title : 'Nơi đến',
                                         arrivePlace : value.arrivePlace
                                     },
-                                    departureTime : {
-                                        title : 'Giờ xuất phát',
-                                        departureTime : value.departureTime
+                                    departureDate : {
+                                        title : 'Ngày đi',
+                                        departureDate : `${value.departureDate} - ${value.departureTime}`
                                     },
-                                    arriveTime : {
-                                        title : 'Giờ đến',
-                                        arriveTime : value.arriveTime
+                                    arriveDate: {
+                                        title : 'Ngày đến',
+                                        arriveDate : `${value.arriveDate} - ${value.arriveTime}`
+                                    },
+                                    carId : {
+                                        title : 'Biển số xe',
+                                        carId : value.carId
                                     }
                                     
                                 };
                             }
                             else{
                                 orderContent = {
+                                    driver: {
+                                        title : 'Tên tài xế',
+                                        driver : value.driver
+                                    },
                                     type : {
                                         title : 'Loại xe đặt',
                                         type : value.type
@@ -340,15 +364,18 @@ userListButton.addEventListener('click', () => {
                                         title : 'Nơi đến',
                                         arrivePlace : value.arrivePlace
                                     },
-                                    departureTime : {
-                                        title : 'Giờ xuất phát',
-                                        departureTime : value.departureTime
+                                    departureDate : {
+                                        title : 'Ngày đi',
+                                        departureDate : `${value.departureDate} - ${value.departureTime}`
                                     },
-                                    arriveTime : {
-                                        title : 'Giờ đến',
-                                        arriveTime : value.arriveTime
+                                    arriveDate: {
+                                        title : 'Ngày đến',
+                                        arriveDate : `${value.arriveDate} - ${value.arriveTime}`
+                                    },
+                                    carId : {
+                                        title : 'Biển số xe',
+                                        carId : value.carId
                                     }
-                                    
                                 };
                             }
 
@@ -663,8 +690,6 @@ const sortByMonth = (async () => {
     return monthlyRevenue;
 })
 
-// sortByMonth();
-
 const sortByWeek = (async () => {
     const carQuery = query(collection(db, 'carOrders'));
     const carSnapshot = await getDocs(carQuery);
@@ -834,9 +859,17 @@ sortByMonthAndWeek()
                 }
                 else if (index == 1){ //Revenue
 
-                    chartFunctionItem.forEach((x) => {
-                        x.className = 'adminSection1__chartFunctionItem';
-                    })
+                    chartFunctionItem[0].classList.add('adminSection1__button-modified');
+                    chartFunctionItem[1].className = 'adminSection1__chartFunctionItem';
+                    const dayArray = weeklyRevenue.map(item => item.day);
+                    const Revenue = weeklyRevenue.map(item => item.price);
+                    if (myChart){
+                        myChart.data.labels = dayArray;
+                        myChart.data.datasets[0].label = 'Doanh thu theo tuần';
+                        myChart.data.datasets[0].data = Revenue;
+
+                        myChart.update();
+                    }
 
                     item.classList.add('adminSection1__button-modified');
                     arr[0].className = 'adminSection1__statisticSectionItem';
@@ -882,9 +915,16 @@ sortByMonthAndWeek()
                 }
                 else{ //OrderNum
 
-                    chartFunctionItem.forEach((x) => {
-                        x.className = 'adminSection1__chartFunctionItem';
-                    })
+                    chartFunctionItem[0].classList.add('adminSection1__button-modified');
+                    chartFunctionItem[1].className = 'adminSection1__chartFunctionItem';
+                    const dayArray = weeklyRevenue.map(item => item.day);
+                    const Count = weeklyRevenue.map(item => item.count);
+                    if (myChart){
+                        myChart.data.labels = dayArray;
+                        myChart.data.datasets[0].label = 'Lượng xe đặt theo tuần';
+                        myChart.data.datasets[0].data = Count;
+                        myChart.update();
+                    }
 
                     item.classList.add('adminSection1__button-modified');
                     arr[0].className = 'adminSection1__statisticSectionItem';
@@ -964,6 +1004,7 @@ const adminSection1__repairButton = document.querySelector(".adminSection1__repa
 const adminSection1__repairType = document.querySelector("#adminSection1__repairType");
 const adminSection1__repairDate = document.querySelector("#adminSection1__repairDate");
 const adminSection1__repairButtonSubmit = document.querySelector(".adminSection1__repairButtonSubmit");
+const adminSection1__repairCarImage = document.querySelector(".adminSection1__repairCarImage img");
 const allDriverRef = await getDocs(collection(db, 'drivers'));
 const mapVehicle = new Map();
 let isFirstOption = true;
@@ -992,6 +1033,18 @@ function update_admin__repairInfo(){
     adminSection1__repairCarOwner.innerText = `${string_split[0]}`;
     adminSection1__repairCarWeight.innerText = `${string_split[2]}`;
     adminSection1__repairCarID.innerText = `${string_split[1]}`;
+    
+    console.log(string_split);
+    const carType = string_split[2].split(' ');
+    if (carType[1] == 'khách'){
+        adminSection1__repairCarImage.src = carImageSource;
+    }
+    else if (carType[1] == 'tải'){
+        adminSection1__repairCarImage.src = truckImageSource;
+    }
+    else{
+        adminSection1__repairCarImage.src = containerImageSource;
+    }
 }
 
 adminSection1__repairCar.addEventListener('change', (event) => {

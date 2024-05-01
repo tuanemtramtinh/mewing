@@ -46,9 +46,17 @@ const fetchData = async () => {
     const carQuery  = query(carRef, where('userId', '==', userAccount.uid));
     let array = [];
     const carSnapshot = await getDocs(carQuery);
-    carSnapshot.docs.forEach((doc) => {
-        array.push({...doc.data(), id : doc.id});
+    const promises = carSnapshot.docs.map(async (doc) => {
+        const driverQuery = query(collection(db, 'drivers'));
+        const driverSnapshot = await getDocs(driverQuery);
+        // console.log(doc.data().driverId);
+        const drivers = driverSnapshot.docs.map(i => ({ id: i.id, fullName: i.data().fullName }));
+        const driver = drivers.find(i => i.id == doc.data().driverId);
+        if (driver){
+            array.push({ ...doc.data(), id: doc.id, driver: driver.fullName });
+        }
     });
+    await Promise.all(promises);
     return array;
 };
 
@@ -84,7 +92,7 @@ onAuthStateChanged(auth, (user) => {
     if(user){
         userAccount = user;
         fetchData()
-        .then((array) => {
+        .then(async (array) => {
             historyOrder = array;
             historyOrder.sort(compareTime);
             historyOrder = historyOrder.map((value) => {
@@ -97,6 +105,8 @@ onAuthStateChanged(auth, (user) => {
             });
 
             const orderHistoryList = document.querySelector('.orderHistory__list');
+
+            console.log(historyOrder);
 
             historyOrder.forEach((value) => {
                 
@@ -156,6 +166,10 @@ onAuthStateChanged(auth, (user) => {
                 let orderContent;
                 if (value.type === 'Xe khách'){
                     orderContent = {
+                        driver: {
+                            title : 'Tên tài xế',
+                            driver : value.driver
+                        },
                         type : {
                             title : 'Loại xe đặt',
                             type : value.type
@@ -180,19 +194,27 @@ onAuthStateChanged(auth, (user) => {
                             title : 'Nơi đến',
                             arrivePlace : value.arrivePlace
                         },
-                        departureTime : {
-                            title : 'Giờ xuất phát',
-                            departureTime : value.departureTime
+                        departureDate : {
+                            title : 'Ngày đi',
+                            departureDate : `${value.departureDate} - ${value.departureTime}`
                         },
-                        arriveTime : {
-                            title : 'Giờ đến',
-                            arriveTime : value.arriveTime
+                        arriveDate: {
+                            title : 'Ngày đến',
+                            arriveDate : `${value.arriveDate} - ${value.arriveTime}`
+                        },
+                        carId : {
+                            title : 'Biển số xe',
+                            carId : value.carId
                         }
                         
                     };
                 }
                 else if (value.type === 'Xe tải'){
                     orderContent = {
+                        driver: {
+                            title : 'Tên tài xế',
+                            driver : value.driver
+                        },
                         type : {
                             title : 'Loại xe đặt',
                             type : value.type
@@ -213,19 +235,27 @@ onAuthStateChanged(auth, (user) => {
                             title : 'Nơi đến',
                             arrivePlace : value.arrivePlace
                         },
-                        departureTime : {
-                            title : 'Giờ xuất phát',
-                            departureTime : value.departureTime
+                        departureDate : {
+                            title : 'Ngày đi',
+                            departureDate : `${value.departureDate} - ${value.departureTime}`
                         },
-                        arriveTime : {
-                            title : 'Giờ đến',
-                            arriveTime : value.arriveTime
+                        arriveDate: {
+                            title : 'Ngày đến',
+                            arriveDate : `${value.arriveDate} - ${value.arriveTime}`
+                        },
+                        carId : {
+                            title : 'Biển số xe',
+                            carId : value.carId
                         }
                         
                     };
                 }
                 else{
                     orderContent = {
+                        driver: {
+                            title : 'Tên tài xế',
+                            driver : value.driver
+                        },
                         type : {
                             title : 'Loại xe đặt',
                             type : value.type
@@ -250,15 +280,18 @@ onAuthStateChanged(auth, (user) => {
                             title : 'Nơi đến',
                             arrivePlace : value.arrivePlace
                         },
-                        departureTime : {
-                            title : 'Giờ xuất phát',
-                            departureTime : value.departureTime
+                        departureDate : {
+                            title : 'Ngày đi',
+                            departureDate : `${value.departureDate} - ${value.departureTime}`
                         },
-                        arriveTime : {
-                            title : 'Giờ đến',
-                            arriveTime : value.arriveTime
+                        arriveDate: {
+                            title : 'Ngày đến',
+                            arriveDate : `${value.arriveDate} - ${value.arriveTime}`
+                        },
+                        carId : {
+                            title : 'Biển số xe',
+                            carId : value.carId
                         }
-                        
                     };
                 }
 
