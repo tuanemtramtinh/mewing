@@ -90,6 +90,7 @@ const driverListButton = document.querySelector('.adminSection1__userListDriver'
 const addDriverButton = document.querySelector('.adminSection1__addDriverButton');
 const statisticButton = document.querySelector('.adminSection1__statistic');
 const repairButton = document.querySelector('.adminSection1__repairButton');
+const repairListButton = document.querySelector('.adminSection1__repairListButton');
 
 const userListFunc = document.querySelector('.adminSection1__userList');
 
@@ -100,6 +101,8 @@ const driverListFunc = document.querySelector('.adminSection1__driverList');
 const statisticList = document.querySelector('.adminSection1__statisticList');
 
 const repair = document.querySelector('.adminSection1__repair');
+
+const adminSection1__repairCarItemList = document.querySelector('.adminSection1__repairCarItemList');
 
 const popupHistory = document.querySelector('.popupHistory');
 
@@ -115,6 +118,8 @@ userListButton.addEventListener('click', () => {
     addDriverButton.className = 'adminSection1__addDriverButton';
     statisticButton.className = 'adminSection1__statistic';
     repairButton.className = 'adminSection1__repairButton';
+    repairListButton.className = 'adminSection1__repairListButton';
+    adminSection1__repairCarItemList.innerHTML = '';
     userListFunc.innerHTML = '';
     userListFunc.style.display = "block";
     addDriver.style.display = "none";
@@ -412,7 +417,8 @@ addDriverButton.addEventListener('click', () => {
     addDriverButton.classList.add('adminSection1__button-modified');
     statisticButton.className = 'adminSection1__statistic';
     repairButton.className = 'adminSection1__repairButton';
-
+    repairListButton.className = 'adminSection1__repairListButton';
+    adminSection1__repairCarItemList.innerHTML = '';
     userListFunc.style.display = "none";
     userListFunc.innerHTML = '';
     addDriver.style.display = "flex";
@@ -536,7 +542,8 @@ driverListButton.addEventListener('click', async () => {
     addDriverButton.className = 'adminSection1__addDriverButton';
     statisticButton.className = 'adminSection1__statistic';
     repairButton.className = 'adminSection1__repairButton';
-
+    repairListButton.className = 'adminSection1__repairListButton';
+    adminSection1__repairCarItemList.innerHTML = '';
     driverListFunc.innerHTML = '';
     driverListFunc.style.display = "block";
     addDriver.style.display = "none";
@@ -765,7 +772,8 @@ sortByMonthAndWeek()
         addDriverButton.className = 'adminSection1__addDriverButton';
         statisticButton.classList.add('adminSection1__button-modified');
         repairButton.className = 'adminSection1__repairButton';
-
+        repairListButton.className = 'adminSection1__repairListButton';
+        adminSection1__repairCarItemList.innerHTML = '';
         statisticList.style.display = 'block';
         userListFunc.style.display = 'none';
         userListFunc.innerHTML = '';
@@ -776,7 +784,6 @@ sortByMonthAndWeek()
 
         const ctx = document.getElementById('myChart').getContext('2d');
         if (myChart == null){
-            console.log(myChart);
             myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -979,7 +986,8 @@ repairButton.addEventListener('click', () => {
     addDriverButton.className = 'adminSection1__addDriverButton';
     statisticButton.className = 'adminSection1__statistic';
     repairButton.classList.add('adminSection1__button-modified');
-
+    repairListButton.className = 'adminSection1__repairListButton';
+    adminSection1__repairCarItemList.innerHTML = '';
     statisticList.style.display = 'none';
     userListFunc.style.display = 'none';
     userListFunc.innerHTML = '';
@@ -1160,20 +1168,104 @@ adminSection1__repairButtonSubmit.addEventListener('click', async (event) => {
 
 
 //Maintain List
-// const adminSection1__repairListButton = document.querySelector('.adminSection1__repairListButton');
-// const adminSection1__repairCarItemList = document.querySelector('.adminSection1__repairCarItemList');
 
-// adminSection1__repairListButton.addEventListener('click', async () => {
 
-//     const maintainOrdersQuery = query(collection(db, 'maintainOrders'));
-//     const maintainOrdersSnapshot = await getDocs(maintainOrdersQuery);
+repairListButton.addEventListener('click', async () => {
 
-//     let maintainArray = [];
+
+    userListButton.className='adminSection1__userListButton';
+    addDriverButton.className = 'adminSection1__addDriverButton';
+    statisticButton.className = 'adminSection1__statistic';
+    repairButton.className = 'adminSection1__repairButton';
+    repairListButton.classList.add('adminSection1__button-modified');
+    driverListButton.className = 'adminSection1__userListDriver';
+    adminSection1__repairCarItemList.innerHTML = '';
+    driverListFunc.innerHTML = '';
+    driverListFunc.style.display = "block";
+    addDriver.style.display = "none";
+    userListFunc.style.display = 'none';
+    userListFunc.innerHTML = '';
+    statisticList.style.display = 'none';
+    repair.style.display = 'none';
     
-//     maintainOrdersSnapshot.forEach((doc) => {
-//         maintainArray.push({...doc.data()});
-//     });
 
-//     console.log(maintainArray.length);
 
-// });
+    const maintainOrdersQuery = query(collection(db, 'maintainOrders'));
+    const maintainOrdersSnapshot = await getDocs(maintainOrdersQuery);
+
+    let maintainArray = [];
+    
+    maintainOrdersSnapshot.forEach((doc) => {
+        maintainArray.push({...doc.data()});
+    });
+
+    console.log(maintainArray.length);
+
+    maintainArray.forEach((item) => {
+        const repairCarInfo = document.createElement('div');
+        repairCarInfo.classList.add('adminSection1__repairCarInfo');
+
+        let imageLink;
+
+        if (item.carType === 'Xe khách'){
+            imageLink = carImageSource;
+        }
+        else if (item.carType === 'Xe tải'){
+            imageLink = truckImageSource;
+        }
+        else{
+            imageLink = containerImageSource;
+        }
+
+        repairCarInfo.innerHTML =
+        `<div class="adminSection1__repairCarMaintainList">
+            <h3 class="adminSection1__repairCarInfoTitle">Thông tin xe được bảo dưỡng</h3>
+            <div class="adminSection1__repairCarInfoList">
+                <div class="adminSection1__repairCarLeft">
+                    <div class="adminSection1__repairCarType">
+                        <div class="adminSection1__repairCarImage">
+                            <img src=${imageLink} alt=""> 
+                            <!-- Xe tải thì truyền hình xe tải, ô tô truyền hình ô tô and so on. -->
+                        </div>
+                        <div class="adminSection1__repairCarDesc">
+                            <!-- Loại xe -->
+                            <span>${item.carType}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="adminSection1__repairCarRight">
+                    <div class="adminSection1__repairCarOwner">
+                        <span>Chủ sở hữu: </span>
+                        <span>${item.driver}</span>
+                    </div>
+                    <div class="adminSection1__repairCarWeight">
+                        <span>Kích thước: </span>
+                        <span>${item.carSize}</span>
+                    </div>
+                    <div class="adminSection1__repairCarID">
+                        <span>Biển số xe: </span>
+                        <span>${item.carID}</span>
+                    </div>
+                    <div class="adminSection1__repairCarType">
+                        <span>Loại xe: </span>
+                        <span>${item.carType}</span>
+                    </div>
+                    <div class="adminSection1__repairCarType">
+                        <span>Loại bảo dưỡng:</span>
+                        <span>${item.maintainType}</span>
+                    </div>
+                    <div class="adminSection1__repairStartTime">
+                        <span>Ngày bắt đầu bảo dưỡng: </span>
+                        <span>${item.timeStart.replace('T', '-')}</span>
+                    </div>
+                    <div class="adminSection1__repairSectionEnd">
+                        <span>Ngày kết thúc bảo dưỡng:</span>
+                        <span>${item.timeStart.replace('T', '-')}</span>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+
+        adminSection1__repairCarItemList.appendChild(repairCarInfo);
+    });
+});
