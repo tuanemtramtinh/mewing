@@ -121,38 +121,38 @@ const startEndPrice =
     {
         start: 'TPHCM',
         end: 'VUNGTAU',
-        price: '500.000 VND',
-        time: '2:00'
+        time: '2:15',
+        price: '1.800.000 VND'
     },
     {
         start: 'TPHCM',
         end: 'NHATRANG',
-        price: '1.000.000 VND',
-        time: '8:30'
+        price: '6.200.000 VND',
+        time: '9:00'
     },
     {
         start: 'VUNGTAU',
         end: 'NHATRANG',
-        price: '1.500.000 VND',
-        time: '6:00'
+        price: '5.900.000 VND',
+        time: '8:30'
     },
     {
         start: 'VUNGTAU',
         end: 'TPHCM',
-        price: '500.000 VND',
-        time: '2:00'
+        time: '2:15',
+        price: '1.800.000 VND'
     },
     {
         start: 'NHATRANG',
         end: 'TPHCM',
-        price: '1.000.000 VND',
-        time: '8:30'
+        price: '6.200.000 VND',
+        time: '9:00'
     },
     {
         start: 'NHATRANG',
         end: 'VUNGTAU',
-        price: '1.500.000 VND',
-        time: '6:00'
+        price: '5.900.000 VND',
+        time: '8:30'
     }
 ]
 

@@ -112,38 +112,68 @@ const startEndPrice =
     {
         start: 'TPHCM',
         end: 'VUNGTAU',
-        price: '500.000 VND',
-        time: '2:00'
+        time: '1:45',
+        small: {
+            price: '750.000 VND'
+        },
+        big: {
+            price: '1.500.000 VND'
+        }
     },
     {
         start: 'TPHCM',
         end: 'NHATRANG',
-        price: '1.000.000 VND',
-        time: '8:30'
+        time: '7:30',
+        small : {
+            price: '2.800.000 VND'
+        },
+        big : {
+            price: '5.200.000 VND'
+        }
     },
     {
         start: 'VUNGTAU',
         end: 'NHATRANG',
-        price: '1.500.000 VND',
-        time: '6:00'
+        time: '7:00',
+        small : {
+            price: '2.800.000 VND'
+        },
+        big : {
+            price: '4.900.000 VND'
+        }
     },
     {
         start: 'VUNGTAU',
         end: 'TPHCM',
-        price: '500.000 VND',
-        time: '2:00'
+        time: '1:45',
+        small: {
+            price: '750.000 VND'
+        },
+        big: {
+            price: '1.500.000 VND'
+        }
     },
     {
         start: 'NHATRANG',
         end: 'TPHCM',
-        price: '1.000.000 VND',
-        time: '8:30'
+        time: '7:30',
+        small : {
+            price: '2.800.000 VND'
+        },
+        big : {
+            price: '5.200.000 VND'
+        }
     },
     {
         start: 'NHATRANG',
         end: 'VUNGTAU',
-        price: '1.500.000 VND',
-        time: '6:00'
+        time: '7:00',
+        small : {
+            price: '2.800.000 VND'
+        },
+        big : {
+            price: '4.900.000 VND'
+        }
     }
 ]
 
@@ -158,7 +188,12 @@ let checkAllInput = function() {
         
         let checkStatus = startEndPrice.find(item => {
             if (item.start === departurePlace.value && item.end === arrivePlace.value && departurePlace.value !== arrivePlace.value){
-                outputPrice = item.price;
+                if (carFormWeight.value.split(' ')[2] === 'nhẹ' || carFormWeight.value.split(' ')[2] === 'trung'){
+                    outputPrice = item.small.price;
+                }
+                else{
+                    outputPrice = item.big.price;
+                }
                 const convertDateTime = () => {
 
                     let dateAndTime = getDepartureDate + 'T' + getDepartureTime;

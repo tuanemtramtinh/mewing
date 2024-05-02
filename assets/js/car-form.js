@@ -110,38 +110,72 @@ const startEndPrice =
     {
         start: 'TPHCM',
         end: 'VUNGTAU',
-        price: '500.000 VND',
-        time: '2:00'
+        time: '1:25',
+        small: {
+            price: '500.000 VND'
+        },
+        big: {
+            price: '800.000 VND'
+        }
     },
     {
         start: 'TPHCM',
         end: 'NHATRANG',
-        price: '1.000.000 VND',
-        time: '8:30'
+        time: '5:45',
+        small: {
+            price: '2.500.000 VND'
+        },
+        big: {
+            price: '3.500.000 VND' 
+        }
     },
     {
         start: 'VUNGTAU',
         end: 'NHATRANG',
         price: '1.500.000 VND',
-        time: '6:00'
+        time: '5:30',
+        small: {
+            price: '2.200.000 VND'
+        },
+        big: {
+            price: '3.200.000 VND' 
+        }
     },
     {
         start: 'VUNGTAU',
         end: 'TPHCM',
         price: '500.000 VND',
-        time: '2:00'
+        time: '1:25',
+        small: {
+            price: '500.000 VND'
+        },
+        big: {
+            price: '800.000 VND'
+        }
     },
     {
         start: 'NHATRANG',
         end: 'TPHCM',
         price: '1.000.000 VND',
-        time: '8:30'
+        time: '5:45',
+        small: {
+            price: '2.500.000 VND'
+        },
+        big: {
+            price: '3.500.000 VND' 
+        }
     },
     {
         start: 'NHATRANG',
         end: 'VUNGTAU',
         price: '1.500.000 VND',
-        time: '6:00'
+        time: '5:30',
+        small: {
+            price: '2.200.000 VND'
+        },
+        big: {
+            price: '3.200.000 VND' 
+        }
     }
 ]
 
@@ -156,7 +190,15 @@ let checkAllInput = function() {
         
         let checkStatus = startEndPrice.find(item => {
             if (item.start === departurePlace.value && item.end === arrivePlace.value && departurePlace.value !== arrivePlace.value){
-                outputPrice = item.price;
+
+                if (parseInt(carFormSize.value.split(' ')[2]) <= 30){
+                    outputPrice = item.small.price;
+                }
+                else{
+                    outputPrice = item.big.price;
+                }
+
+                
                 const convertDateTime = () => {
 
                     let dateAndTime = getDepartureDate + 'T' + getDepartureTime;
@@ -168,8 +210,6 @@ let checkAllInput = function() {
                     arriveDate = `${dateAndTime.getFullYear()}-${(dateAndTime.getMonth() + 1).toString().padStart(2, '0')}-${dateAndTime.getDate().toString().padStart(2, '0')}`;
                 }
                 convertDateTime();
-
-
 
                 //Kiểm tra tài xế có loại xe phù hợp hay không
 
