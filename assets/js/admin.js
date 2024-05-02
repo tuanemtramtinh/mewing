@@ -98,6 +98,8 @@ const addDriver = document.querySelector('.adminSection1__addDriver');
 
 const driverListFunc = document.querySelector('.adminSection1__driverList');
 
+const maintainListFunc = document.querySelector('.adminSection1__repairCarList');
+
 const statisticList = document.querySelector('.adminSection1__statisticList');
 
 const repair = document.querySelector('.adminSection1__repair');
@@ -127,6 +129,7 @@ userListButton.addEventListener('click', () => {
     driverListFunc.innerHTML ='';
     statisticList.style.display = 'none';
     repair.style.display = 'none';
+    maintainListFunc.style.display = 'none';
 
     const userRef = collection(db, 'users');
 
@@ -425,7 +428,8 @@ addDriverButton.addEventListener('click', () => {
     driverListFunc.style.display = "none";
     driverListFunc.innerHTML ='';
     statisticList.style.display = 'none';
-    repair.style.display = 'none'
+    repair.style.display = 'none';
+    maintainListFunc.style.display = 'none';
 
     const fullname = document.querySelector('#adminSection1__driverName');
     const id = document.querySelector('#adminSection1__driverID');
@@ -551,6 +555,7 @@ driverListButton.addEventListener('click', async () => {
     userListFunc.innerHTML = '';
     statisticList.style.display = 'none';
     repair.style.display = 'none';
+    maintainListFunc.style.display = 'none';
 
     try {
         const driverRef = collection(db, 'drivers');
@@ -781,6 +786,7 @@ sortByMonthAndWeek()
         driverListFunc.innerHTML = '';
         addDriver.style.display = 'none';
         repair.style.display = 'none';
+        maintainListFunc.style.display = 'none';
 
         const ctx = document.getElementById('myChart').getContext('2d');
         if (myChart == null){
@@ -995,6 +1001,7 @@ repairButton.addEventListener('click', () => {
     driverListFunc.innerHTML = '';
     addDriver.style.display = 'none';
     repair.style.display = 'block';
+    maintainListFunc.style.display = 'none';
 });
 
 
@@ -1187,6 +1194,7 @@ repairListButton.addEventListener('click', async () => {
     userListFunc.innerHTML = '';
     statisticList.style.display = 'none';
     repair.style.display = 'none';
+    maintainListFunc.style.display = 'block';
     
 
 
@@ -1260,7 +1268,7 @@ repairListButton.addEventListener('click', async () => {
                     </div>
                     <div class="adminSection1__repairSectionEnd">
                         <span>Ngày kết thúc bảo dưỡng:</span>
-                        <span>${item.timeStart.replace('T', '-')}</span>
+                        <span>${item.timeEnd.replace('T', '-')}</span>
                     </div>
                 </div>
             </div>

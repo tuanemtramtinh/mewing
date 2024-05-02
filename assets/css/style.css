@@ -1682,6 +1682,7 @@ input[type=radio] {
   border-radius: 20px;
 }
 .adminSection1__repairCarList {
+  display: none;
   margin-left: 15px;
 }
 
