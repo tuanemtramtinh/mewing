@@ -285,7 +285,8 @@ carForm.addEventListener('submit', async (e) => {
     const driverRef = doc(db, 'drivers', carDriverList.value.split(':')[0]);
     const newBooking = {
         departureTime: `${getDepartureDate}T${getDepartureTime}`,
-        arriveTime: `${arriveDate}T${arriveTime}`
+        arriveTime: `${arriveDate}T${arriveTime}`,
+        carOrderId: carOrderId
     }
     await updateDoc(driverRef, {
         schedule: arrayUnion(newBooking)
@@ -311,5 +312,6 @@ carForm.addEventListener('submit', async (e) => {
         type: 'Xe khách'
     })
     alert(`Đặt xe thành công, mã đặt xe của bạn là ${carOrderId}`);
-    window.location.href = 'index.html';
+    // window.location.href = 'index.html';
+    window.location.reload();
 });

@@ -47,7 +47,7 @@ const fetchData = async (userAccount) => {
         const driverQuery = query(collection(db, 'drivers'));
         const driverSnapshot = await getDocs(driverQuery);
         // console.log(doc.data().driverId);
-        const drivers = driverSnapshot.docs.map(i => ({ id: i.id, fullName: i.data().fullName }));
+        const drivers = driverSnapshot.docs.map(i => ({ id: i.id, fullName: i.data().fullName, tel: i.data().tel }));
         const driver = drivers.find(i => i.id == doc.data().driverId);
         if (driver){
             array.push({ ...doc.data(), id: doc.id, driver: driver.fullName });
@@ -197,7 +197,7 @@ userListButton.addEventListener('click', () => {
                                 orderTime: time[1],
                             };
                         });
-
+                        historyOrder = historyOrder.reverse();
                         const orderHistoryList = document.querySelector('.orderHistory__list');
 
                         historyOrder.forEach((value) => {
@@ -262,6 +262,10 @@ userListButton.addEventListener('click', () => {
                                         title : 'Tên tài xế',
                                         driver : value.driver
                                     },
+                                    driverTel: {
+                                        title : 'Số điện thoại tài xế',
+                                        driverTel : value.driverTel
+                                    },
                                     type : {
                                         title : 'Loại xe đặt',
                                         type : value.type
@@ -307,6 +311,10 @@ userListButton.addEventListener('click', () => {
                                         title : 'Tên tài xế',
                                         driver : value.driver
                                     },
+                                    driverTel: {
+                                        title : 'Số điện thoại tài xế',
+                                        driverTel : value.driverTel
+                                    },
                                     type : {
                                         title : 'Loại xe đặt',
                                         type : value.type
@@ -347,6 +355,10 @@ userListButton.addEventListener('click', () => {
                                     driver: {
                                         title : 'Tên tài xế',
                                         driver : value.driver
+                                    },
+                                    driverTel: {
+                                        title : 'Số điện thoại tài xế',
+                                        driverTel : value.driverTel
                                     },
                                     type : {
                                         title : 'Loại xe đặt',
@@ -538,6 +550,25 @@ add__Driver_button.addEventListener('click', async (event) => {
     }
 });
 
+const fetchDataDriver = async (driverID) => {
+
+    const carQuery  = query(collection(db, 'carOrders'), where('driverId', '==', driverID));
+    let array = [];
+    const carSnapshot = await getDocs(carQuery);
+    const promises = carSnapshot.docs.map(async (doc) => {
+        const driverQuery = query(collection(db, 'drivers'));
+        const driverSnapshot = await getDocs(driverQuery);
+        // console.log(doc.data().driverId);
+        const drivers = driverSnapshot.docs.map(i => ({ id: i.id, fullName: i.data().fullName }));
+        const driver = drivers.find(i => i.id == doc.data().driverId);
+        if (driver){
+            array.push({ ...doc.data(), id: doc.id, driver: driver.fullName });
+        }
+    });
+    await Promise.all(promises);
+    return array;
+};
+
 
 driverListButton.addEventListener('click', async () => {
 
@@ -613,7 +644,11 @@ driverListButton.addEventListener('click', async () => {
             const license = document.createElement('li');
             license.innerHTML = `<span>Giấy phép lái xe: </span><span>${driver.license}</span>`;
             ulElement.appendChild(license);
-            
+            const button = document.createElement('i');
+            button.classList.add("fa-solid");
+            button.classList.add("fa-chevron-right");
+            button.classList.add("popupHistory-button");
+            ulElement.appendChild(button);
             ulDriverList.push(ulElement);
         }
 
@@ -621,6 +656,239 @@ driverListButton.addEventListener('click', async () => {
         ulDriverList.forEach((element) => {
             driverListDiv.appendChild(element);
         });
+
+        console.log(driverList);
+
+        const popupHistoryButtons = document.querySelectorAll('.popupHistory-button');
+        popupHistoryButtons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                document.querySelector('.orderHistory__list').innerHTML = '';
+                popupHistory.style.display = 'flex';
+                fetchDataDriver(driverList[index].id)
+                .then((array) => {
+                    let historyOrder = [];
+                    historyOrder = array;
+                    historyOrder.sort(compareTime);
+                    historyOrder = historyOrder.map((value) => {
+                        const time = timeConvert(value).split(" ");
+                        return {
+                            ...value,
+                            orderDate: time[0],
+                            orderTime: time[1],
+                        };
+                    });
+                    historyOrder = historyOrder.reverse();
+                    const orderHistoryList = document.querySelector('.orderHistory__list');
+
+                    historyOrder.forEach((value) => {
+                        
+                        //Item
+                        const orderHistoryItem = document.createElement('div');
+                        orderHistoryItem.classList.add('orderHistory__item');
+
+                        //Intro
+                        const orderHistoryIntro = document.createElement('ul');
+                        orderHistoryIntro.classList.add('orderHistory__intro');
+                        const orderId = document.createElement('li');
+                        orderId.innerHTML = `<div>Mã đơn hàng</div> <div>${value.id}</div>`;
+                        const orderDate = document.createElement('li');
+                        orderDate.innerHTML = `<div>Ngày đặt</div> <div>${value.orderDate}</div>`;
+                        const orderTime = document.createElement('li');
+                        orderTime.innerHTML = `<div>Thời gian</div> <div>${value.orderTime}</div>`;
+                        const price = document.createElement('li');
+                        price.innerHTML = `<div>Giá tiền</div> <div>${value.price}</div>`;
+                        orderHistoryIntro.appendChild(orderId);
+                        orderHistoryIntro.appendChild(orderDate);
+                        orderHistoryIntro.appendChild(orderTime);
+                        orderHistoryIntro.appendChild(price);
+
+                        //Desc
+                        const orderHistoryDesc = document.createElement('div');
+                        orderHistoryDesc.classList.add('orderHistory__desc');
+
+                        //Image
+                        const orderHistoryImage = document.createElement('div');
+                        orderHistoryImage.classList.add('orderHistory__image');
+                        const imageElement = document.createElement('img');
+                        const orderHistoryCarName = document.createElement('div');
+                        orderHistoryCarName.classList.add('orderHistory__carName');
+                        if (value.type === 'Xe khách'){
+                            imageElement.src = carImageSource;
+                            orderHistoryCarName.innerHTML = 'Xe khách';
+                        } 
+                        else if (value.type === 'Xe tải'){
+                            imageElement.src = truckImageSource;
+                            orderHistoryCarName.innerHTML = 'Xe tải';
+                        }
+                        else if (value.type === 'Xe container'){
+                            imageElement.src = containerImageSource;
+                            orderHistoryCarName.innerHTML = 'Xe container';
+                        }
+                        orderHistoryImage.appendChild(imageElement);
+                        orderHistoryImage.appendChild(orderHistoryCarName);
+
+                        //Content
+
+                        const orderHistoryContent = document.createElement('ul');
+                        orderHistoryContent.classList.add('orderHistory__content');
+                        orderHistoryContent.classList.add('grid');
+                        orderHistoryContent.classList.add('grid-cols-3');
+                        orderHistoryContent.classList.add('gap-[20px]');
+                        
+                        let orderContent;
+                        if (value.type === 'Xe khách'){
+                            orderContent = {
+                                customer: {
+                                    title : 'Tên khách hàng',
+                                    customer : value.fullName
+                                },
+                                tel: {
+                                    title : 'Số điện thoại khách',
+                                    tel : value.tel
+                                },
+                                type : {
+                                    title : 'Loại xe đặt',
+                                    type : value.type
+                                },
+                                size : {
+                                    title : 'Kích thước',
+                                    size : value.carSize,
+                                },
+                                seatType : {
+                                    title : 'Loại ghế',
+                                    seatType : value.carSeatType
+                                },
+                                feature : {
+                                    title : 'Tiện nghi',
+                                    feature : value.carFeature
+                                },
+                                departurePlace : {
+                                    title : 'Nơi đi',
+                                    departurePlace : value.departurePlace
+                                },
+                                arrivePlace : {
+                                    title : 'Nơi đến',
+                                    arrivePlace : value.arrivePlace
+                                },
+                                departureDate : {
+                                    title : 'Ngày đi',
+                                    departureDate : `${value.departureDate} - ${value.departureTime}`
+                                },
+                                arriveDate: {
+                                    title : 'Ngày đến',
+                                    arriveDate : `${value.arriveDate} - ${value.arriveTime}`
+                                },
+                            };
+                        }
+                        else if (value.type === 'Xe tải'){
+                            orderContent = {
+                                customer: {
+                                    title : 'Tên khách hàng',
+                                    customer : value.fullName
+                                },
+                                tel: {
+                                    title : 'Số điện thoại khách',
+                                    tel : value.tel
+                                },
+                                type : {
+                                    title : 'Loại xe đặt',
+                                    type : value.type
+                                },
+                                weight : {
+                                    title : 'Trọng lượng',
+                                    weight : value.carWeight,
+                                },
+                                boxType : {
+                                    title : 'Loại hộp',
+                                    boxType : value.carBoxType
+                                },
+                                departurePlace : {
+                                    title : 'Nơi đi',
+                                    departurePlace : value.departurePlace
+                                },
+                                arrivePlace : {
+                                    title : 'Nơi đến',
+                                    arrivePlace : value.arrivePlace
+                                },
+                                departureDate : {
+                                    title : 'Ngày đi',
+                                    departureDate : `${value.departureDate} - ${value.departureTime}`
+                                },
+                                arriveDate: {
+                                    title : 'Ngày đến',
+                                    arriveDate : `${value.arriveDate} - ${value.arriveTime}`
+                                },                         
+                            };
+                        }
+                        else{
+                            orderContent = {
+                                customer: {
+                                    title : 'Tên khách hàng',
+                                    customer : value.fullName
+                                },
+                                tel: {
+                                    title : 'Số điện thoại khách',
+                                    tel : value.tel
+                                },
+                                type : {
+                                    title : 'Loại xe đặt',
+                                    type : value.type
+                                },
+                                size : {
+                                    title : 'Kích thước',
+                                    size : value.carSize,
+                                },
+                                goodsType : {
+                                    title : 'Loại hàng hoá',
+                                    goodsType : value.carGoodsType
+                                },
+                                structure : {
+                                    title : 'Cấu trúc',
+                                    structure : value.carStructure
+                                },
+                                departurePlace : {
+                                    title : 'Nơi đi',
+                                    departurePlace : value.departurePlace
+                                },
+                                arrivePlace : {
+                                    title : 'Nơi đến',
+                                    arrivePlace : value.arrivePlace
+                                },
+                                departureDate : {
+                                    title : 'Ngày đi',
+                                    departureDate : `${value.departureDate} - ${value.departureTime}`
+                                },
+                                arriveDate: {
+                                    title : 'Ngày đến',
+                                    arriveDate : `${value.arriveDate} - ${value.arriveTime}`
+                                },
+                            };
+                        }
+
+                        for (var key in orderContent){
+                            const liElement = document.createElement('li');
+                            const divFirstElement = document.createElement('div');
+                            const divSecondElement = document.createElement('div'); 
+                            divFirstElement.innerHTML = orderContent[key].title;
+                            divSecondElement.innerHTML = orderContent[key][key];
+                            liElement.appendChild(divFirstElement);
+                            liElement.appendChild(divSecondElement);
+                            orderHistoryContent.appendChild(liElement);
+                        }
+
+                        orderHistoryDesc.appendChild(orderHistoryImage);
+                        orderHistoryDesc.appendChild(orderHistoryContent);
+                        
+                        orderHistoryItem.appendChild(orderHistoryIntro);
+                        orderHistoryItem.appendChild(orderHistoryDesc);
+
+                        orderHistoryList.appendChild(orderHistoryItem);
+                    });  
+                })
+            });
+        })
+
+
     } catch (error) {
         console.error("Error fetching driver or vehicle data: ", error);
     }

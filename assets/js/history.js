@@ -50,10 +50,10 @@ const fetchData = async () => {
         const driverQuery = query(collection(db, 'drivers'));
         const driverSnapshot = await getDocs(driverQuery);
         // console.log(doc.data().driverId);
-        const drivers = driverSnapshot.docs.map(i => ({ id: i.id, fullName: i.data().fullName }));
+        const drivers = driverSnapshot.docs.map(i => ({ id: i.id, fullName: i.data().fullName, tel: i.data().tel }));
         const driver = drivers.find(i => i.id == doc.data().driverId);
         if (driver){
-            array.push({ ...doc.data(), id: doc.id, driver: driver.fullName });
+            array.push({ ...doc.data(), id: doc.id, driver: driver.fullName, driverTel: driver.tel });
         }
     });
     await Promise.all(promises);
@@ -103,7 +103,7 @@ onAuthStateChanged(auth, (user) => {
                     orderTime: time[1],
                 };
             });
-
+            historyOrder = historyOrder.reverse();
             const orderHistoryList = document.querySelector('.orderHistory__list');
 
             console.log(historyOrder);
@@ -170,6 +170,10 @@ onAuthStateChanged(auth, (user) => {
                             title : 'Tên tài xế',
                             driver : value.driver
                         },
+                        driverTel: {
+                            title : 'Số điện thoại tài xế',
+                            driverTel : value.driverTel
+                        },
                         type : {
                             title : 'Loại xe đặt',
                             type : value.type
@@ -215,6 +219,10 @@ onAuthStateChanged(auth, (user) => {
                             title : 'Tên tài xế',
                             driver : value.driver
                         },
+                        driverTel: {
+                            title : 'Số điện thoại tài xế',
+                            driverTel : value.driverTel
+                        },
                         type : {
                             title : 'Loại xe đặt',
                             type : value.type
@@ -255,6 +263,10 @@ onAuthStateChanged(auth, (user) => {
                         driver: {
                             title : 'Tên tài xế',
                             driver : value.driver
+                        },
+                        driverTel: {
+                            title : 'Số điện thoại tài xế',
+                            driverTel : value.driverTel
                         },
                         type : {
                             title : 'Loại xe đặt',

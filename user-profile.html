@@ -104,40 +104,27 @@
           <div class="profile__list">
             <div class="profile__left"> 
               <div class="profile__image"><img src="assets/images/default-avatar.svg" alt=""></div>
-              <h3>Role: <span>User</span></h3>
-              <div class="profile__socials"><a href=""><i class="fa-brands fa-facebook-f"></i></a><a href=""><i class="fa-brands fa-x-twitter"></i></a><a href=""><i class="fa-brands fa-tiktok"></i></a><a href=""><i class="fa-brands fa-instagram"></i></a></div>
+              <h3 class="profile__usernameLeft">Username: <span></span></h3>
             </div>
             <div class="profile__right">
               <h3 class="profile__title"><i class="fa-solid fa-user"></i>tài khoản</h3>
               <form class="profile__form" action=""> 
                 <div class="profile__section grid grid-cols-2 gap-[40px]">
                   <div class="profile__info">
-                    <label for="">họ và tên</label>
-                    <input type="text">
+                    <label for="profile__fullname">họ và tên</label>
+                    <input type="text" id="profile__fullname">
                   </div>
                   <div class="profile__info">
-                    <label for="">tên tài khoản</label>
-                    <input type="text">
+                    <label for="profile__username">tên tài khoản</label>
+                    <input type="text" id="profile__username">
                   </div>
                   <div class="profile__info">
-                    <label for="">email </label>
-                    <input type="email">
+                    <label for="profile__email">email </label>
+                    <input type="email" id="profile__email" readonly>
                   </div>
                   <div class="profile__info">
-                    <label for="">facebook</label>
-                    <input type="text">
-                  </div>
-                  <div class="profile__info">
-                    <label for="">x</label>
-                    <input type="text">
-                  </div>
-                  <div class="profile__info">
-                    <label for="">tiktok</label>
-                    <input type="text">
-                  </div>
-                  <div class="profile__info">
-                    <label for="">instagram</label>
-                    <input type="text" name="">
+                    <label for="profile__tel">số điện thoại </label>
+                    <input type="tel" id="profile__tel">
                   </div>
                 </div>
                 <button class="profile__button" type="submit">Lưu</button>
@@ -147,6 +134,7 @@
         </div>
       </div>
     </div>
+    <script type="module" src="assets/js/user-profile.js"> </script>
     <div class="footer">
       <div class="container">
         <div class="footer__wrap">
