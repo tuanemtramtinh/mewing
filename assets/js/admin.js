@@ -1482,15 +1482,19 @@ repairListButton.addEventListener('click', async () => {
         repairCarInfo.classList.add('adminSection1__repairCarInfo');
 
         let imageLink;
+        let carSize;
 
         if (item.carType === 'Xe khách'){
             imageLink = carImageSource;
+            carSize = item.carSize;
         }
         else if (item.carType === 'Xe tải'){
             imageLink = truckImageSource;
+            carSize = item.carWeight;
         }
         else{
             imageLink = containerImageSource;
+            carSize = item.carSize;
         }
 
         repairCarInfo.innerHTML =
@@ -1516,7 +1520,7 @@ repairListButton.addEventListener('click', async () => {
                     </div>
                     <div class="adminSection1__repairCarWeight">
                         <span>Kích thước: </span>
-                        <span>${item.carSize}</span>
+                        <span>${carSize}</span>
                     </div>
                     <div class="adminSection1__repairCarID">
                         <span>Biển số xe: </span>
