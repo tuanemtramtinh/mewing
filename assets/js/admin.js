@@ -776,6 +776,7 @@ sortByMonthAndWeek()
 
         const ctx = document.getElementById('myChart').getContext('2d');
         if (myChart == null){
+            console.log(myChart);
             myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -1159,20 +1160,20 @@ adminSection1__repairButtonSubmit.addEventListener('click', async (event) => {
 
 
 //Maintain List
-const adminSection1__repairListButton = document.querySelector('.adminSection1__repairListButton');
-const adminSection1__repairCarItemList = document.querySelector('.adminSection1__repairCarItemList');
+// const adminSection1__repairListButton = document.querySelector('.adminSection1__repairListButton');
+// const adminSection1__repairCarItemList = document.querySelector('.adminSection1__repairCarItemList');
 
-adminSection1__repairListButton.addEventListener('click', async () => {
+// adminSection1__repairListButton.addEventListener('click', async () => {
 
-    const maintainOrdersQuery = query(collection(db, 'maintainOrders'));
-    const maintainOrdersSnapshot = await getDocs(maintainOrdersQuery);
+//     const maintainOrdersQuery = query(collection(db, 'maintainOrders'));
+//     const maintainOrdersSnapshot = await getDocs(maintainOrdersQuery);
 
-    let maintainArray = [];
+//     let maintainArray = [];
     
-    maintainOrdersSnapshot.forEach((doc) => {
-        maintainArray.push({...doc.data()});
-    });
+//     maintainOrdersSnapshot.forEach((doc) => {
+//         maintainArray.push({...doc.data()});
+//     });
 
-    console.log(maintainArray.length);
+//     console.log(maintainArray.length);
 
-});
+// });
