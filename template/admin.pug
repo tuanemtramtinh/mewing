@@ -26,6 +26,8 @@ block main
                     ul(class="adminSection1__section") 
                         li 
                             button(type="submit" class="adminSection1__userListButton") Danh sách người dùng
+                        li
+                            button(type="submit" class="adminSection1__repairListButton") Danh sách xe bảo dưỡng
                         li 
                             button(type="submit" class="adminSection1__repairButton") Đặt lịch bảo dưỡng
                         li 
@@ -180,7 +182,45 @@ block main
                                     input(type="date", name="" id="adminSection1__repairDate")  
 
                                 button(type="submit" class="adminSection1__repairButtonSubmit") ĐẶT LỊCH 
-                                
+                        
+
+                    div(class="adminSection1__repairCarList")
+                        div(class="adminSection1__repairCarListWrap")
+
+                            div(class="adminSection1__repairCarItemList")
+                                div(class="adminSection1__repairCarInfo")
+                                    h3(class="adminSection1__repairCarInfoTitle") Thông tin xe được bảo dưỡng 
+                                    div(class="adminSection1__repairCarInfoList")
+                                        div(class="adminSection1__repairCarLeft")
+                                            div(class="adminSection1__repairCarType")
+                                                div(class="adminSection1__repairCarImage")
+                                                    img(src="", alt="") 
+                                                    //Xe tải thì truyền hình xe tải, ô tô truyền hình ô tô and so on.
+                                                div(class="adminSection1__repairCarDesc")
+                                                    // Loại xe
+                                                    span 
+                                        div(class="adminSection1__repairCarRight")
+                                            div(class="adminSection1__repairCarOwner")
+                                                span Chủ sở hữu: 
+                                                span 
+                                            div(class="adminSection1__repairCarWeight")
+                                                span Kích thước: 
+                                                span 
+                                            div(class="adminSection1__repairCarID")
+                                                span Biển số xe:  
+                                                span 
+                                            div(class="adminSection1__repairCarType")
+                                                span Loại xe: 
+                                                span
+                                            div(class="adminSection1__repairCarSize")
+                                                span Kích thước:
+                                                span 
+                                            div(class="adminSection1__repairCarType")
+                                                span Loại bảo dưỡng:
+                                            div(class="adminSection1__repairStartTime")
+                                                span Ngày bắt đầu bảo dưỡng: 
+                                            div(class="adminSection1__repairSectionEnd")
+                                                span Ngày kết thúc bảo dưỡng:
 
     script(type="module" src="assets/js/admin.js") 
 

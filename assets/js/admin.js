@@ -1113,7 +1113,32 @@ adminSection1__repairButtonSubmit.addEventListener('click', async (event) => {
             getDoc(vehicleRef).then(doc => doc.data()),
             getDoc(driverRef).then(doc => doc.data())
         ]);
+
         if (isScheduleAvailable(vehicle_data, timeStart, timeEnd) && isDriverScheduleAvailable(driver_data, timeStart, timeEnd)) {
+
+            if (vehicle_data.Type === "Xe tải"){
+                await addDoc(collection(db, 'maintainOrders'), {
+                    driver: driver_data.fullName,
+                    carID: vehicle_data.ID,
+                    maintainType: type_maintain,
+                    carType: vehicle_data.Type,
+                    carWeight: vehicle_data.Weight,
+                    timeStart: timeStart,
+                    timeEnd: timeEnd
+                });    
+            }
+            else{
+                await addDoc(collection(db, 'maintainOrders'), {
+                    driver: driver_data.fullName,
+                    carID: vehicle_data.ID,
+                    maintainType: type_maintain,
+                    carType: vehicle_data.Type,
+                    carSize: vehicle_data.Size,
+                    timeStart: timeStart,
+                    timeEnd: timeEnd
+                });    
+            }
+            
             await updateDoc(vehicleRef, {
                 maintaince: arrayUnion({
                     maintaince_type: type_maintain,
@@ -1131,3 +1156,23 @@ adminSection1__repairButtonSubmit.addEventListener('click', async (event) => {
         alert("Xảy ra lỗi khi tạo lịch");
     }
 })
+
+
+//Maintain List
+const adminSection1__repairListButton = document.querySelector('.adminSection1__repairListButton');
+const adminSection1__repairCarItemList = document.querySelector('.adminSection1__repairCarItemList');
+
+adminSection1__repairListButton.addEventListener('click', async () => {
+
+    const maintainOrdersQuery = query(collection(db, 'maintainOrders'));
+    const maintainOrdersSnapshot = await getDocs(maintainOrdersQuery);
+
+    let maintainArray = [];
+    
+    maintainOrdersSnapshot.forEach((doc) => {
+        maintainArray.push({...doc.data()});
+    });
+
+    console.log(maintainArray.length);
+
+});

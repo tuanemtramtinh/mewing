@@ -58,7 +58,7 @@
               <input class="popupLogin__email" type="email" placeholder="Email" id="popupLogin__email">
             </div>
             <div> 
-              <label for="popupLogin__pass">Password </label>
+              <label for="popupLogin__password">Password</label>
               <input class="popupLogin__password" type="password" placeholder="Password" id="popupLogin__password">
             </div>
             <button class="popupLogin__submit" type="submit" id="popupLogin__submit">Login</button>
@@ -88,7 +88,7 @@
               <input class="popupRegister__email" type="email" placeholder="Email" id="popupRegister__email">
             </div>
             <div> 
-              <label for="popupRegister__pass">Password </label>
+              <label for="popupRegister__password">Password</label>
               <input class="popupRegister__password" type="password" placeholder="Password" id="popupRegister__password">
             </div>
             <button class="popupRegister__submit" type="submit" id="popupRegister__submit">Register</button>
@@ -113,6 +113,9 @@
             <ul class="adminSection1__section"> 
               <li> 
                 <button class="adminSection1__userListButton" type="submit">Danh sách người dùng</button>
+              </li>
+              <li>
+                <button class="adminSection1__repairListButton" type="submit">Danh sách xe bảo dưỡng</button>
               </li>
               <li> 
                 <button class="adminSection1__repairButton" type="submit">Đặt lịch bảo dưỡng</button>
@@ -269,6 +272,37 @@
                   </div>
                   <button class="adminSection1__repairButtonSubmit" type="submit">ĐẶT LỊCH </button>
                 </form>
+              </div>
+            </div>
+            <div class="adminSection1__repairCarList">
+              <div class="adminSection1__repairCarListWrap">
+                <div class="adminSection1__repairCarItemList">
+                  <div class="adminSection1__repairCarInfo">
+                    <h3 class="adminSection1__repairCarInfoTitle">Thông tin xe được bảo dưỡng </h3>
+                    <div class="adminSection1__repairCarInfoList">
+                      <div class="adminSection1__repairCarLeft">
+                        <div class="adminSection1__repairCarType">
+                          <div class="adminSection1__repairCarImage"><img src="" alt="">
+                            <!--Xe tải thì truyền hình xe tải, ô tô truyền hình ô tô and so on.-->
+                          </div>
+                          <div class="adminSection1__repairCarDesc">
+                            <!-- Loại xe--><span> </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="adminSection1__repairCarRight">
+                        <div class="adminSection1__repairCarOwner"><span>Chủ sở hữu: </span><span> </span></div>
+                        <div class="adminSection1__repairCarWeight"><span>Kích thước: </span><span> </span></div>
+                        <div class="adminSection1__repairCarID"><span>Biển số xe:  </span><span> </span></div>
+                        <div class="adminSection1__repairCarType"><span>Loại xe: </span><span></span></div>
+                        <div class="adminSection1__repairCarSize"><span>Kích thước:</span><span> </span></div>
+                        <div class="adminSection1__repairCarType"><span>Loại bảo dưỡng:</span></div>
+                        <div class="adminSection1__repairStartTime"><span>Ngày bắt đầu bảo dưỡng: </span></div>
+                        <div class="adminSection1__repairSectionEnd"><span>Ngày kết thúc bảo dưỡng:</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

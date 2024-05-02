@@ -308,20 +308,11 @@ onAuthStateChanged(auth, (user) => {
 
                 orderHistoryDesc.appendChild(orderHistoryImage);
                 orderHistoryDesc.appendChild(orderHistoryContent);
-                
                 orderHistoryItem.appendChild(orderHistoryIntro);
                 orderHistoryItem.appendChild(orderHistoryDesc);
-
                 console.log(orderHistoryItem);
-               
                 orderHistoryList.appendChild(orderHistoryItem);
-
-
-            });
-
-            
-            
-            
+            });        
         });
     }
 })

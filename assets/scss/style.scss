@@ -1999,6 +1999,10 @@ input[type="radio"] {
         padding: 10px 20px;
         border-radius: 20px;
     }
+
+    &__repairCarList{
+        margin-left: 15px;
+    }
 }
 
 .popupHistory{
@@ -2040,6 +2044,8 @@ input[type="radio"] {
         right: 20px;
         cursor: pointer;
     }
+
+    
 }
 
 #myChart{
