@@ -74,6 +74,8 @@ tripRegister.addEventListener('click', () => {
 
     const carWeightCheck = Array.from(carWeights).find((carWeight) => carWeight.checked);
     const carBoxTypeCheck = Array.from(carBoxTypes).find((carBoxType) => carBoxType.checked);
+    carDriverList.innerHTML = '';
+    carDriverList.style.display = 'none';
     if (userAccount == null){
         alert('Vui lòng đăng nhập để thực hiện chức năng này');
         //location.reload();
@@ -269,7 +271,10 @@ let checkAllInput = function() {
                         }
                     });
 
-                    if (flag == false) alert("Hiện tại không có tài xế");
+                    if (flag == false){
+                        alert("Hiện tại không có tài xế");
+                        window.location.reload();
+                    }
                 });
 
                     return true;        

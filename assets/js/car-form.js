@@ -74,6 +74,9 @@ tripRegister.addEventListener('click', () => {
     const carSizeCheck = Array.from(carSizes).find((carSize) => carSize.checked);
     const carSeatTypeCheck = Array.from(carSeatTypes).find((carSeatType) => carSeatType.checked);
     const carFeatureCheck = Array.from(carFeatures).find((carFeature) => carFeature.checked);
+    carDriverList.innerHTML = '';
+    carDriverList.style.display = 'none';
+
 
     if (userAccount == null){
         alert('Vui lòng đăng nhập để thực hiện chức năng này');
@@ -283,7 +286,10 @@ let checkAllInput = function() {
                         }
                     });
 
-                    if (flag == false) alert("Hiện tại không có tài xế");
+                    if (flag == false){
+                        alert("Hiện tại không có tài xế");
+                        window.location.reload();
+                    }
                 });
 
                 return true;        
