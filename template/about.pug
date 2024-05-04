@@ -35,27 +35,42 @@ block main
             {
                 name: 'Nguyễn Tuấn Anh',
                 image: 'assets/images/tuananh.jpg',
-                desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+                desc: 'Nhóm trưởng với tính cách hiền lành, trầm tính và chăm chỉ. Sự hoà đồng và linh hoạt của Tuấn Anh tạo nên một môi trường làm việc tích cực và hòa thuận cho các thành viên trong nhóm..',
+                facebook: 'https://www.facebook.com/anh.nguyentuan.169067',
+                tiktok: 'https://www.tiktok.com/@anhnguyentuan027',
+                insta: 'https://www.instagram.com/tuanemtramtinh/',
             },
             {
                 name : 'Ngô Ngọc Triệu Mẫn',
                 image: 'assets/images/man.jpg',
-                desc : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+                desc : 'Là thành viên nữ duy nhất của nhóm. Với sở thích quay tóp tóp, và một chút vô tri, Triệu Mấn mang lại niềm vui cho mọi người trong các buổi làm việc.',
+                facebook: 'https://www.facebook.com/profile.php?id=100022328329551',
+                tiktok: 'https://www.tiktok.com/@kandy_trieuman27?lang=vi-VN',
+                insta: 'https://www.instagram.com/tm_kandy275/',
             },
             {
                 name : 'Nguyễn Trần Minh Anh',
-                image: 'assets/images/minhanh.jpg',
-                desc : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+                image: 'assets/images/minhanh.png',
+                desc : 'Có sở thích với môn xác suất thống kê, tính được hầu hết các xác suất nhưng không tính được xác suất ở bên cạnh người mình yêu.',
+                facebook: 'https://www.facebook.com/ghostng04',
+                tiktok: 'https://www.tiktok.com/@ntma270404?lang=vi-VN',
+                insta: 'https://www.instagram.com/gh.anh04/',
             },
             {
                 name : 'Dương Thanh Tú',
                 image: 'assets/images/tu.jpg',
-                desc : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+                desc : 'Thành viên lớn nhất của nhóm. Thanh Tú có nhiều kiến thức, kinh nghiệm cũng như trải nghiệm để giúp đỡ các thành viên khi gặp khó khăn.',
+                facebook: 'https://www.facebook.com/Supreme3Bye',
+                tiktok: 'https://www.tiktok.com/@gayslaye542003?_t=8liE5JWO6in&_r=1',
+                insta: '#',
             },
             {
                 name : 'Trần Gia Quí',
                 image: 'assets/images/qui.jpg',
-                desc : 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+                desc : 'Là 1 fan bóng đá đích thực, nên Gia Quí là người có nhiều năng lượng, luôn chủ động trong các công việc nhóm cũng như các hoạt động thể thao khác. ',
+                facebook: 'https://www.facebook.com/profile.php?id=100010376584325',
+                tiktok: 'https://www.tiktok.com/@giaqui08?_t=8liDHBwCW7l&_r=1',
+                insta: 'https://www.instagram.com/giaquy08/',
             }
         ];
 
@@ -78,8 +93,7 @@ block main
                                 div(class="member__item-desc") #{member.desc}
 
                                 div(class="member__item-socials")
-                                    a(href="") <i class="fa-brands fa-facebook-f"></i>
-                                    a(href="") <i class="fa-brands fa-x-twitter"></i>
-                                    a(href="") <i class="fa-brands fa-tiktok"></i>
-                                    a(href="") <i class="fa-brands fa-instagram"></i>
+                                    a(href=member.facebook) <i class="fa-brands fa-facebook-f"></i>
+                                    a(href=member.tiktok) <i class="fa-brands fa-tiktok"></i>
+                                    a(href=member.insta) <i class="fa-brands fa-instagram"></i>
 

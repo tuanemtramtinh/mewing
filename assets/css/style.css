@@ -688,6 +688,7 @@ body {
 }
 .member__item-desc {
   margin-bottom: 13px;
+  height: 144px;
 }
 .member__item-socials {
   font-size: 16px;
