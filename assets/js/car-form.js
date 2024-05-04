@@ -67,16 +67,13 @@ const departurePlace = document.querySelector('.car__start');
 const arrivePlace = document.querySelector('.car__end');
 const carForm = document.querySelector('.car__form form');
 const carDriverList = document.querySelector('.car__driverList');
-
+const driverSelector = document.querySelector('.car__driver');
 
 tripRegister.addEventListener('click', () => {
 
     const carSizeCheck = Array.from(carSizes).find((carSize) => carSize.checked);
     const carSeatTypeCheck = Array.from(carSeatTypes).find((carSeatType) => carSeatType.checked);
     const carFeatureCheck = Array.from(carFeatures).find((carFeature) => carFeature.checked);
-    carDriverList.innerHTML = '';
-    carDriverList.style.display = 'none';
-
 
     if (userAccount == null){
         alert('Vui lòng đăng nhập để thực hiện chức năng này');
@@ -106,6 +103,19 @@ tripRegister.addEventListener('click', () => {
 
 cancelButton.addEventListener('click', () => {
     car.style.display = "none";
+    driverSelector.style.display = 'none';
+    carDriverList.innerHTML = '';
+    document.querySelector('.car__price span').innerHTML = '';
+    document.querySelector('.car__price').style.display = 'none';
+    departureDate.value = '';
+    departureTime.value = '';
+    departurePlace.value = 'TPHCM';
+    arrivePlace.value = 'TPHCM';
+    getDepartureDate = undefined;
+    getDepartureTime = undefined;
+    outputPrice = undefined;
+    arriveTime = undefined;
+    arriveDate = undefined;
 });
 
 const startEndPrice =
@@ -242,9 +252,9 @@ let checkAllInput = function() {
                     return Promise.all(driverList);
                 }).then((driverList) => {
 
-                    let flag = false;
+                    
 
-                    console.log(flag);
+                    // console.log(flag);
 
                     const newBooking = {
                         departureTime: `${getDepartureDate}T${getDepartureTime}`,
@@ -276,20 +286,27 @@ let checkAllInput = function() {
                     //Kiểm tra điều kiện của tài xế . Thêm điều kiện về kiểm tra lịch trình hiện tại, 
                     //Cái này chỉ mới kiểm tra kích thước của xe tài xế và kích thước xe khách chọn.
 
-                    driverList.forEach((driver) => {
-                        if (driver.carSize === carFormSize.value && isDriverScheduleAvailable(driver, newBooking) && isVehicleScheduleAvailable(driver, newBooking)){
-                            const option =  document.createElement('option');
-                            option.value = `${driver.driverId}:${driver.carID}`;
-                            option.innerHTML = `${driver.driverName} - ${driver.driverTel}`;
-                            carDriverList.appendChild(option);
-                            flag = true;
-                        }
-                    });
+                
+                    if(carDriverList.children.length == 0){
 
-                    if (flag == false){
-                        alert("Hiện tại không có tài xế");
-                        window.location.reload();
-                    }
+                        let flag = false;
+
+                        driverList.forEach((driver) => {
+                            if (driver.carSize === carFormSize.value && isDriverScheduleAvailable(driver, newBooking) && isVehicleScheduleAvailable(driver, newBooking)){
+                                const option =  document.createElement('option');
+                                option.value = `${driver.driverId}:${driver.carID}`;
+                                option.innerHTML = `${driver.driverName} - ${driver.driverTel}`;
+                                carDriverList.appendChild(option);
+                                flag = true;
+                            }
+                        });
+
+                        if (flag == false){
+                            alert("Hiện tại không có tài xế");
+                            window.location.reload();
+                        }
+                    }        
+                    
                 });
 
                 return true;        
@@ -299,7 +316,7 @@ let checkAllInput = function() {
 
         if (!(typeof checkStatus == 'undefined')){
             // console.log(document.querySelector('.car__price span'));
-            const driverSelector = document.querySelector('.car__driver');
+            
             driverSelector.style.display = "block";
             document.querySelector('.car__price span').innerHTML = outputPrice;
             document.querySelector('.car__price').style.display = 'block';
@@ -326,7 +343,7 @@ const carOrderRef = collection(db, 'carOrders');
 carForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    console.log(carDriverList.value);   
+    // console.log(carDriverList.value);   
     const carOrderId = crypto.randomUUID();
     const driverRef = doc(db, 'drivers', carDriverList.value.split(':')[0]);
     const newBooking = {

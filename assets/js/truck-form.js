@@ -69,13 +69,12 @@ const departurePlace = document.querySelector('.car__start');
 const arrivePlace = document.querySelector('.car__end');
 const carForm = document.querySelector('.car__form form');
 const carDriverList = document.querySelector('.car__driverList');
-
+const driverSelector = document.querySelector('.car__driver');
 tripRegister.addEventListener('click', () => {
 
     const carWeightCheck = Array.from(carWeights).find((carWeight) => carWeight.checked);
     const carBoxTypeCheck = Array.from(carBoxTypes).find((carBoxType) => carBoxType.checked);
-    carDriverList.innerHTML = '';
-    carDriverList.style.display = 'none';
+
     if (userAccount == null){
         alert('Vui lòng đăng nhập để thực hiện chức năng này');
         //location.reload();
@@ -107,6 +106,19 @@ tripRegister.addEventListener('click', () => {
 
 cancelButton.addEventListener('click', () => {
     car.style.display = "none";
+    driverSelector.style.display = 'none';
+    carDriverList.innerHTML = '';
+    document.querySelector('.car__price span').innerHTML = '';
+    document.querySelector('.car__price').style.display = 'none';
+    departureDate.value = '';
+    departureTime.value = '';
+    departurePlace.value = 'TPHCM';
+    arrivePlace.value = 'TPHCM';
+    getDepartureDate = undefined;
+    getDepartureTime = undefined;
+    outputPrice = undefined;
+    arriveTime = undefined;
+    arriveDate = undefined;
 });
 
 const startEndPrice =
@@ -229,6 +241,7 @@ let checkAllInput = function() {
                             driver.carWeight = subDoc.data().Weight;
                             driver.carType = subDoc.data().Type;
                             driver.carID = subDoc.data().ID;
+                            driver.maintaince = subDoc.data().maintaince;
                         });
                 
                         return driver;
@@ -236,45 +249,64 @@ let checkAllInput = function() {
                     return Promise.all(driverList);
                 }).then((driverList) => {
 
-                    let flag = false;
+                    // let flag = false;
 
                     const newBooking = {
                         departureTime: `${getDepartureDate}T${getDepartureTime}`,
                         arriveTime: `${arriveDate}T${arriveTime}`
                     }
 
-                    const checkSchedule = (driver, newBooking) => {
-                        const newStart = newBooking.departureTime;
-                        const newEnd = newBooking.arriveTime;
+                    const isDriverScheduleAvailable = (driver, newBooking) => {
                         for(var i = 0; i < driver.schedule.length; i++){
                             const start = driver.schedule[i].departureTime;
                             const end = driver.schedule[i].arriveTime;
-                            if(newStart < end && newEnd > start){
+                            if(newBooking.departureTime < end && newBooking.arriveTime > start){
+                                console.log('Hello1')
                                 return false;
                             }
                         }
                         return true;
                     }
 
+                    const isVehicleScheduleAvailable = (driver, newBooking) => {
+                        for(var i = 0; i < driver.maintaince.length; i++){
+                            const start = driver.maintaince[i].time_start;
+                            const end = driver.maintaince[i].time_end;
+                            if(newBooking.departureTime < end && newBooking.arriveTime > start){
+                                console.log('Hello2')
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+
+
                     //Kiểm tra điều kiện của tài xế . Thêm điều kiện về kiểm tra lịch trình hiện tại, 
                     //Cái này chỉ mới kiểm tra kích thước của xe tài xế và kích thước xe khách chọn.
 
-                    console.log(driverList);
+                    // console.log(carDriverList.children.length);
 
-                    driverList.forEach((driver) => {
-                        if (driver.carWeight === carFormWeight.value && checkSchedule(driver, newBooking)){
-                            const option =  document.createElement('option');
-                            option.value = `${driver.driverId}:${driver.carID}`;
-                            option.innerHTML = `${driver.driverName} - ${driver.driverTel}`;
-                            carDriverList.appendChild(option);
-                            flag = true;
+                    console.log(newBooking);
+
+                    if (carDriverList.children.length == 0){
+                        let flag = false;
+                        driverList.forEach((driver) => {
+                            if (driver.carWeight === carFormWeight.value && isDriverScheduleAvailable(driver, newBooking) && isVehicleScheduleAvailable(driver, newBooking)){
+                                const option =  document.createElement('option');
+                                option.value = `${driver.driverId}:${driver.carID}`;
+                                option.innerHTML = `${driver.driverName} - ${driver.driverTel}`;
+                                carDriverList.appendChild(option);
+                                flag = true;
+                            }
+                        });
+    
+                        if (flag == false){
+                            alert("Hiện tại không có tài xế");
+                            window.location.reload();
                         }
-                    });
-
-                    if (flag == false){
-                        alert("Hiện tại không có tài xế");
-                        window.location.reload();
                     }
+
+                    
                 });
 
                     return true;        
@@ -283,7 +315,6 @@ let checkAllInput = function() {
             });
 
         if (!(typeof checkStatus == 'undefined')){
-            const driverSelector = document.querySelector('.car__driver');
             driverSelector.style.display = "block";
             document.querySelector('.car__price span').innerHTML = outputPrice;
             document.querySelector('.car__price').style.display = 'block';
