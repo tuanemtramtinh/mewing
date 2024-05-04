@@ -125,10 +125,10 @@ const startEndPrice =
         end: 'VUNGTAU',
         time: '1:25',
         small: {
-            price: '500.000 VND'
+            price: '1.000.000 VND'
         },
         big: {
-            price: '800.000 VND'
+            price: '1.200.000 VND'
         }
     },
     {
@@ -145,13 +145,12 @@ const startEndPrice =
     {
         start: 'VUNGTAU',
         end: 'NHATRANG',
-        price: '1.500.000 VND',
         time: '5:30',
         small: {
-            price: '2.200.000 VND'
+            price: '2.300.000 VND'
         },
         big: {
-            price: '3.200.000 VND' 
+            price: '3.300.000 VND' 
         }
     },
     {
@@ -160,10 +159,10 @@ const startEndPrice =
         price: '500.000 VND',
         time: '1:25',
         small: {
-            price: '500.000 VND'
+            price: '1.000.000 VND'
         },
         big: {
-            price: '800.000 VND'
+            price: '1.200.000 VND'
         }
     },
     {
@@ -184,10 +183,10 @@ const startEndPrice =
         price: '1.500.000 VND',
         time: '5:30',
         small: {
-            price: '2.200.000 VND'
+            price: '2.300.000 VND'
         },
         big: {
-            price: '3.200.000 VND' 
+            price: '3.300.000 VND' 
         }
     }
 ]

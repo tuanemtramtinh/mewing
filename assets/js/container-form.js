@@ -136,7 +136,7 @@ const startEndPrice =
         start: 'TPHCM',
         end: 'VUNGTAU',
         time: '2:15',
-        price: '1.800.000 VND'
+        price: '1.900.000 VND'
     },
     {
         start: 'TPHCM',
@@ -154,7 +154,7 @@ const startEndPrice =
         start: 'VUNGTAU',
         end: 'TPHCM',
         time: '2:15',
-        price: '1.800.000 VND'
+        price: '1.900.000 VND'
     },
     {
         start: 'NHATRANG',
